@@ -1,35 +1,30 @@
-# Job Tracker App
+# Meditation Tracker
 
-> The job tracker app allows a manager to enter job information and assign jobs to workers, 
-> and allows workers to see the jobs assigned to them. The target audience is a 
-> boat maintenance company, but the app could be adapted for other companies as well.
+The meditation tracker allows you to track the number of times your meditate and add notes on how your meditation session went.
 
 ### Working Prototype
 
-View working prototype here: [Job Tracker](https://job-tracker-node-capstone.herokuapp.com/)  
+View working prototype here: [Meditation Tracker](https://meditation-tracker.herokuapp.com/)  
 
-* To log in to admin view: email: admin@email.com / pw: admin
-* To log in to worker view: email: worker@email.com / pw: worker
+* To log in to demo view: email: demo / pw: demo123
+
 
 ## Screenshots: MVP
-
-![Admin Screenshots](/screenshots/screenshots-admin.png)
+???
+![Demo Screenshots]()
   
 
-![Worker Screenshots](/screenshots/screenshots-worker.png)
-
-
 ## User Flow: MVP 
-
-![User Flow Image](/screenshots/mvp-user-flow.png)
+???
+![User Flow Image]()
 
 ## UX & User Stories: MVP
-
-![Wireframes Image](/screenshots/mvp-wireframes.png)
+???
+![Wireframes Image]()
 
 ## Technical
 
-Job Tracker was built with: 
+Meditation Tracker was built with: 
 
 #### Front End
 
@@ -48,17 +43,27 @@ Job Tracker was built with:
 
 
 ### Responsive
-This app is built to be primarily used on a mobile device and is optimized for a small screen
+???
+This app is built to be responsive to smaller screen sizes
 
 
 
 ## Development Road Map
-
+???
 Features for future iterations include: 
-* Add styling for errors and dialogs
-* Add ability for workers to add notes to job
-* Add ability for workers to mark job as complete
-* Add job report list to Admin section
-* Add ability for user to click on job location and be taken to map
+
+
+#  The typical command lines for capstone projects
+
+## Node command lines
+* npm install ==> install all node modules
+* nodemon server.js ==> run node server
+* npm test ==> run the tests
+
+## React command lines
+* npm install ==> install all node modules
+* npm run build ==> build the react files in the "build" folder
+* npm start ==> run react server on http://127.0.0.1:8080
+* npm test ==> run the tests
 
 

@@ -1,5 +1,5 @@
 'use strict';
-exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || 'mongodb://admin:admin@ds125469.mlab.com:25469/job-tracker-node-capstore';
+exports.DATABASE_URL = process.env.DATABASE_URL || global.DATABASE_URL || 'mongodb://demo:demo123@ds245240.mlab.com:45240/meditation-tracker';
 exports.TEST_DATABASE_URL = process.env.TEST_DATABASE_URL ||
-    'mongodb://admin:admin@ds113870.mlab.com:13870/job-tracker-test-database';
+    'mongodb://demo:demo123@ds245240.mlab.com:45240/meditation-tracker';
 exports.PORT = process.env.PORT || 8080;
