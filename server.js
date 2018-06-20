@@ -1,8 +1,6 @@
 'use strict';
 
 const User = require('./models/users');
-const Job = require('./models/jobs');
-const Boat = require('./models/boats');
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');

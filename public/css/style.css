@@ -63,10 +63,12 @@ html {
 }
 
 body {
-    font-family: 'Lato', sans-serif;
-    color: #5E5E5E;
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #5F6566;
     font-size: 16px;
-    max-width: 850px;
+    max-width: 880px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -80,36 +82,40 @@ main {
 /* General Styles */
 
 h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: 2.75rem;
+    font-family: skolar-sans-latin-extended, sans-serif;
+    font-style: normal;
     font-weight: 700;
-    text-align: center;
-    color: #002039;
-    padding-bottom: 1.25rem;
+    font-size: 3rem;
+    color: #7AABBB;
+    padding-top: 30px;
 }
 
 h2 {
-    font-family: 'Lato', sans-serif;
+    font-family: skolar-sans-latin-extended, sans-serif;
+    font-style: normal;
     font-weight: 700;
-    font-size: 1.5rem;
+    font-size: 2.25rem;
+    color: #373E40;
 }
 
 h3 {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.375rem;
-    color: #002039;
+    font-family: skolar-sans-latin-extended, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    color: #373E40;
+    font-size: 1.125rem;
     padding-bottom: 5px;
     padding-top: 15px;
 }
 
 h4 {
-    font-family: 'Lato', sans-serif;
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
     font-weight: 400;
     font-size: 1.125rem;
-    color: #002039;
-    padding-bottom: 5px;
-    padding-top: 15px;
+    color: #5F6566;
+    padding-bottom: 30px;
+    padding-top: 25px;
 }
 
 h5 {
@@ -121,585 +127,47 @@ h5 {
 }
 
 p {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #5F6566;
     font-size: 1rem;
-    color: #5E5E5E;
+    color: #5F6566;
     line-height: 1.25rem;
-}
-
-fa {
-    font-size: 1rem;
 }
 
 li {
-    font-family: 'lato', sans-serif;
-    font-size: 1rem;
-    line-height: 1.25rem;
-    color: #9A9A9A;
     list-style-type: none;
 }
 
 a {
-    text-decoration: none;
-    color: #002039;
-}
-
-
-
-/* Style for Main Headers */
-
-.jt-header {
-    background: #3B6478;
-    height: 60px;
-    position: relative;
-}
-
-.jt-header:before {
-    content: "";
-    background-color: #3B6478;
-    position: absolute;
-    height: 100%;
-    width: 200vw;
-    left: -100vw;
-    z-index: -1;
-}
-
-.jt-header h2 {
-    color: #ffffff;
-    text-align: left;
-    padding-top: 15px;
-    padding-left: 15px;
-}
-
-.jt-header a {
-    color: #ffffff;
-}
-
-.i-inline {
-    margin-right: 3px;
-}
-
-.back-link {
-    font-size: 1.75rem;
-    color: #7F8F9C;
-}
-
-.icon-link {
-    cursor: pointer;
-}
-
-
-
-/* Nav Style */
-
-.menu {
-    background-color: #ffffff;
-    position: absolute;
-    top: 60px;
-    right: 0;
-    border: 1px solid #979797;
-    width: 225px;
-    z-index: 1000;
-}
-
-nav li {
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    color: #002039;
-    text-decoration: none;
-    padding: 15px;
-    font-size: 1.375rem;
-    border-bottom: 1px solid #979797;
-    cursor: pointer;
-}
-
-.menu-btn {
-    font-size: 1.5rem;
-    color: #ffffff;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    cursor: pointer;
-}
-
-
-
-/* Form Styles */
-
-form {
-    padding: 0 20px;
-    margin-top: 10px;
-}
-
-label {
-    display: block;
-    padding-bottom: 6px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.125rem;
-    color: #5E5E5E;
-    margin-top: 15px;
-}
-
-.span-label {
-    display: block;
-    padding-bottom: 6px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.125rem;
-    color: #5E5E5E;
-    margin-top: 25px;
-}
-
-.checkboxes label {
-    display: inline-block;
-    font-weight: 300;
-    color: #363636;
-    margin: 0;
-}
-
-.radio-label label {
-    display: inline-block;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.125rem;
-    color: #363636;
-    padding-right: 25px;
-}
-
-input {
-    width: 99%;
-    height: 50px;
-    background: #FFFFFF;
-    border: 1px solid #BFBFBF;
-    border-radius: 5px;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 300;
-    color: #363636;
-    padding-left: 5px;
-    margin-top: 3px;
-}
-
-input[type="radio"] {
-    width: 25px;
-    height: 25px;
-    padding: 0;
-    position: relative;
-    top: 2px;
-    *overflow: hidden;
-}
-
-input[type="checkbox"] {
-    width: 21px;
-    height: 24px;
-    padding: 0;
-    margin-top: 0;
-    vertical-align: sub;
-}
-
-.input-span {
-    display: block;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 300;
-    color: #363636
-}
-
-:focus {
-    outline: #93C0D1 auto 5px;
-}
-
-textarea {
-    width: 99%;
-    height: 75px;
-    background: #FFFFFF;
-    border: 1px solid #BFBFBF;
-    border-radius: 5px;
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 1.125rem;
-    color: #363636;
-    padding-left: 5px;
-    resize: none;
-}
-
-select::-ms-expand {
-    display: none;
-}
-
-.drop-down {
-    position: relative;
-}
-
-.drop-down:after {
-    content: "▾";
-    position: absolute;
-    right: 15px;
-    top: 40px;
-    z-index: 1;
-    text-align: center;
-    pointer-events: none;
-}
-
-.drop-down select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 50px;
-    background: #FFFFFF;
-    border: 1px solid #BFBFBF;
-    border-radius: 5px;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 300;
-    color: #363636;
-    padding-left: 5px;
-    margin-bottom: 15px;
-}
-
-.checkboxes li {
-    padding-bottom: 5px;
-}
-
-
-button {
-    width: 100%;
-    height: 50px;
-    background: #002039;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 30px;
-    margin-top: 20px;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.5rem;
-    color: #FFFFFF;
-    font-weight: 400;
-    cursor: pointer;
-}
-
-.add-button {
-    display: inline-block;
-    width: 49%;
-}
-
-.cancel-button {
-    display: inline-block;
-    width: 49%;
-    height: 50px;
-    background: #C2C2C2;
-    border-radius: 5px;
-    border: none;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.5rem;
-    color: #363636;
-    font-weight: 300;
-    cursor: pointer;
-}
-
-.delete-button {
-    background: #D0021B;
-    margin-top: 0;
-}
-
-/* Style for Landing Screen */
-
-.landing-top {
-    background: #002039;
-    margin: 0 auto;
-    padding: 25px;
-}
-
-.landing-top h1 {
-    color: #ffffff;
-    margin: 0;
-    padding: 10px;
-}
-
-#icon-landing {
-    font-size: 65px;
-    color: #ffffff;
-}
-
-#landing-content {
-    max-width: 85%;
-    text-align: center;
-    margin: 35px auto;
-}
-
-#landing-content p {
-    color: #363636;
-    padding-bottom: 25px;
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-}
-
-.landing-link {
-    border-top: 1px solid #BFBFBF;
-    padding-top: 40px;
-    margin-top: 15px;
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: #002039;
-    cursor: pointer;
-}
-
-.i-right {
-    margin-left: 10px;
-}
-
-
-/* Style for Login Screen */
-
-#login-screen {
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-#login-section {
-    max-width: 90%;
-    margin: 0 auto;
-    background-color: #ffffff;
-    border-radius: 5px;
-    opacity: 0.95;
-    padding-top: 30px;
-}
-
-#login-section h1 {
-    padding: 0;
-    margin:  .5rem;
-}
-
-.center {
-    text-align: center;
-}
-
-#ship-login {
-    font-size: 75px;
-    color: #ffffff;
-    margin-top: 35px;
-}
-
-.ship-circle {
-    border-radius: 50%;
-    background: #002039;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto;
-}
-
-.demo-info {
-    max-width: 90%;
-    text-align: center;
-    margin: 15px auto;
-    padding: 10px 0;
-    border-top: 1px solid #BFBFBF;
-    border-bottom: 1px solid #BFBFBF;
-}
-
-.demo-info h6 {
-    padding-bottom: 5px;
-}
-
-
-/* Style for Admin: Landing Screen */
-
-#dashboard-buttons {
-    padding: 0 20px;
-    margin-top: 10px;
-}
-
-.dashboard-button {
-    width: 100%;
-    height: 50px;
-    background: #002039;
-    border-radius: 5px;
-    border: none;
-    margin-top: 20px;
-    font-family: 'Lato', sans-serif;
-    font-size: 1.5rem;
-    color: #FFFFFF;
-    font-weight: 400;
-    cursor: pointer;
-    text-align: left;
-    padding-left: 20px;
-    margin-bottom: 0;
-}
-
-.dashboard-button:last-of-type {
-    padding-bottom: 24px;
-}
-
-.dashboard-button h2 {
-    display: inline-block;
-    padding-top: 10px;
-    padding-left: 5px;
-    font-weight: 300;
-}
-
-
-
-/* Style for Admin: Worker List Screen */
-
-.worker {
-    padding-left: 20px;
-    border-bottom: 1px solid #9B9B9B;
-}
-
-.worker h4 {
-    cursor: pointer;
-}
-
-.worker li:last-of-type {
-    padding-bottom: 20px;
-}
-
-
-
-
-/* Style for Admin: Worker Detail Screen */
-
-.worker-detail {
-    margin-left: 20px;
-    margin-right: 20px;
-    position: relative;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #979797;
-}
-
-.edit-btn {
-    position: absolute;
-    top: 1rem;
-    right: 0;
-    font-size: 1.125rem;
-    color: #002039;
-    cursor: pointer;
-}
-
-.worker-detail li {
-    padding-top: 5px;
-}
-
-.worker-detail label {
-    display: inline-block;
-    padding-right: 5px;
-}
-
-.job-date {
-    font-size: 1.125rem;
-    color: #777777;
-    margin-top: 10px;
-}
-
-.assigned-jobs {
-    padding-top: 5px;
-    padding-left: 20px;
-}
-
-.assigned-jobs li {
-    padding-top: .5rem;
-    list-style-type: circle;
-    margin-left: 20px;
-}
-
-
-
-/* Style for Admin: Job List Screen */
-
-.date-header {
-    color: #363636;
-    background: #93C0D1;
-    width: 100%;
-    height: 40px;
-}
-
-.date-header h3 {
-    font-family: 'lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.25rem;
-    color: #363636;
-    padding-top: 10px;
-    padding-left: 20px;
-}
-
-.job {
-    padding-left: 20px;
-    padding-right: 20px;
-    border-bottom: 1px solid #9B9B9B;
-    padding-bottom: 20px;
-    position: relative;
-}
-
-.job .edit-btn {
-    right: 20px;
-}
-
-.job h4 {
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
     font-weight: 700;
-    font-size: 1.175rem;
-    color: #002039;
-}
-
-.job-list-wrapper li {
-    font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 1rem;
-    color: #5E5E5E;
-    line-height: 1.25rem;
-    list-style: circle;
-    list-style-position: inside;
+    font-size: 0.875rem;
+    color: #4B6182;
+    text-decoration: none;
 }
 
 
 
-/* Style for Worker: Job List Screen */
-
-.alt-button {
-    background: #FFFFFF;
-    border: 1px solid #002039;
-    border-radius: 5px;
-    height: 25px;
-    width: 180px;
-    color: #002039;
-    font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    margin-top: 15px;
-    margin-bottom: 0;
-    text-align: left;
-    padding-left: 10px;
-    cursor: pointer;
-}
-
-.toggle-section {
-    background: #FFFFFF;
-    border: 1px solid #002039;
-    border-radius: 5px;
-    padding-left: 20px;
-    position: relative;
-    top: -25px;
-}
-
-.toggle-section form {
-    padding-left: 0;
-    margin: 0;
-}
+/* Landing Screen */
 
 
-/* Style for Worker: Profile Screen */
+/* Login & Sign Up Sections */
 
-.profile-section {
-    margin-right: 20px;
-    padding-left: 20px;
-    position: relative;
-}
 
-.edit-profile-section {
-    margin-right: 20px;
-    padding-left: 20px;
-}
+/* Nav Header */
 
-.profile-section form {
-    padding-left: 0;
-}
+
+/* Dashboard Section */
+
+
+/* Session Form */
+
+
+/* Journal Section */
+
+
+/* Change Password Section */
+

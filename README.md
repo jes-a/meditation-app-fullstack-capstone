@@ -1,12 +1,12 @@
-# Meditation Tracker
+# insight•full
 
-The meditation tracker allows you to track the number of times your meditate and add notes on how your meditation session went.
+The insight•full app allows you to track your meditation sessions and add insights on how your session went. You can then view your practice over time and read your journal of insights gained during your sessions.
 
 ### Working Prototype
 
-View working prototype here: [Meditation Tracker](https://meditation-tracker.herokuapp.com/)  
+View working prototype here: [insight•full](https://meditation-tracker.herokuapp.com/)  
 
-* To log in to demo view: email: demo / pw: demo123
+* To log in to demo view: username: demo / pw: demo123
 
 
 ## Screenshots: MVP
