@@ -8,32 +8,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Style Sheets -->
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/float-grid.css">
     <link rel="stylesheet" href="css/style.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/csx6nfc.css">
-    <!-- <script defer src="js/fontawesome-all.js"></script> -->
-    <script defer src="https://pro.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-+1nLPoB0gaUktsZJP+ycZectl3GX7wP8Xf2PE/JHrb7X1u7Emm+v7wJMbAcPr8Ge" crossorigin="anonymous"></script>
+    <!-- Font Awesome Fonts -->
+    <script defer src="js/fontawesome-all.js"></script>
+    <script defer src="https://pro.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-d84LGg2pm9KhR4mCAs3N29GQ4OYNy+K+FBHX8WhimHpPm86c839++MDABegrZ3gn" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
 
 <!-- Landing Screen -->
-    <main role="main" id="landing-screen">
-        <div id="landing-section">
-
+    <main role="main" id="landing-screen" class="bg">
+        <div class="landing-width">
+            <div class="landing-bg">
+                <h2>
+                    insight•full
+                </h2>
+                <h5>
+                    insight•full is a free and easy to use app that allows you to gain insights about your meditation practice. Simply add your session each time you meditate, along with any insights you had during your practice and save. 
+                </h5>
+                <h5>
+                    The app keeps track of your meditation sessions, and you can go back and read through your journal of insights. 
+                </h5>
+                <h5>    
+                    Stay mindful, and stay insight•full!
+                </h5>
+                <div role="link" id="js-landing-link" class="landing-link">
+                    Log In <i class="far fa-chevron-circle-right"></i>
+                </div>
+                <p class="account-link">
+                    If you don't have an account, Sign Up...
+                </p>
+            </div>
         </div>
+        <p class="photo-credit">Photo by <a href="https://unsplash.com/photos/FO7bKvgETgQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jeremy Thomas</a> on Unsplash</p>
     </main>
 
 
-<!-- Login & Sign Up Sections -->
+<!-- Login Section -->
     <main role="main" id="login-screen">
-        <div id="login">
-            
-
+        <div class="landing-bg">
+            <h2>
+                insight•full
+            </h2>
+            <form role="form" id="login-form" class="landing-form">
+                <h3>
+                    Log In
+                </h3>
+                <span class="login-error"></span>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="js-userName" value="">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="js-userPw" class="pw" value="">
+                <p class="forgot-pw">Forgot password?</p>
+                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In</button>
+            </form>       
+            <p class="account-link js-signup">
+                If you don't have an account, Sign Up...
+            </p>
         </div>
     </main>
 
+<!-- Sign Up Section -->
+    <main role="main" id="signup-screen">
+        <div class="landing-bg">
+            <h2>
+                insight•full
+            </h2>
+            <form role="form" id="signup-form" class="landing-form">
+                <h3>
+                    Sign Up For an Account
+                </h3>
+                <span class="login-error"></span>
+                <label for="username">Create a Username</label>
+                <input type="text" id="username-signup" name="js-userName-signup" value="">
+                <label for="create-pw">Create a Password</label>
+                <input type="create-pw" id="create-pw" name="js-create-pw" value="">
+                <label for="reenter-pw">Re-enter Password</label>
+                <input type="reenter-pw" id="reenter-password" name="js-reenter-pw" value="">
+                <button role="button" name="signup" class="login-button" id="js-signup-button" type="submit">Sign Up</button>
+            </form>       
+            <p class="account-link js-login">
+                If you have an account, Log In...
+            </p>
+        </div>
+    </main>
 
 <!-- Nav Header -->
 
