@@ -18,24 +18,22 @@
 </head>
 
 <body>
-
-
-<!-- Landing Screen -->
+    <!-- Landing Screen -->
     <main role="main" id="landing-screen" class="bg">
         <div class="landing-width">
             <div class="landing-bg">
                 <h2>
-                    insight•full
-                </h2>
+                insight•full
+              </h2>
                 <h5>
-                    insight•full is a free and easy to use app that allows you to gain insights about your meditation practice. Simply add your session each time you meditate, along with any insights you had during your practice and save. 
-                </h5>
+                insight•full is a free and easy to use app that allows you to gain insights about your meditation practice. After you meditate, simply add your session and any insights you had and save. 
+              </h5>
                 <h5>
-                    The app keeps track of your meditation sessions, and you can go back and read through your journal of insights. 
-                </h5>
+                The app allows you to easily see how your meditation practice is going, and keeps a journal of your meditation insights. 
+              </h5>
                 <h5>    
-                    Stay mindful, and stay insight•full!
-                </h5>
+                Stay mindful, and stay insight•full!
+              </h5>
                 <div role="link" id="js-landing-link" class="landing-link">
                     Log In <i class="far fa-chevron-circle-right"></i>
                 </div>
@@ -46,18 +44,16 @@
         </div>
         <p class="photo-credit">Photo by <a href="https://unsplash.com/photos/FO7bKvgETgQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jeremy Thomas</a> on Unsplash</p>
     </main>
-
-
-<!-- Login Section -->
+    <!-- Login Section -->
     <main role="main" id="login-screen">
         <div class="landing-bg">
             <h2>
-                insight•full
-            </h2>
+              insight•full
+          </h2>
             <form role="form" id="login-form" class="landing-form">
                 <h3>
-                    Log In
-                </h3>
+                  Log In
+              </h3>
                 <span class="login-error"></span>
                 <label for="username">Username</label>
                 <input type="text" id="username" name="js-userName" value="">
@@ -65,73 +61,112 @@
                 <input type="password" id="password" name="js-userPw" class="pw" value="">
                 <p class="forgot-pw">Forgot password?</p>
                 <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In</button>
-            </form>       
+            </form>
             <p class="account-link js-signup">
                 If you don't have an account, Sign Up...
             </p>
         </div>
     </main>
-
-<!-- Sign Up Section -->
+    <!-- Sign Up Section -->
     <main role="main" id="signup-screen">
         <div class="landing-bg">
             <h2>
-                insight•full
+              insight•full
             </h2>
             <form role="form" id="signup-form" class="landing-form">
                 <h3>
-                    Sign Up For an Account
+                  Sign Up For an Account
                 </h3>
                 <span class="login-error"></span>
-                <label for="username">Create a Username</label>
-                <input type="text" id="username-signup" name="js-userName-signup" value="">
-                <label for="create-pw">Create a Password</label>
+                <label for="username">
+                    Create a Username
+                </label>
+                <input type="text" id="username-signup" name="js-userName-signup" value="" />
+                <label for="create-pw">
+                    Create a Password
+                </label>
                 <input type="create-pw" id="create-pw" name="js-create-pw" value="">
-                <label for="reenter-pw">Re-enter Password</label>
-                <input type="reenter-pw" id="reenter-password" name="js-reenter-pw" value="">
+                <label for="reenter-pw">
+                    Re-enter Password</label>
+                <input type="reenter-pw" id="reenter-password" name="js-reenter-pw" value="" />
                 <button role="button" name="signup" class="login-button" id="js-signup-button" type="submit">Sign Up</button>
-            </form>       
+            </form>
             <p class="account-link js-login">
                 If you have an account, Log In...
             </p>
         </div>
     </main>
-
-<!-- Nav Header -->
-
-    <main role="main" id="nav-header">
-        <div id="nav-bar">
-
+    <!-- Nav Header -->
+    <div class="nav-bg">
+        <nav role="navigation" id="nav-header">
+            <h2 class="nav-title">
+                insight•full
+            </h2> 
+            <div class="menu-btn js-menu-btn">
+                <i aria-label="Nav button" class="fas fa-bars"></i>
+            </div> 
+            <div class="nav-links menu">
+                <span class="add-session-nav nav-right">
+                    Add Session
+                </span>
+                <span class="journal-nav nav-right">
+                    Journal
+                </span>
+                <span class="fa-nav nav-last">
+                    <i class="fal fa-user-circle" aria-label="Settings"></i>
+                </span>
+<!--                 <span class="nav-list settings-nav">
+                    Settings
+                </span>
+                <span class="nav-list">
+                    - Change Password
+                </span>
+                <span class="nav-list">
+                    - Log Out
+                </span> -->
+            </div>
+        </nav>
+    </div>
+    <!-- Dashboard Section -->
+    <main role="main" id="dashboard-screen">
+    </main>
+    <!-- Session Form -->
+    <main role="main" id="session-form">
+        <div class="section col-6">
+            <h1>Add Session</h1>
+            <form role="form" id="add-session-form" class="session-form">
+            <div>
+                <label for="date-select">Meditation Session Date</label>
+                <input type="date" id="date-select" name="session-date">
+            </div>
+                <label for="add-entry">Insights from my session
+                <textarea name="entry" id="add-entry" value="entry"></textarea></label>
+                
+            </form>
+            
         </div>
     </main>
-
-
-<!-- Dashboard Section -->
-    <main role="main" id="dashboard-screen">
-
-    </main>
-
-<!-- Session Form -->
-    <main role="main" id="session-form">
-
-    </main>
-
-<!-- Journal Section -->
+    <!-- Journal Section -->
     <main role="main" id="journal-screen">
-
     </main>
-
-
-<!-- Change Password Section -->
+    <!-- Change Password Section -->
     <main role="main" id="change-password-screen">
+        <div class="section col-6">
+            <h1>Change Password</h1>
+            <form role="form" id="changePw-form" class="landing-form">
+                <span class="login-error"></span>
+                <label for="create-new-password">Create a New Password</label>
+                <input type="password" id="create-new-password" name="js-new-userPw" value="">
+                <label for="reenter-new-password">Re-enter Password</label>
+                <input type="password" id="create-new-password" name="js-new-userPw" value="">
+                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In</button>
+            </form>
+        </div>
 
     </main>
-
-
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="client.js" type="text/javascript"></script>
-
 </body>
 
 </html>
