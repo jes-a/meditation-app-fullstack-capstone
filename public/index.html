@@ -143,11 +143,14 @@
                     I meditated for <input type="number" id="session-time" name="session-min" class="session-time" /> minutes
                 </label>
                 <label for="session-type">I meditated using</label>
-                <select id="session-type" name="session-type">
-                    <option value="Enter App Name">Enter App Name</option>
-                    <option value="Timer">Timer</option>
-                    <option value="Unassisted">Unassisted</option>
-                </select>
+                <div class="drop-down">
+                    <select id="session-type" name="session-type">
+                        <option disabled selected value> -- Select -- </option>
+                        <option value="Enter App Name">Enter App Name</option>
+                        <option value="Timer">Timer</option>
+                        <option value="Unassisted">Unassisted</option>
+                    </select>
+                </div>
                 <label for="add-entry">Insights from my session</label>
                 <textarea name="entry" id="add-entry" value="entry"></textarea>
                 <button role="button" name="save" id="js-save-session" type="submit">Save Session</button>

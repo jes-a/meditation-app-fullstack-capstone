@@ -353,6 +353,34 @@ nav {
     margin-top: 40px;
 }
 
+select {
+    height: 50px;
+    border-bottom: 2px solid #4A4A4A;
+    border-radius: 0;
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #5F6566;
+    font-size: 1.125rem;    
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.drop-down {
+    position: relative;
+}
+
+.drop-down:after {
+    content: "▾";
+    position: absolute;
+    vertical-align: middle;
+    z-index: 1;
+    top: 15px;
+    text-align: right;
+    pointer-events: none;
+}
 /* Journal Section */
 
 
