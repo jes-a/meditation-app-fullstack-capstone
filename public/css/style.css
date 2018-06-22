@@ -58,7 +58,7 @@ body {
     font-style: normal;
     font-weight: 400;
     color: #5F6566;
-    font-size: 14px;
+    font-size: 12px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -149,7 +149,6 @@ button {
     color: #FFFFFF;
     text-align: center;
     vertical-align: middle;
-    text-transform: uppercase;
 }
 
 label {
@@ -232,7 +231,6 @@ textarea {
     vertical-align: middle;
     margin: 20px auto 0;
     padding-top: 10px;
-    text-transform: uppercase;
 }
 
 .account-link {
@@ -372,7 +370,7 @@ select::-ms-expand {
     position: relative;
 }
 
-.drop-down:after {
+/* .drop-down:after {
     content: "▾";
     position: absolute;
     vertical-align: middle;
@@ -380,7 +378,7 @@ select::-ms-expand {
     top: 15px;
     text-align: right;
     pointer-events: none;
-}
+} */
 /* Journal Section */
 
 
@@ -446,11 +444,7 @@ select::-ms-expand {
         left: 72px;
         padding-top: 12px;
     }
-
-    .menu-btn {
-        display: none;
-    }
-
+      
     .nav-links span {
         text-align: right;
         display: inline-block;
