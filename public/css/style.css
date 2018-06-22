@@ -173,6 +173,19 @@ input {
     font-size: 1.125rem;
 }
 
+textarea {
+    height: 175px;
+    width: 75%;
+    border-bottom: 2px solid #4A4A4A;
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    color: #5F6566;
+    font-size: 1.125rem;
+    background: rgba(216,216,216,0.15);
+    padding-top: 10px;
+}
+
 .svg-inline--fa {
     vertical-align: -0.165em;
 }
@@ -322,7 +335,23 @@ nav {
 
 
 /* Session Form */
+.session-form label {
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #373E40;
+}
 
+.session-time {
+    width: 75px;
+    height: 30px;
+}
+
+.session-form button {
+    width: 75%;
+    margin-top: 40px;
+}
 
 /* Journal Section */
 
