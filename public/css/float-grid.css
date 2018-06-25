@@ -3,9 +3,11 @@
 }
 
 .row {
+  max-width: 1200px;
   clear: both;
-  padding: 0px;
-  margin: 0px 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
 }
 
 .row::before,
@@ -21,7 +23,8 @@
 .col {
   display: block;
   float:left;
-  margin: 1.6%;
+  padding-left: 1.6%;
+  padding-right: 1.6%;
 }
 .col:first-child { margin-left: 0; }
 
@@ -30,13 +33,15 @@
 .col-1, .col-2, .col-3, .col-4, .col-5,
 .col-6, .col-7, .col-8, .col-9, .col-10, 
 .col-11 .col-12 {
-  width: 90%;
+  width: 100%;
 }
 
 /* Non-mobile, grid */
 @media screen and (min-width: 650px) {
   .row {
     margin: 0px 72px;
+    padding: 0;
+
   }
 
   .col-12 {
@@ -64,6 +69,7 @@
 
   .col-6 {
       width: 49.2%;
+
   }
 
   .col-5 {

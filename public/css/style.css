@@ -149,6 +149,7 @@ button {
     color: #FFFFFF;
     text-align: center;
     vertical-align: middle;
+    display: block;
 }
 
 .button-icon {
@@ -417,10 +418,6 @@ select {
     color: #5F6566;
     font-size: 1.25rem;    
 }
-/* 
-.right {
-    float: right;
-} */
 
 .large-image img {
     display: none;
@@ -451,6 +448,23 @@ select {
 
     .nav-last {
         margin-right: 72px;
+    }
+
+/* Add Session Form Section */
+
+    .session-row {
+        position: relative;
+    }
+
+    .large-image img {
+        max-height: 650px;
+        display: inline-block;
+    }
+
+    .large-image {
+        position: absolute;
+        bottom: 0;
+        right: 0;
     }
 
 
@@ -506,11 +520,6 @@ select {
         margin-top: 40px;
     }
 
-/* Add Session Form Section */
-    .large-image img {
-        width: 100%;
-        display: inline-block;
-    }
 
 
 }
