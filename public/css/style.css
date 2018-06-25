@@ -114,6 +114,14 @@ h5 {
     padding-top: 15px;
 }
 
+h6 {
+    font-family: 'aglet-slab', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.875rem; 
+    color: #373E40;  
+}
+
 p {
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
@@ -326,7 +334,7 @@ input[type="radio"] {
     margin-top: 40px;
 }
 
-/* Nav Header */
+/* Nav Header Mobile */
 
 .nav-bg {
     left: 0;
@@ -384,6 +392,10 @@ nav {
     padding-bottom: 15px;
 }
 
+.page-title {
+    padding-left: 20px;
+}
+
 /* Dashboard Section Mobile */
 
 
@@ -424,8 +436,65 @@ select {
 }
 
 
+/* Journal Section Mobile */
 
-/* Journal Section */
+.mobile-bg {
+    background-image: url('../img/water-bkgnd.jpg');
+    height: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin-top: 15px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.filter {
+    font-family: AgletSlab-Regular;
+    font-size: 1rem;
+    color: #4B6182; 
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+.journal-entries {
+    padding-left: 0;
+    padding-right: 0;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.journal-entries p {
+    color: #373E40;
+    margin-bottom: 20px;
+}
+
+.entry-header {
+    background: rgba(122,171,187,0.30);
+    height: 24px;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-left: 0;
+    padding-top: 4px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.delete-entry {
+    float: right;
+    position: absolute;
+    top: 4px;
+    right: 7px;
+}
+
+.entry {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
 
 
 /* Change Password Section */
@@ -450,23 +519,34 @@ select {
         margin-right: 72px;
     }
 
+    .page-title {
+    padding-left: 72px;
+    }
+    
+
+
 /* Add Session Form Section */
 
-    .session-row {
-        position: relative;
-    }
-
     .large-image img {
-        max-height: 650px;
+        max-height: 630px;
         display: inline-block;
+        border-radius: 5px;
+        opacity: .6;
     }
 
-    .large-image {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+    .img-div-session {
+        margin-top: 78px;
+
     }
 
+/* Journal Section */
+    .mobile-bg {
+        background-image: none;
+    }
+
+    .filter {
+        padding-left: 72px;
+    }
 
 }
 
@@ -519,8 +599,6 @@ select {
     .landing-form h3 {
         margin-top: 40px;
     }
-
-
 
 }
 

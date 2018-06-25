@@ -37,7 +37,7 @@
 }
 
 /* Non-mobile, grid */
-@media screen and (min-width: 650px) {
+@media screen and (min-width: 750px) {
   .row {
     margin: 0px 72px;
     padding: 0;
