@@ -125,8 +125,8 @@
             <h1>Add Session</h1>
             <form role="form" id="add-session-form" class="session-form">
             <div>
-                <label for="date-select">Meditation Session Date</label>
-                <input type="date" id="date-select" name="session-date" />
+                <label for="date-select">Date
+                <input type="date" id="date-select" name="session-date" /></label>
             </div>
                 <label for="session-min">
                     I meditated for <input type="number" id="session-time" name="session-min" class="session-time-input" /> minutes
@@ -135,16 +135,16 @@
                     <div class="type-checkbox">
                         <ul id="session-type" name="session-type" class="checkboxes">
                             <li>
-                                <input type="checkbox" id="app-used" value="app-used" />
+                                <input type="radio" name="session-type" id="app-used" value="" />
                                 <label for="app-type">App
-                                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Used" /></label>
+                                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Name" /></label>
                             </li>
                             <li>
-                                <input type="checkbox" id="timer" value="Timer" name="timer">
+                                <input type="radio" name="session-type" id="timer" value="Timer" />
                                 <label for="time" class="checkbox">Timer</label>
                             </li>
                             <li>
-                                <input type="checkbox" id="unassisted" value="Unassisted" name="unassisted">
+                                <input type="radio" name="session-type" id="unassisted" value="Unassisted" />
                                 <label for="unassisted" class="checkbox">Unassisted</label>
                             </li>
                         </ul>

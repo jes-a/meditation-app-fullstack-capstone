@@ -167,17 +167,20 @@ label {
     color: #373E40;
     text-align: left;
     display: block;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
 input {
-    height: 50px;
+    height: 35px;
     border-bottom: 2px solid #4A4A4A;
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
     font-weight: 400;
-    color: #5F6566;
-    font-size: 1.25rem;
+    color: #4B6182;
+    font-size: 1.125rem;
+    vertical-align: bottom;
+    padding-left: 10px;
+
 }
 
 textarea {
@@ -187,16 +190,33 @@ textarea {
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
     font-weight: 400;
-    color: #5F6566;
+    color: #4B6182;
     font-size: 1.125rem;
     background: rgba(216,216,216,0.15);
-    padding-top: 10px;
+    padding: 10px;
+}
+
+input::placeholder {
+    color: #7AABBB;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #7AABBB;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #7AABBB;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #7AABBB;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #7AABBB;
 }
 
 .checkboxes {
     margin: 10px;
     color: #5F6566;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
 }
 
 .checkboxes label {
@@ -204,9 +224,9 @@ textarea {
     margin-top: 0;
 }
 
-input[type="checkbox"] {
-    width: 21px;
-    height: 24px;
+input[type="radio"] {
+    width: 25px;
+    height: 30px;
     padding: 0;
     margin-top: 10px;
     vertical-align: sub;
@@ -379,7 +399,6 @@ nav {
     width: 75px;
     height: 30px;
     text-align: center;
-    vertical-align: bottom;
 }
 
 .session-form button {
