@@ -138,7 +138,7 @@ a {
 
 button {
     width: 100%;
-    height: 65px;
+    height: 60px;
     background: #7AABBB;
     border: 1px solid #FFFFFF;
     border-radius: 5px;
@@ -149,6 +149,14 @@ button {
     color: #FFFFFF;
     text-align: center;
     vertical-align: middle;
+}
+
+.button-icon {
+    margin-left: 10px;
+}
+
+.button-icon-left {
+    margin-right: 10px;
 }
 
 label {
@@ -169,12 +177,12 @@ input {
     font-style: normal;
     font-weight: 400;
     color: #5F6566;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
 }
 
 textarea {
-    height: 175px;
-    width: 75%;
+    height: 125px;
+    width: 100%;
     border-bottom: 2px solid #4A4A4A;
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
@@ -185,10 +193,29 @@ textarea {
     padding-top: 10px;
 }
 
-.svg-inline--fa {
-    vertical-align: -0.165em;
+.checkboxes {
+    margin: 10px;
+    color: #5F6566;
+    font-size: 1.25rem;
 }
 
+.checkboxes label {
+    display: inline-block;
+    margin-top: 0;
+}
+
+input[type="checkbox"] {
+    width: 21px;
+    height: 24px;
+    padding: 0;
+    margin-top: 10px;
+    vertical-align: sub;
+}
+
+.svg-inline--fa {
+    vertical-align: -0.165em;
+    font-size: inherit;
+}
 
 
 /* Landing Screen - mobile */
@@ -217,8 +244,8 @@ textarea {
 }
 
 .landing-link {
-    width: 75%;
-    height: 65px;
+    width: 100%;
+    height: 60px;
     background: #FFFFFF;
     border: 1px solid #7AABBB;
     border-radius: 5px;
@@ -230,7 +257,7 @@ textarea {
     text-align: center;
     vertical-align: middle;
     margin: 20px auto 0;
-    padding-top: 10px;
+    padding-top: 7px;
 }
 
 .account-link {
@@ -283,7 +310,7 @@ textarea {
 .nav-bg {
     left: 0;
     top: 0;
-    height: 75px;
+    height: 60px;
     width: 100%;
     background: #7AABBB;
     position: fixed;
@@ -292,42 +319,49 @@ textarea {
 
 nav {
     position: relative;
-}
-
-/* .menu-btn {
-    font-size: 1.5rem;
+    display: inline-block;
     color: #ffffff;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    cursor: pointer;      
+    padding-top: .5rem;
 }
 
-.nav-links span {
-    display: block;
-    color: #7AABBB;
-    font-family: 'aglet-slab', sans-serif;
+
+.nav-title {
+    position: absolute;
+    left: 20px;    font-family: skolar-sans-latin-extended, sans-serif;
     font-style: normal;
     font-weight: 700;
-    padding-top: 30px;
+    font-size: 2rem;
+}   
+
+.nav-right {
+    font-family: skolar-sans-latin-extended, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-right: 1.5rem;
+    padding-top: 3px;
+    display: inline-block;
 }
 
-.menu {
-    background-color: #ffffff;
-    position: absolute;
-    top: 75px;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
+.nav-text {
+    display: none;
 }
 
-.settings-nav {
+.nav-last {
+    float: right;
+    margin-right: 20px;
+    font-size: 1.5rem;
+}
+
+.nav-title-selected {
     color: #4B6182;
 }
- */
 
-
+.nav-selected {
+    border-bottom: 6px solid #4B6182;
+    color: #4B6182;
+    padding-bottom: 15px;
+}
 
 /* Dashboard Section */
 
@@ -341,44 +375,32 @@ nav {
     color: #373E40;
 }
 
-.session-time {
+.session-time-input {
     width: 75px;
     height: 30px;
+    text-align: center;
+    vertical-align: bottom;
 }
 
 .session-form button {
-    width: 75%;
+    width: 100%;
     margin-top: 40px;
 }
 
 select {
     height: 50px;
+    width: 100%;
     border-bottom: 2px solid #4A4A4A;
     border-radius: 0;
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
     font-weight: 400;
     color: #5F6566;
-    font-size: 1.125rem;    
+    font-size: 1.25rem;    
 }
 
-select::-ms-expand {
-    display: none;
-}
 
-.drop-down {
-    position: relative;
-}
 
-/* .drop-down:after {
-    content: "▾";
-    position: absolute;
-    vertical-align: middle;
-    z-index: 1;
-    top: 15px;
-    text-align: right;
-    pointer-events: none;
-} */
 /* Journal Section */
 
 
@@ -386,6 +408,26 @@ select::-ms-expand {
 
 
 /* Non-mobile  */
+@media only screen and (min-width: 750px) {
+/* Nav Header */
+    .nav-title {
+        left: 72px;
+    }
+
+    .nav-right {
+        display: inline-block;
+    }
+
+    .nav-text {
+        display: inline-block;      
+    }
+
+    .nav-last {
+        margin-right: 72px;
+    }
+}
+
+
 
 @media only screen and (min-width: 650px) {
 
@@ -436,58 +478,8 @@ select::-ms-expand {
     }
 }
 
-/* Nav Header */
 
-    .nav-title {
-        color: #ffffff;
-        position: absolute;
-        left: 72px;
-        padding-top: 12px;
-    }
-      
-    .nav-links span {
-        text-align: right;
-        display: inline-block;
-        font-family: skolar-sans-latin-extended, sans-serif;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 2rem;
-        padding-top: 15px;
-    }
 
-    .add-session-nav {
-        width: 220px;
-        height: 73px;
-        background-color: #ffffff;
-        color: #7AABBB;
-        padding-right: 15px;
-    }
-
-    .journal-nav {
-        color: #ffffff;
-        margin: 0 30px;
-    }
-
-    .fa-nav {
-        color: #ffffff;
-    }
-
-    .nav-last {
-        margin-right: 72px;
-    }
-
-    .nav-list {
-        display: none;
-    }
-
-    .menu-btn {
-    font-size: 1.5rem;
-    color: #ffffff;
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    cursor: pointer;      
-}
 
 
 /* Small-mobile  */

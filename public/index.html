@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.typekit.net/csx6nfc.css">
+    <link href="css/all.css" rel="stylesheet">
     <!-- Font Awesome Fonts -->
-    <script defer src="js/fontawesome-all.js"></script>
-    <script defer src="https://pro.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-d84LGg2pm9KhR4mCAs3N29GQ4OYNy+K+FBHX8WhimHpPm86c839++MDABegrZ3gn" crossorigin="anonymous"></script>
+    <script defer src="js/all.js"></script>
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                 Stay mindful, and stay insight•full!
               </h5>
                 <div role="link" id="js-landing-link" class="landing-link">
-                    Log In <i class="far fa-chevron-circle-right"></i>
+                    Log In<i class="far fa-sign-in-alt button-icon"></i>
                 </div>
                 <p class="account-link">
                     If you don't have an account, Sign Up...
@@ -59,8 +59,7 @@
                 <input type="text" id="username" name="js-userName" value="">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="js-userPw" class="pw" value="">
-                <p class="forgot-pw">Forgot password?</p>
-                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In</button>
+                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In<i class="far fa-chevron-circle-right button-icon"></i></button>
             </form>
             <p class="account-link js-signup">
                 If you don't have an account, Sign Up...
@@ -89,7 +88,7 @@
                 <label for="reenter-pw">
                     Re-enter Password</label>
                 <input type="reenter-pw" id="reenter-password" name="js-reenter-pw" value="" />
-                <button role="button" name="signup" class="login-button" id="js-signup-button" type="submit">Sign Up</button>
+                <button role="button" name="signup" class="login-button" id="js-signup-button" type="submit">Sign Up<i class="far fa-chevron-circle-right button-icon"></i></button>
             </form>
             <p class="account-link js-login">
                 If you have an account, Log In...
@@ -97,39 +96,28 @@
         </div>
     </main>
     <!-- Nav Header -->
-    <div class="nav-bg">
-        <nav role="navigation" id="nav-header">
-            <h2 class="nav-title">
-                insight•full
-            </h2> 
-            <div class="menu-btn js-menu-btn">
-                <i aria-label="Nav button" class="fas fa-bars"></i>
-            </div> 
-            <div class="nav-links menu">
-                <span class="add-session-nav nav-right">
-                    Add Session
-                </span>
-                <span class="journal-nav nav-right">
-                    Journal
-                </span>
-                <span class="fa-nav nav-last">
-                    <i class="fal fa-user-circle" aria-label="Settings"></i>
-                </span>
-<!--                 <span class="nav-list settings-nav">
-                    Settings
-                </span>
-                <span class="nav-list">
-                    - Change Password
-                </span>
-                <span class="nav-list">
-                    - Log Out
-                </span> -->
+    <nav role="navigation" id="site-nav" class="nav-bg">
+        <ul class="nav-links">
+            <li class="nav-title js-nav-title" aria-label="Home">insight•full</li>
+            <div class="add-session js-add-session nav-right">
+                <i class="far fa-plus-circle" aria-label="Add Session"></i>
+                <li class="nav-text">Add Session</li>
             </div>
-        </nav>
-    </div>
+            <div class="journal js-journal nav-right">
+                <i class="far fa-book-open" aria-label="Journal"></i>
+                <li class="nav-text">Journal</li>
+            </div>
+            <div class="settings js-settings nav-right nav-last">
+                <i class="far fa-user-circle" aria-label="Settings"></i>
+            </div>
+
+        </ul>
+        
+    </nav>
+
     <!-- Dashboard Section -->
     <main role="main" id="dashboard-screen">
-        
+
     </main>
     <!-- Session Form -->
     <main role="main" id="add-session-screen">
@@ -141,20 +129,30 @@
                 <input type="date" id="date-select" name="session-date" />
             </div>
                 <label for="session-min">
-                    I meditated for <input type="number" id="session-time" name="session-min" class="session-time" /> minutes
+                    I meditated for <input type="number" id="session-time" name="session-min" class="session-time-input" /> minutes
                 </label>
-                <label for="session-type">I meditated using</label>
-                <div class="drop-down">
-                    <select id="session-type" name="session-type">
-                        <option disabled selected value> -- Select -- </option>
-                        <option value="Enter App Name">Enter App Name</option>
-                        <option value="Timer">Timer</option>
-                        <option value="Unassisted">Unassisted</option>
-                    </select>
-                </div>
+                <label for="session-type">I meditated using
+                    <div class="type-checkbox">
+                        <ul id="session-type" name="session-type" class="checkboxes">
+                            <li>
+                                <input type="checkbox" id="app-used" value="app-used" />
+                                <label for="app-type">App
+                                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Used" /></label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="timer" value="Timer" name="timer">
+                                <label for="time" class="checkbox">Timer</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="unassisted" value="Unassisted" name="unassisted">
+                                <label for="unassisted" class="checkbox">Unassisted</label>
+                            </li>
+                        </ul>
+                    </div>
+                </label>
                 <label for="add-entry">Insights from my session</label>
                 <textarea name="entry" id="add-entry" value="entry"></textarea>
-                <button role="button" name="save" id="js-save-session" type="submit">Save Session</button>
+                <button role="button" name="save" id="js-save-session" type="submit"><i class="far fa-plus-circle button-icon-left" aria-label="Add Session"></i>Add Session</button>
             </form>
             
         </div>
@@ -172,7 +170,7 @@
                 <input type="password" id="create-new-password" name="js-new-userPw" value="">
                 <label for="reenter-new-password">Re-enter Password</label>
                 <input type="password" id="create-new-password" name="js-new-userPw" value="">
-                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Log In</button>
+                <button role="button" name="login" class="login-button" id="js-login-button" type="submit">Save Password</button>
             </form>
         </div>
 
