@@ -2,19 +2,19 @@
   box-sizing: border-box;
 }
 
-.section {
+.row {
   clear: both;
   padding: 0px;
   margin: 0px 20px;
 }
 
-.section::before,
-.section::after {
+.row::before,
+.row::after {
   display: table;
   content: '';
 }
 
-.section::after {
+.row::after {
   clear: both;
 }
 
@@ -35,7 +35,7 @@
 
 /* Non-mobile, grid */
 @media screen and (min-width: 650px) {
-  .section {
+  .row {
     margin: 0px 72px;
   }
 

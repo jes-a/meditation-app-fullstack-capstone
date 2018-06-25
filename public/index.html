@@ -121,48 +121,53 @@
     </main>
     <!-- Session Form -->
     <main role="main" id="add-session-screen">
-        <div class="section col-6">
-            <h1>Add Session</h1>
-            <form role="form" id="add-session-form" class="session-form">
-            <div>
-                <label for="date-select">Date
-                <input type="date" id="date-select" name="session-date" /></label>
+        <div class="row">
+            <div class="col-6">
+                <h1>Add Session</h1>
+                <form role="form" id="add-session-form" class="session-form">
+                <div>
+                    <label for="date-select">Date
+                    <input type="date" id="date-select" name="session-date" /></label>
+                </div>
+                    <label for="session-min">
+                        I meditated for <input type="number" id="session-time" name="session-min" class="session-time-input" /> minutes
+                    </label>
+                    <label for="session-type">I meditated using
+                        <div class="type-checkbox">
+                            <ul id="session-type" name="session-type" class="checkboxes">
+                                <li>
+                                    <input type="radio" name="session-type" id="app-used" value="" />
+                                    <label for="app-type">App
+                                        <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Name" /></label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="session-type" id="timer" value="Timer" />
+                                    <label for="time" class="checkbox">Timer</label>
+                                </li>
+                                <li>
+                                    <input type="radio" name="session-type" id="unassisted" value="Unassisted" />
+                                    <label for="unassisted" class="checkbox">Unassisted</label>
+                                </li>
+                            </ul>
+                        </div>
+                    </label>
+                    <label for="add-entry">Insights from my session</label>
+                    <textarea name="entry" id="add-entry" value="entry"></textarea>
+                    <button role="button" name="save" id="js-save-session" type="submit"><i class="far fa-plus-circle button-icon-left" aria-label="Add Session"></i>Add Session</button>
+                </form>
             </div>
-                <label for="session-min">
-                    I meditated for <input type="number" id="session-time" name="session-min" class="session-time-input" /> minutes
-                </label>
-                <label for="session-type">I meditated using
-                    <div class="type-checkbox">
-                        <ul id="session-type" name="session-type" class="checkboxes">
-                            <li>
-                                <input type="radio" name="session-type" id="app-used" value="" />
-                                <label for="app-type">App
-                                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Name" /></label>
-                            </li>
-                            <li>
-                                <input type="radio" name="session-type" id="timer" value="Timer" />
-                                <label for="time" class="checkbox">Timer</label>
-                            </li>
-                            <li>
-                                <input type="radio" name="session-type" id="unassisted" value="Unassisted" />
-                                <label for="unassisted" class="checkbox">Unassisted</label>
-                            </li>
-                        </ul>
-                    </div>
-                </label>
-                <label for="add-entry">Insights from my session</label>
-                <textarea name="entry" id="add-entry" value="entry"></textarea>
-                <button role="button" name="save" id="js-save-session" type="submit"><i class="far fa-plus-circle button-icon-left" aria-label="Add Session"></i>Add Session</button>
-            </form>
-            
+            <div class="col-6 large-image">
+                <img src="./img/candles.jpg">
+            </div>
         </div>
+
     </main>
     <!-- Journal Section -->
     <main role="main" id="journal-screen">
     </main>
     <!-- Change Password Section -->
     <main role="main" id="change-password-screen">
-        <div class="section col-6">
+        <div class="row col-6">
             <h1>Change Password</h1>
             <form role="form" id="changePw-form" class="landing-form">
                 <span class="login-error"></span>

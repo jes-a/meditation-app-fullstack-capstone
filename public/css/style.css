@@ -302,7 +302,7 @@ input[type="radio"] {
 }
 
 
-/* Login & Sign Up Sections */
+/* Login & Sign Up Sections Mobile */
 
 .landing-form input {
     width: 100%;
@@ -383,10 +383,10 @@ nav {
     padding-bottom: 15px;
 }
 
-/* Dashboard Section */
+/* Dashboard Section Mobile */
 
 
-/* Session Form */
+/* Session Form Mobile */
 .session-form label {
     font-family: 'aglet-slab', sans-serif;
     font-style: normal;
@@ -417,6 +417,14 @@ select {
     color: #5F6566;
     font-size: 1.25rem;    
 }
+/* 
+.right {
+    float: right;
+} */
+
+.large-image img {
+    display: none;
+}
 
 
 
@@ -444,6 +452,8 @@ select {
     .nav-last {
         margin-right: 72px;
     }
+
+
 }
 
 
@@ -495,11 +505,15 @@ select {
     .landing-form h3 {
         margin-top: 40px;
     }
+
+/* Add Session Form Section */
+    .large-image img {
+        width: 100%;
+        display: inline-block;
+    }
+
+
 }
-
-
-
-
 
 /* Small-mobile  */
 @media only screen and (max-width: 400px) {
