@@ -7,8 +7,10 @@ function showDashboardScreen() {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').show();
+    $('.js-nav-title').addClass('nav-title-selected');
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
+    $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('#footer').show();	
 };
@@ -21,7 +23,10 @@ function showAddSessionScreen() {
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('#add-session-screen').show();
+    $('.js-nav-title').removeClass('nav-title-selected');
+    $('.js-add-session').addClass('nav-selected');
     $('#journal-screen').hide();
+    $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('#footer').show();	
 };
@@ -33,8 +38,11 @@ function showJournalScreen() {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
+    $('.js-nav-title').removeClass('nav-title-selected');
     $('#add-session-screen').hide();
+    $('.js-add-session').removeClass('nav-selected');
     $('#journal-screen').show();
+    $('.js-journal').addClass('nav-selected');
     $('#change-password-screen').hide();
     $('#footer').show();	
 };
@@ -46,9 +54,13 @@ function showChangePasswordScreen() {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
+    $('.js-nav-title').removeClass('nav-title-selected');
     $('#add-session-screen').hide();
+    $('.js-add-session').removeClass('nav-selected');
     $('#journal-screen').hide();
+    $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').show();
+    $('.js-settings').addClass('nav-selected');
     $('#footer').show();	
 };
 
@@ -59,7 +71,7 @@ $(document).ready(function() {
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').show();
-    $('#js-settings-dropdown').show();
+    $('.js-settings-dropdown').hide();
     $('#dashboard-screen').show();
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
@@ -177,6 +189,11 @@ $('.js-add-session').on('click', function(event) {
 
 // Handle open Journal Screen
 $('.js-journal').on('click', function(event) {
+    event.preventDefault();
+	showJournalScreen();
+});
+
+$('.js-journal-link').on('click', function(event) {
     event.preventDefault();
 	showJournalScreen();
 });
