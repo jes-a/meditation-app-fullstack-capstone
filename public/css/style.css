@@ -680,14 +680,18 @@ select {
 /* Footer Section Mobile */
 
 footer {
-  height: 40px;
-  background-color: #373E40;
-  padding: 13px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  display: block;
+  clear: both;
   width: 100%;
+}
+
+.footer-div {
+  height: 40px;
+  padding: 13px;
+  background-color: #373E40;
+  margin-top: 200px;
+  width: 100%;
+  display: block;
 }
 
 footer p {
