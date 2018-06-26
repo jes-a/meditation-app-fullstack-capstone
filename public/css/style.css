@@ -90,8 +90,8 @@ h3 {
   font-weight: 700;
   color: #373E40;
   font-size: 2rem;
-  padding-bottom: 5px;
   padding-top: 15px;
+  padding-bottom: 5px;
 }
 
 h4 {
@@ -100,6 +100,8 @@ h4 {
   font-weight: 400;
   font-size: 1.125rem;
   color: #5F6566;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 h5 {
@@ -397,11 +399,14 @@ nav {
 /* Dashboard Section Mobile */
 
 .stat-row {
-  max-width: 1200px;
   clear: both;
-  padding-left: 20px;
-  padding-right: 20px;
   margin: 0 auto;
+}
+
+.stat-row .col {
+  margin-bottom: 20px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 .stat-row::before,
@@ -412,6 +417,16 @@ nav {
 
 .stat-row::after {
   clear: both;
+}
+
+.sb {
+  width: 100%;
+  display: block;
+}
+
+.sb-col {
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .stat-box {
@@ -475,7 +490,7 @@ nav {
 
 .latest-entry {
   text-align: left;
-  margin-top: 20px;
+  margin-top: 17px;
   padding-bottom: 20px;
   border-bottom: 1px solid #C1C1C1;
 }
@@ -493,6 +508,16 @@ nav {
 
 .latest-entry span {
   text-decoration: underline;
+}
+
+.journal-link {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.journal-link .svg-inline--fa {
+  color: #4B6182;
+  margin-bottom: 0;
 }
 
 /* Session Form Mobile */
@@ -644,7 +669,6 @@ select {
     margin-top: 40px;
   }
 
-}
 /* Nav Header */
   .nav-title {
     left: 72px;
@@ -667,30 +691,36 @@ select {
   }
 
 /* Dashboard Section */
-  .main {
-    width: 63.3%;
+  .dashboard-main {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .dashboard {
+    width: 64%;
     float: left;
   }
 
   .stat-row {
-    margin: 0px 0px 20px 72px;
+    margin-left: 5%;
     padding: 0;
+  }
+
+  .stat-row .col {
+    padding-right: 0;
   }
 
   .sb {
     float: right;
     width: 30%;
-    margin: 0px 72px 0px 0px;
+    margin-right: 5%;
   }
 
   .sb-col {
     padding-left: 0px;
+    padding-right: 0px;
 
   }
-
-/*   .stat-box {
-    min-height: 13.5rem;
-  } */
 
   .stat-big {
     font-size: 6.25rem;
@@ -722,6 +752,8 @@ select {
   .filter {
     padding-left: 72px;
   }
+
+}
 
 
 /* Small-mobile  */
