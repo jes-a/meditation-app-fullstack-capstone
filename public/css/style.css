@@ -54,6 +54,7 @@ html {
 }
 
 body {
+  position: relative;
   font-family: 'aglet-slab', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -73,7 +74,7 @@ h1 {
   font-weight: 700;
   font-size: 3rem;
   color: #7AABBB;
-  padding-top: 30px;
+  padding-top: 70px;
 }
 
 h2 {
@@ -456,6 +457,10 @@ nav {
 
 /* Dashboard Section Mobile */
 
+.dashboard-main {
+  padding-top: 80px;
+}
+
 .stat-row {
   clear: both;
   margin: 0 auto;
@@ -680,7 +685,9 @@ footer {
   background-color: #373E40;
   padding: 13px;
   position: absolute;
+  right: 0;
   bottom: 0;
+  left: 0;
   width: 100%;
 }
 
@@ -829,13 +836,15 @@ footer a {
   .large-image img {
     max-height: 630px;
     display: inline-block;
-    border-radius: 5px;
     opacity: .6;
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 
   .img-div-session {
-      margin-top: 68px;
-
+    margin-top: 108px;
+    margin-left: 20px;
+    overflow: hidden;
   }
 
 /* Journal Section */
@@ -845,6 +854,11 @@ footer a {
 
   .filter {
     padding-left: 72px;
+  }
+
+  .img-div-journal {
+    margin-left: 20px;
+    overflow: hidden;
   }
 
 }

@@ -74,12 +74,12 @@ $(document).ready(function() {
 //     $('#login-screen').hide();
 //     $('#signup-screen').hide();
 //     $('#site-nav').hide();
-    // $('#js-settings-dropdown').hide();
+//     $('#js-settings-dropdown').hide();
 //     $('#dashboard-screen').hide();
 //     $('#add-session-screen').hide();
 //     $('#journal-screen').hide();
 //     $('#change-password-screen').hide();
-//     $('#footer').hide();    
+//     $('#footer-section').hide();    
 // });
 
 // Handle sign in link from Landing screen
@@ -163,6 +163,24 @@ $('.js-logout-link').on('click', function(event) {
     location.reload();
 });
 
+// Handle open Dashboard Screen
+$('.js-nav-title').on('click', function(event) {
+    event.preventDefault();
+	showDashboardScreen();
+});
+
+// Handle open Add Section Screen
+$('.js-add-session').on('click', function(event) {
+    event.preventDefault();
+	showAddSessionScreen();
+});
+
+// Handle open Journal Screen
+$('.js-journal').on('click', function(event) {
+    event.preventDefault();
+	showJournalScreen();
+});
+
 // Handle Open Settings Drop-Down
 $('.js-settings').on('click', function(event) {
     event.stopPropagation();
@@ -180,7 +198,7 @@ $(document).on('click', function() {
     $('.js-settings-dropdown').hide();
 })
 
-// Handle open Change Password Page
+// Handle open Change Password Screen
 $('.js-change-pw').on('click', function(event) {
     event.preventDefault();
 	showChangePasswordScreen();
