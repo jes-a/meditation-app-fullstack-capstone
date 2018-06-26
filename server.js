@@ -65,19 +65,10 @@ function closeServer() {
 // ---------------USER ENDPOINTS------------------------------
 // POST
 // Create a new user
-app.post('/users/create', (req, res) => {
+app.post('/user/create', (req, res) => {
 
-    let firstName = req.body.firstName;
-    let lastName = req.body.lastName;
-    let phoneNumber = req.body.phoneNumber;
-    let address = req.body.address;
-    let address2 = req.body.address2;
-    let city = req.body.city;
-    let state = req.body.state;
-    let zipCode = req.body.zipCode;
-    let type = req.body.type;
-    let status = req.body.status;
     let email = req.body.email;
+    let userName = req.body.userName;
     let password = req.body.password;
     password = password.trim();
     bcrypt.genSalt(10, (err, salt) => {
@@ -95,17 +86,8 @@ app.post('/users/create', (req, res) => {
             }
 
             User.create({
-                firstName,
-                lastName,
-                phoneNumber,
-                address,
-                address2,
-                city,
-                state,
-                zipCode,
+                userName,
                 email,
-                type,
-                status,
                 password: hash,
             }, (err, item) => {
                 if (err) {
@@ -126,7 +108,7 @@ app.post('/users/create', (req, res) => {
 app.post('/signin', function(req, res) {
     User
         .findOne({
-            email: req.body.email
+            userName: req.body.userName
         }, function(err, items) {
             if (err) {
                 return res.status(500).json({

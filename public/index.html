@@ -22,7 +22,7 @@
 <!-- Landing Screen -->
   <main role="main" id="landing-screen" class="bg">
     <div class="landing-width">
-      <div class="landing-bg">
+      <div class="landing-bg" id="landing-screen-text">
         <h2>
           insight•full
         </h2>
@@ -38,7 +38,7 @@
         <div role="link" id="js-landing-link" class="landing-link">
           Log In<i class="far fa-sign-in-alt button-icon"></i>
         </div>
-        <p class="account-link">
+        <p class="account-link js-signup">
           If you don't have an account, Sign Up...
         </p>
       </div>
@@ -47,7 +47,7 @@
   </main>
 
 <!-- Login Section -->
-  <main role="main" id="login-screen">
+  <main role="main" id="login-screen" class="bg">
     <div class="landing-bg">
       <h2>
         insight•full
@@ -57,6 +57,8 @@
           Log In
         </h3>
         <span class="login-error"></span>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="js-email" value="" />
         <label for="username">Username</label>
         <input type="text" id="username" name="js-userName" value="" />
         <label for="password">Password</label>
@@ -70,7 +72,7 @@
   </main>
 
 <!-- Sign Up Section -->
-  <main role="main" id="signup-screen">
+  <main role="main" id="signup-screen" class="bg">
     <div class="landing-bg">
       <h2>
         insight•full
@@ -114,8 +116,22 @@
           <div class="settings js-settings nav-right nav-last">
               <i class="far fa-user-circle" aria-label="Settings"></i>
           </div>
+          <div class="js-settings-dropdown settings-dropdown">
+            <div class="settings-close">
+              <i class="fas fa-times fa-2x"></i>
+            </div>
+            <div class="settings-bg">
+              <h3>Settings</h3>
+              <ul>
+                <li class="js-change-pw">Change Password</li>
+                <li class="js-logout-link logout-link"><i class="fas fa-sign-out-alt"></i>Log Out</li>
+              </ul>
+            </div>
+          </div>
       </ul>
   </nav>
+
+
     
 <!-- Dashboard Section -->
   <main role="main" id="dashboard-screen" class="dashboard-main">
@@ -337,15 +353,15 @@
   </main>
 
 <!-- Footer Section -->
-<footer role="footer" id="footer" class="footer-section">
-  <p class="copyright">© 2018 Jes Albro</p>
-  <div class="social-links">
-    <a href="https://www.linkedin.com/in/jesalbro/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://github.com/jes-a" target="_blank"><i class="fab fa-github"></i></a>
-    <a href="mailto:jesalbro@gmail.com?subject=Email from insight•full site"><i class="far fa-at"></i></a>
-
+<footer role="footer" id="footer-section">
+  <div class="footer-section">
+    <p class="copyright">© 2018 Jes Albro</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/jesalbro/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/jes-a" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:jesalbro@gmail.com?subject=Email from insight•full site"><i class="far fa-at"></i></a>
+    </div>
   </div>
-
 </footer>
 
 

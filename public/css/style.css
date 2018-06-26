@@ -189,7 +189,7 @@ input {
   font-size: 1.125rem;
   vertical-align: bottom;
   padding-left: 10px;
-
+  background: none;
 }
 
 textarea {
@@ -287,15 +287,18 @@ input[type="radio"] {
   vertical-align: middle;
   margin: 20px auto 0;
   padding-top: 7px;
+  cursor: pointer;
 }
 
 .account-link {
-  font-family: AgletSlab-Regular;
+  font-family: 'aglet-slab', sans-serif;
+  font-style: normal;
   font-size: 1rem;
   color: #000000;
   text-align: center;
   text-decoration: underline;
   margin-top: 30px;
+  cursor: pointer;
 }
 
 .photo-credit {
@@ -356,7 +359,8 @@ nav {
 
 .nav-title {
   position: absolute;
-  left: 20px;    font-family: skolar-sans-latin-extended, sans-serif;
+  left: 20px;    
+  font-family: skolar-sans-latin-extended, sans-serif;
   font-style: normal;
   font-weight: 700;
   font-size: 2rem;
@@ -390,6 +394,56 @@ nav {
   border-bottom: 6px solid #4B6182;
   color: #4B6182;
   padding-bottom: 15px;
+}
+
+.settings-close {
+  height: 60px;
+  width: 50px;
+  background-color: #ffffff;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding-right: 15px;
+  padding-top: 10px;
+}
+
+.settings-dropdown .svg-inline--fa {
+  color: #4B6182;
+}
+
+.settings-dropdown h3 {
+  font-family: 'aglet-slab', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.4375rem;
+  color: #4B6182;
+  padding-top: 0;
+}
+
+.settings-dropdown li {
+  font-family: 'aglet-slab', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #373E40;
+  font-size: 1.25rem;
+  padding-top: 15px;
+  padding-left: 15px;
+}
+
+.logout-link .svg-inline--fa {
+  color: #373E40;
+  font-size: 1.25rem;
+}
+
+.settings-bg {
+  background-color: #ffffff;
+  margin-top: 21px;
+  padding: 20px;
+  width: 100%;
+  float: right;
+  text-align: left;
+  border-bottom: 2px solid #7AABBB;
+  border-left: 2px solid #7AABBB;
 }
 
 .page-title {
@@ -619,8 +673,11 @@ select {
 
 footer {
   height: 40px;
-  background: #373E40;
+  background-color: #373E40;
   padding: 13px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 footer p {
@@ -708,6 +765,18 @@ footer a {
 
   .page-title {
     padding-left: 72px;
+  }
+
+  .settings-close {
+    right: 60px;
+    top: 0px;
+  }
+
+  .settings-bg {
+    width: 275px;
+    margin-right: 58px;
+    border-right: 2px solid #7AABBB;
+
   }
 
 /* Dashboard Section */
