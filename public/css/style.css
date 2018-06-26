@@ -364,6 +364,7 @@ nav {
   font-style: normal;
   font-weight: 700;
   font-size: 2rem;
+  cursor: pointer;
 }   
 
 .nav-right {
@@ -374,6 +375,7 @@ nav {
   margin-right: 1.5rem;
   padding-top: 3px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .nav-text {
@@ -428,11 +430,13 @@ nav {
   font-size: 1.25rem;
   padding-top: 15px;
   padding-left: 15px;
+  cursor: pointer;
 }
 
 .logout-link .svg-inline--fa {
   color: #373E40;
   font-size: 1.25rem;
+  margin-right: 5px;
 }
 
 .settings-bg {
@@ -770,6 +774,7 @@ footer a {
   .settings-close {
     right: 60px;
     top: 0px;
+    cursor: pointer;
   }
 
   .settings-bg {

@@ -5,6 +5,7 @@ function showDashboardScreen() {
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').show();
+    $('#js-settings-dropdown').hide();
     $('#dashboard-screen').show();
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
@@ -17,6 +18,7 @@ function showAddSessionScreen() {
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').show();
+    $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('#add-session-screen').show();
     $('#journal-screen').hide();
@@ -29,6 +31,7 @@ function showJournalScreen() {
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').show();
+    $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('#add-session-screen').hide();
     $('#journal-screen').show();
@@ -41,6 +44,7 @@ function showChangePasswordScreen() {
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').show();
+    $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
@@ -158,4 +162,30 @@ $('#js-login-button').on('click', function(event) {
 $('.js-logout-link').on('click', function(event) {
     location.reload();
 });
+
+// Handle Open Settings Drop-Down
+$('.js-settings').on('click', function(event) {
+    event.stopPropagation();
+    $('.js-settings-dropdown').show();
+});
+
+// Handle Close Settings Drop-Down
+$('.js-settings-close').on('click', function(event) {
+    event.stopPropagation();
+    $('.js-settings-dropdown').hide();
+});
+
+// Hide Settings menu when clicked outside nav menu
+$(document).on('click', function() {
+    $('.js-settings-dropdown').hide();
+})
+
+// Handle open Change Password Page
+$('.js-change-pw').on('click', function(event) {
+    event.preventDefault();
+	showChangePasswordScreen();
+});
+
+
+
 
