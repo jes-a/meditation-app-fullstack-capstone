@@ -100,7 +100,6 @@ h4 {
   font-weight: 400;
   font-size: 1.125rem;
   color: #5F6566;
-  padding-bottom: 20px;
 }
 
 h5 {
@@ -396,6 +395,7 @@ nav {
 }
 
 /* Dashboard Section Mobile */
+
 .stat-row {
   max-width: 1200px;
   clear: both;
@@ -415,10 +415,14 @@ nav {
 }
 
 .stat-box {
+  width: 100%;
   background: #FFFFFF;
   border: 1px solid #4B6182;
   border-radius: 5px;
   padding: 20px;
+  display: inline-block;
+  text-align: center;
+  overflow-wrap: break-word;
 }
 
 .stat-big {
@@ -432,9 +436,63 @@ nav {
   margin: 0 auto;
 }
 
+.stat-empty {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  background: #FFFFFF;
+  border: 2px solid #4B6182;
+  border-radius: 50%;
+  margin-top: 18px ;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.stat-filled {
+  background: #4B6182;
+}
+
+.stat-small {
+  font-family: 'aglet-slab', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 3rem;
+  color: #4B6182;
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.stat-box .svg-inline--fa {
+  color: #7AABBB;
+  margin-bottom: 5px;
+}
+
 .sb h4 {
   font-weight: 700;
   color: #4B6182;
+}
+
+.latest-entry {
+  text-align: left;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #C1C1C1;
+}
+
+.latest-entry h6 {
+  font-weight: 400;
+  color: #9B9B9B;
+  padding-bottom: 5px;
+}
+
+.latest-entry p {
+  color: #5F6566;
+  text-overflow: ellipsis;
+}
+
+.latest-entry span {
+  text-decoration: underline;
 }
 
 /* Session Form Mobile */
@@ -615,7 +673,7 @@ select {
   }
 
   .stat-row {
-    margin: 0px 0px 0px 72px;
+    margin: 0px 0px 20px 72px;
     padding: 0;
   }
 
@@ -630,12 +688,16 @@ select {
 
   }
 
-  .stat-box {
+/*   .stat-box {
     min-height: 13.5rem;
-  }
+  } */
 
   .stat-big {
     font-size: 6.25rem;
+  }
+
+  .stat-small {
+    font-size: 3.25rem;
   }
 
 /* Add Session Form Section */
@@ -648,7 +710,7 @@ select {
   }
 
   .img-div-session {
-      margin-top: 78px;
+      margin-top: 68px;
 
   }
 
