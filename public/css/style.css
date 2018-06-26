@@ -615,9 +615,29 @@ select {
   padding-right: 20px;
 }
 
+/* Footer Section Mobile */
 
+footer {
+  height: 40px;
+  background: #373E40;
+  padding: 13px;
+}
 
-/* Change Password Section */
+footer p {
+  color: #999999; 
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+footer a {
+  color: #999999; 
+  padding-right: 10px;
+  font-size: 0.8rem;
+}
+
+.social-links {
+  float: right;
+}
 
 
 /* Non-mobile  */
