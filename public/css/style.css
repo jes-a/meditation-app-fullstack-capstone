@@ -73,7 +73,7 @@ h1 {
   font-weight: 700;
   font-size: 3rem;
   color: #7AABBB;
-  padding-top: 70px;
+  padding-top: 50px;
 }
 
 h2 {
@@ -655,7 +655,7 @@ select {
 }
 
 .entry-header {
-  background: rgba(122,171,187,0.30);
+  background: rgba(122,171,187,0.70);
   height: 24px;
   width: 100%;
   margin-bottom: 20px;

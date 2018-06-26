@@ -9,9 +9,11 @@ function showDashboardScreen() {
     $('#dashboard-screen').show();
     $('.js-nav-title').addClass('nav-title-selected');
     $('#add-session-screen').hide();
+    $('.js-add-session').removeClass('nav-selected');
     $('#journal-screen').hide();
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
+    $('.js-settings').removeClass('nav-selected');
     $('#footer').show();	
 };
 
@@ -28,6 +30,7 @@ function showAddSessionScreen() {
     $('#journal-screen').hide();
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
+    $('.js-settings').removeClass('nav-selected');
     $('#footer').show();	
 };
 
@@ -44,6 +47,7 @@ function showJournalScreen() {
     $('#journal-screen').show();
     $('.js-journal').addClass('nav-selected');
     $('#change-password-screen').hide();
+    $('.js-settings').removeClass('nav-selected');
     $('#footer').show();	
 };
 
@@ -73,6 +77,7 @@ $(document).ready(function() {
     $('#site-nav').show();
     $('.js-settings-dropdown').hide();
     $('#dashboard-screen').show();
+    $('.js-nav-title').addClass('nav-title-selected');
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
     $('#change-password-screen').hide();
