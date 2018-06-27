@@ -73,7 +73,6 @@ h1 {
   font-weight: 700;
   font-size: 3rem;
   color: #7AABBB;
-  padding-top: 80px;
   margin-top: 0;
 }
 
@@ -341,18 +340,15 @@ input[type="radio"] {
 /* Nav Header Mobile */
 
 .nav-bg {
-  left: 0;
-  top: 0;
   height: 60px;
   width: 100%;
   background: #7AABBB;
-  position: fixed;
   text-align: right;
+  margin-bottom: 30px;
   z-index: 10000;
 }
 
 nav {
-  position: relative;
   display: inline-block;
   color: #ffffff;
   padding-top: .5rem;
@@ -443,13 +439,16 @@ nav {
 
 .settings-bg {
   background-color: #ffffff;
-/*   margin-top: 21px;
- */  padding: 20px;
+  padding: 20px;
   width: 100%;
   float: right;
   text-align: left;
   border-bottom: 2px solid #7AABBB;
   border-left: 2px solid #7AABBB;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  z-index: 100000;
 }
 
 .page-title {
@@ -457,10 +456,6 @@ nav {
 }
 
 /* Dashboard Section Mobile */
-
-.dashboard-main {
-  padding-top: 80px;
-}
 
 .stat-row {
   clear: both;
@@ -491,6 +486,7 @@ nav {
 .sb-col {
   padding-left: 20px;
   padding-right: 20px;
+  margin-bottom: 30px;
 }
 
 .stat-box {
@@ -498,7 +494,7 @@ nav {
   background: #FFFFFF;
   border: 1px solid #4B6182;
   border-radius: 5px;
-  padding: 20px;
+  padding: 10px 30px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -691,7 +687,7 @@ footer {
   height: 40px;
   padding: 13px;
   background-color: #373E40;
-  margin-top: 200px;
+  margin-top: 50px;
   width: 100%;
   display: block;
 }
@@ -847,7 +843,7 @@ footer a {
   }
 
   .img-div-session {
-    margin-top: 108px;
+    margin-top: 15px;
     margin-left: 20px;
     overflow: hidden;
   }

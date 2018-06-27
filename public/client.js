@@ -144,35 +144,36 @@ $('.js-login').on('click', function(event) {
 // Handle log in information
 $('#js-login-button').on('click', function(event) {
     event.preventDefault();
-    const inputUser = $('input[name="js-userName"]').val();
-    const inputPw = $('input[name="js-userPw"]').val();
-    // check for spaces, undefined
-    if ((!inputUser) || (inputUser.length < 1) || (inputUser.indexOf(' ') > 0)) {
-        alert('Invalid Email')
-    } else if ((!inputPw) || (inputPw.length < 1) || (inputPw.indexOf(' ') > 0)) {
-        alert('Invalid password')
-    } else {
-        const loginObject = {
-            email: inputUser,
-            password: inputPw
-        };
-        $.ajax({
-                type: 'POST',
-                url: '/signin',
-                dataType: 'json',
-                data: JSON.stringify(loginObject),
-                contentType: 'application/json'
-            })
-            .done(function(result) {
-                    showDashboardScreen();
-            })
-            .fail(function(jqXHR, error, errorThrown) {
-                console.log(jqXHR);
-                console.log(error);
-                console.log(errorThrown);
-                alert('Invalid username and password combination. Pleae check your username and password and try again.');
-            });
-    }
+	showDashboardScreen(); 
+//     const inputUser = $('input[name="js-userName"]').val();
+//     const inputPw = $('input[name="js-userPw"]').val();
+//     // check for spaces, undefined
+//     if ((!inputUser) || (inputUser.length < 1) || (inputUser.indexOf(' ') > 0)) {
+//         alert('Invalid Email')
+//     } else if ((!inputPw) || (inputPw.length < 1) || (inputPw.indexOf(' ') > 0)) {
+//         alert('Invalid password')
+//     } else {
+//         const loginObject = {
+//             email: inputUser,
+//             password: inputPw
+//         };
+//         $.ajax({
+//                 type: 'POST',
+//                 url: '/signin',
+//                 dataType: 'json',
+//                 data: JSON.stringify(loginObject),
+//                 contentType: 'application/json'
+//             })
+//             .done(function(result) {
+//                     showDashboardScreen();
+//             })
+//             .fail(function(jqXHR, error, errorThrown) {
+//                 console.log(jqXHR);
+//                 console.log(error);
+//                 console.log(errorThrown);
+//                 alert('Invalid username and password combination. Pleae check your username and password and try again.');
+//             });
+//     }
 });
 
 // Sign out and refresh page
