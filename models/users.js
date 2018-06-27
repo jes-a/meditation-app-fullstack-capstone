@@ -4,10 +4,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-    userName: {
-        type: String,
-        required: false
-    },
     email: {
         type: String,
         required: false
@@ -32,7 +28,6 @@ userSchema.methods.validatePassword = function(password, callback) {
 userSchema.methods.serialize = function() {
   return {
     id: this._id,
-    userName: this.userName,
     email: this.email,
   };
 };

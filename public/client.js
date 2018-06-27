@@ -1,5 +1,18 @@
 "use strict";
 
+function showLogInScreen() {
+    $('#landing-screen').hide();
+    $('#login-screen').show();
+    $('#signup-screen').hide();
+    $('#site-nav').hide();
+    $('#js-settings-dropdown').hide();
+    $('#dashboard-screen').hide();
+    $('#add-session-screen').hide();
+    $('#journal-screen').hide();
+    $('#change-password-screen').hide();
+    $('#footer-section').hide(); 
+}
+
 function showDashboardScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -76,10 +89,10 @@ $(document).ready(function() {
     $('#signup-screen').hide();
     $('#site-nav').show();
     $('.js-settings-dropdown').hide();
-    $('#dashboard-screen').show();
+    $('#dashboard-screen').hide();
     $('.js-nav-title').addClass('nav-title-selected');
     $('#add-session-screen').hide();
-    $('#journal-screen').hide();
+    $('#journal-screen').show();
     $('#change-password-screen').hide();
     $('#footer-section').show();    
 });
@@ -141,39 +154,79 @@ $('.js-login').on('click', function(event) {
     $('#footer').hide();
 });
 
+// Handle Sign Up Information
+$('#js-signup-button').on('click', function(event) {
+		const form = document.body.querySelector('#signup-form');
+		if (form.checkValidity && !form.checkValidity()) {
+			return;
+		}
+		const email = $('input[name="js-user-signup"]').val();
+		const pw = $('input[name="js-create-pw"]').val();
+		const confirmPw = $('input[name="js-reenter-pw"]').val();
+		if (pw !== confirmPw) {
+			event.preventDefault();
+			alert('Passwords must match!');
+		} else {
+			event.preventDefault();
+			const newUserObject = {
+				email: email,
+				password: pw
+			};
+			// will assign a value to variable 'user' in signin step below
+			// AJAX call to send form data up to server/DB and create new user
+			$.ajax({
+				type: 'POST',
+				url: '/users/create',
+				dataType: 'json',
+				data: JSON.stringify(newUserObject),
+				contentType: 'application/json'
+			})
+			.done(function (result) {
+				event.preventDefault();
+				newUserToggle = true;
+				alert('Thanks for signing up! Please sign in.');
+				showLogInScreen();
+			})
+			.fail(function (jqXHR, error, errorThrown) {
+	            console.log(jqXHR);
+	            console.log(error);
+	            console.log(errorThrown);
+			});
+		};
+});
+
 // Handle log in information
 $('#js-login-button').on('click', function(event) {
     event.preventDefault();
-	showDashboardScreen(); 
-//     const inputUser = $('input[name="js-userName"]').val();
-//     const inputPw = $('input[name="js-userPw"]').val();
-//     // check for spaces, undefined
-//     if ((!inputUser) || (inputUser.length < 1) || (inputUser.indexOf(' ') > 0)) {
-//         alert('Invalid Email')
-//     } else if ((!inputPw) || (inputPw.length < 1) || (inputPw.indexOf(' ') > 0)) {
-//         alert('Invalid password')
-//     } else {
-//         const loginObject = {
-//             email: inputUser,
-//             password: inputPw
-//         };
-//         $.ajax({
-//                 type: 'POST',
-//                 url: '/signin',
-//                 dataType: 'json',
-//                 data: JSON.stringify(loginObject),
-//                 contentType: 'application/json'
-//             })
-//             .done(function(result) {
-//                     showDashboardScreen();
-//             })
-//             .fail(function(jqXHR, error, errorThrown) {
-//                 console.log(jqXHR);
-//                 console.log(error);
-//                 console.log(errorThrown);
-//                 alert('Invalid username and password combination. Pleae check your username and password and try again.');
-//             });
-//     }
+    const inputEmail = $('input[name="js-userName"]').val();
+    const inputPw = $('input[name="js-userPw"]').val();
+    // check for spaces, undefined
+    if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
+        alert('Invalid Email')
+    } else if ((!inputPw) || (inputPw.length < 1) || (inputPw.indexOf(' ') > 0)) {
+        alert('Invalid password')
+    } else {
+        const loginObject = {
+            email: inputEmail,
+            password: inputPw
+        };
+        $.ajax({
+                type: 'POST',
+                url: '/signin',
+                dataType: 'json',
+                data: JSON.stringify(loginObject),
+                contentType: 'application/json'
+            })
+            .done(function(result) {
+				showDashboardScreen(); 
+            })
+            .fail(function(jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+                alert('Invalid username and password combination. Pleae check your username and password and try again.');
+            });
+    }
 });
 
 // Sign out and refresh page
