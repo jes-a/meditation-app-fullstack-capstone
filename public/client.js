@@ -183,7 +183,6 @@ $('#js-signup-button').on('click', function(event) {
 			})
 			.done(function (result) {
 				event.preventDefault();
-				newUserToggle = true;
 				alert('Thanks for signing up! Please sign in.');
 				showLogInScreen();
 			})
