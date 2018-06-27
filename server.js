@@ -1,6 +1,6 @@
 'use strict';
 
-// const User = require('./models/user');
+const User = require('./models/users');
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
@@ -63,7 +63,45 @@ function closeServer() {
 }
 
 // ---------------USER ENDPOINTS------------------------------
+// POST
+// Create a new user
 
+app.post('users/create', (req, res) => {
+    let email = req.body.email;
+    let password = req.body.password;
+    password = password.trim();
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal server error on genSalt'
+            });
+        }
+
+        bcrypt.hash(password, salt, (err, hash) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal server error on hash'
+                });
+            }
+
+            User.create({
+                email,
+                password: hash, 
+            }, (err, item) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Internal Error on Create User'
+                    });
+                }
+                if (item) {
+                    console.log(`New user with email ${email} was created`);
+                    return res.json(item);
+                }
+            });
+        });
+    });
+
+});
 
 
 // ---------------MISC------------------------------
