@@ -25,12 +25,12 @@ userSchema.methods.validatePassword = function(password, callback) {
 };
 
 
-userSchema.methods.serialize = function() {
-  return {
-    id: this._id,
-    email: this.email,
-  };
-};
+// userSchema.methods.serialize = function() {
+//   return {
+//     id: this._id,
+//     email: this.email,
+//   };
+// };
 
 const User = mongoose.model('User', userSchema);
 

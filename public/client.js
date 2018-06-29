@@ -156,24 +156,19 @@ $('.js-login').on('click', function(event) {
 
 // Handle Sign Up Information
 $('#js-signup-button').on('click', function(event) {
-		const form = document.body.querySelector('#signup-form');
-		if (form.checkValidity && !form.checkValidity()) {
-			return;
-		}
+
 		const email = $('input[name="js-user-signup"]').val();
-		const pw = $('input[name="js-create-pw"]').val();
+		const password = $('input[name="js-create-pw"]').val();
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
-		if (pw !== confirmPw) {
+		if (password !== confirmPw) {
 			event.preventDefault();
 			alert('Passwords must match!');
 		} else {
 			event.preventDefault();
 			const newUserObject = {
 				email: email,
-				password: pw
+				password: password
 			};
-			// will assign a value to variable 'user' in signin step below
-			// AJAX call to send form data up to server/DB and create new user
 			$.ajax({
 				type: 'POST',
 				url: '/users/create',
@@ -245,10 +240,19 @@ $('.js-add-session').on('click', function(event) {
 	showAddSessionScreen();
 });
 
+$('.js-save-session').on('click', function(event) {
+	event.preventDefault();
+	const sessionDate = $('#session-date').val();
+	const sessionTime = $('#session-time').val();
+	const sessionType = $('input[name="session-type"]:checked').val();
+	const journalEntry = $('#add-entry').val();
+});
+
 // Handle open Journal Screen
 $('.js-journal').on('click', function(event) {
     event.preventDefault();
 	showJournalScreen();
+	
 });
 
 $('.js-journal-link').on('click', function(event) {

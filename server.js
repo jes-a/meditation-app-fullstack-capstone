@@ -104,6 +104,42 @@ app.post('users/create', (req, res) => {
 });
 
 
+// User log in 
+app.post('/signin', function(req, res) {
+    User
+        .findOne({
+            email: req.body.email
+        }, function(err, items) {
+            if (err) {
+                return res.status(500).json({
+                    message: "Internal server error"
+                });
+            }
+            if (!items) {
+                //bad email
+                return res.status(401).json({
+                    message: "Not found"
+                });
+            } else {
+                items.validatePassword(req.body.password, function(err, isValid) {
+                    if (err) {
+                        console.log('There was an error validating email or password.');
+                    }
+                    if (!isValid) {
+                        return res.status(401).json({
+                            message: "Not found"
+                        });
+                    } else {
+                        console.log("user logged in successfully");
+                        return res.json(items.serialize());
+                    }
+                });
+            };
+        });
+});
+
+
+
 // ---------------MISC------------------------------
 // catch-all endpoint if client makes request to non-existent endpoint
 app.use('*', (req, res) => {
