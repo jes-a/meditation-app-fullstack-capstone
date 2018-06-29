@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 const sessionSchema = new mongoose.Schema({
+    loggedInUserId: {
+        type: String,
+        required: false
+    },
     sessionDate: {
         type: String,
         required: false

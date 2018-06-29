@@ -143,6 +143,7 @@ app.post('/signin', function(req, res) {
 // POST
 // Add a session
 app.post('/sessions/create', (req, res) => {
+    let loggedInUserId = req.body.loggedInUserId;
     let sessionDate = req.body.sessionDate;
     let sessionDateUnix = req.body.sessionDate;
     let sessionTime = req.body.sessionTime;
@@ -150,6 +151,7 @@ app.post('/sessions/create', (req, res) => {
     let journalEntry = req.body.journalEntry;
 
     Session.create({
+        loggedInUserId,
         sessionDate, 
         sessionDateUnix,
         sessionTime,
@@ -171,9 +173,10 @@ app.post('/sessions/create', (req, res) => {
 
 // GET
 // Get sessions to populate journal screen
-app.get('/sessions-journal', (req, res) => {
+app.get('/sessions-journal/:id', (req, res) => {
+    console.log(req.params.id);
     Session
-        .find()
+        .find({loggedInUserId: req.params.id})
         .sort({sessionDate: -1})
         .then((sessions) => {
             let sessionOutput = [];

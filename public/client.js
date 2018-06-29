@@ -22,6 +22,13 @@ function setReadableDate(sessionDate) {
 }
 
 function showDashboardScreen() {
+	const loggedInUserId = $('.logged-in-user').val();
+	showJournalScreenDashboard(loggedInUserId);
+	showTotalDaysDashboard(loggedInUserId);
+	showStreakDashboard(loggedInUserId);
+	showLastTenDaysDashboard(loggedInUserId);
+	showMethodUsedDashboard(loggedInUserId);
+	showAvgLengthDashboard(loggedInUserId);
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -78,9 +85,9 @@ function populateJournalScreen(result) {
 
 };
 
-function showJournalScreen() {
+function showJournalScreen(loggedInUserId) {
 
-	$.getJSON('/sessions-journal', function(res) {
+	$.getJSON('/sessions-journal/' + loggedInUserId, function(res) {
 		populateJournalScreen(res);
 	});
 
@@ -163,7 +170,8 @@ $('#js-landing-link').on('click', function(event) {
 });
 
 // Handle Sign Up link from Landing screen
-$('.js-signup').on('click', function(event) {
+// $('.js-signup').on('click', function(event) {
+$(document).on('click', '.js-signup', function(event) {
     event.preventDefault();
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -248,6 +256,8 @@ $('#js-login-button').on('click', function(event) {
                 contentType: 'application/json'
             })
             .done(function(result) {
+            	console.log(result);
+            	$('.logged-in-user').val(result._id);
 				showDashboardScreen(); 
             })
             .fail(function(jqXHR, error, errorThrown) {
@@ -291,7 +301,8 @@ $('#js-save-session').on('click', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
 	const sessionTime = $('#session-time').val();
-	let sessionType = ""
+	const loggedInUserId = $('.logged-in-user').val();
+	let sessionType = "";
 	let appName = $('#app-type').val();
 	let appRadio = $('input[id="app-used"]:checked').val();
 	if (appRadio == "on") {
@@ -309,6 +320,7 @@ $('#js-save-session').on('click', function(event) {
         alert('Please select session type');
     } else {
 		const newSessionObject = {
+			loggedInUserId,
 			sessionDate, 
 			sessionTime,
 			sessionType,
@@ -337,29 +349,32 @@ $('#js-save-session').on('click', function(event) {
 // Handle open Journal Screen
 $('.js-journal').on('click', function(event) {
     event.preventDefault();
-	showJournalScreen();
+	const loggedInUserId = $('.logged-in-user').val();
+	showJournalScreen(loggedInUserId);
 });
 
 $('.js-journal-link').on('click', function(event) {
     event.preventDefault();
-	showJournalScreen();
+	const loggedInUserId = $('.logged-in-user').val();
+	showJournalScreen(loggedInUserId);
 });
 
 // Delete Journal Entry from Journal Screen
 function deleteSession(sessionId) {
     event.preventDefault();
+	const loggedInUserId = $('.logged-in-user').val();
     console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
         $.ajax({
             method: 'DELETE',
             url: '/sessions/' + sessionId,
-            success: showJournalScreen()
+            success: showJournalScreen(loggedInUserId)
         })
     }
 };
 
 // Handle Open Settings Drop-Down
-$('.js-settings').on('click', function(event) {
+$(document).on('click', '.js-settings', function(event) {
     event.stopPropagation();
     $('.js-settings-dropdown').show();
 });
