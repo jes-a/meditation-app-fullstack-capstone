@@ -13,6 +13,13 @@ function showLogInScreen() {
     $('#footer-section').hide(); 
 }
 
+// Change date from YYYY-MM-DD format to readable format for Job List header
+function setReadableDate(serviceDate) {
+    let d = sessionDate.replace(/-/g, "/");
+    let readableDate = new Date(d);
+    return readableDate.toDateString();
+}
+
 function showDashboardScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -47,7 +54,32 @@ function showAddSessionScreen() {
     $('#footer').show();	
 };
 
+function populateJournalScreen(result) {
+	let htmlContent = "";
+
+	$.each(result, function(i, item) {
+		let sessionDate = setReadableDate(item.sessionDate);
+		htmlContent += '<div class="entry-header">';
+        htmlContent += `<h6 class="date">${sessionDate}</h6>`;
+        htmlContent += '<i class="far fa-trash-alt delete-entry js-delete"></i>';
+        htmlContent += '</div>';
+		htmlContent += '<div class="entry">';
+        htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
+        htmlContent += `<p>${item.journalEntry}</p>`;
+        htmlContent += '</div>';
+	});
+
+//use the HTML output to show it in the index.html
+	$('.journal-entries').html(htmlContent);
+
+};
+
 function showJournalScreen() {
+
+	$.getJSON('/journal', function(res) {
+		populateJournalScreen(res);
+	});
+
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -83,34 +115,34 @@ function showChangePasswordScreen() {
 
 
 // ******* FOR TESTING ********
-// $(document).ready(function() {
-//     $('#landing-screen').hide();
-//     $('#login-screen').hide();
-//     $('#signup-screen').hide();
-//     $('#site-nav').show();
-//     $('.js-settings-dropdown').hide();
-//     $('#dashboard-screen').hide();
-//     $('.js-nav-title').addClass('nav-title-selected');
-//     $('#add-session-screen').hide();
-//     $('#journal-screen').show();
-//     $('#change-password-screen').hide();
-//     $('#footer-section').show();    
-// });
+$(document).ready(function() {
+    $('#landing-screen').hide();
+    $('#login-screen').hide();
+    $('#signup-screen').hide();
+    $('#site-nav').show();
+    $('.js-settings-dropdown').hide();
+    $('#dashboard-screen').hide();
+    $('.js-nav-title').addClass('nav-title-selected');
+    $('#add-session-screen').hide();
+    $('#journal-screen').show();
+    $('#change-password-screen').hide();
+    $('#footer-section').show();    
+});
 
 // ----------- DOCUMENT READY FUNCTION -----------
 
-$(document).ready(function() {
-    $('#landing-screen').show();
-    $('#login-screen').hide();
-    $('#signup-screen').hide();
-    $('#site-nav').hide();
-    $('#js-settings-dropdown').hide();
-    $('#dashboard-screen').hide();
-    $('#add-session-screen').hide();
-    $('#journal-screen').hide();
-    $('#change-password-screen').hide();
-    $('#footer-section').hide();    
-});
+// $(document).ready(function() {
+//     $('#landing-screen').show();
+//     $('#login-screen').hide();
+//     $('#signup-screen').hide();
+//     $('#site-nav').hide();
+//     $('#js-settings-dropdown').hide();
+//     $('#dashboard-screen').hide();
+//     $('#add-session-screen').hide();
+//     $('#journal-screen').hide();
+//     $('#change-password-screen').hide();
+//     $('#footer-section').hide();    
+// });
 
 // Handle sign in link from Landing screen
 $('#js-landing-link').on('click', function(event) {
@@ -234,25 +266,44 @@ $('.js-nav-title').on('click', function(event) {
 	showDashboardScreen();
 });
 
-// Handle open Add Section Screen
+// Handle open Add Session Screen
 $('.js-add-session').on('click', function(event) {
     event.preventDefault();
 	showAddSessionScreen();
 });
 
+// Add Session Form to Database
 $('.js-save-session').on('click', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
 	const sessionTime = $('#session-time').val();
 	const sessionType = $('input[name="session-type"]:checked').val();
 	const journalEntry = $('#add-entry').val();
+	const newSessionObject = {
+		sessionDate, 
+		sessionTime,
+		sessionType,
+		journalEntry
+	};
+	$.ajax({
+		type: 'POST',
+		url: '/journal/create',
+		dataType: 'json',
+		data: JSON.stringify(newSessionObject),
+		contentType: 'application/json'
+	})
+	.done(function(result) {
+		alert('You successfully added a session');
+		$('#add-session-form')[0].reset();
+		showDashboardScreen();
+	})
 });
 
 // Handle open Journal Screen
 $('.js-journal').on('click', function(event) {
     event.preventDefault();
 	showJournalScreen();
-	
+
 });
 
 $('.js-journal-link').on('click', function(event) {

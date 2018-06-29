@@ -3,12 +3,15 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const journalSchema = new mongoose.Schema({
+const sessionSchema = new mongoose.Schema({
     sessionDate: {
-        type: Date,
-        default: Date.now
+        type: String,
         required: false
     },
+    sessionDateUnix: {
+        type: Date,
+        required: false       
+    }
     sessionTime: {
         type: Number,
         required: false
@@ -23,6 +26,6 @@ const journalSchema = new mongoose.Schema({
     }
 });
 
-const Journal = mongoose.model('Journal', journalSchema);
+const Session = mongoose.model('Session', sessionSchema);
 
-module.exports = Journal;
+module.exports = Session;
