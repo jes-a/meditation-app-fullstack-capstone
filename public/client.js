@@ -1,5 +1,6 @@
 "use strict";
 
+// Show Log In Screen on Landing Page
 function showLogInScreen() {
     $('#landing-screen').hide();
     $('#login-screen').show();
@@ -13,7 +14,8 @@ function showLogInScreen() {
     $('#footer-section').hide(); 
 }
 
-// Change date from YYYY-MM-DD format to readable format for Job List header
+// Change date from YYYY-MM-DD format to readable format for Date headers
+// on Journal Entries
 function setReadableDate(sessionDate) {
     let d = sessionDate.replace(/-/g, "/");
     let readableDate = new Date(d);
@@ -21,14 +23,15 @@ function setReadableDate(sessionDate) {
 
 }
 
+// Populate Dashboard Screen Sections
 function showDashboardScreen() {
 	const loggedInUserId = $('.logged-in-user').val();
-	showJournalScreenDashboard(loggedInUserId);
-	showTotalDaysDashboard(loggedInUserId);
-	showStreakDashboard(loggedInUserId);
-	showLastTenDaysDashboard(loggedInUserId);
-	showMethodUsedDashboard(loggedInUserId);
-	showAvgLengthDashboard(loggedInUserId);
+	// showJournalScreenDashboard(loggedInUserId);
+	// showTotalDaysDashboard(loggedInUserId);
+	// showStreakDashboard(loggedInUserId);
+	// showLastTenDaysDashboard(loggedInUserId);
+	// showMethodUsedDashboard(loggedInUserId);
+	// showAvgLengthDashboard(loggedInUserId);
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -45,6 +48,8 @@ function showDashboardScreen() {
     $('#footer').show();	
 };
 
+
+// Show Add Session Page
 function showAddSessionScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -63,6 +68,7 @@ function showAddSessionScreen() {
     $('#footer').show();	
 };
 
+// Populate Entries in Journal Page
 function populateJournalScreen(result) {
 	let htmlContent = "";
 	console.log(result);
@@ -80,11 +86,12 @@ function populateJournalScreen(result) {
         htmlContent += '</div>';
 	});
 
-//use the HTML output to show it in the index.html
+	//Use HTML output to show in index.html
 	$('.journal-entries').html(htmlContent);
 
 };
 
+// Show Journal Page for Logged In User
 function showJournalScreen(loggedInUserId) {
 
 	$.getJSON('/sessions-journal/' + loggedInUserId, function(res) {
@@ -107,6 +114,8 @@ function showJournalScreen(loggedInUserId) {
     $('#footer').show();	
 };
 
+
+// Show Change Password Page
 function showChangePasswordScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -170,7 +179,6 @@ $('#js-landing-link').on('click', function(event) {
 });
 
 // Handle Sign Up link from Landing screen
-// $('.js-signup').on('click', function(event) {
 $(document).on('click', '.js-signup', function(event) {
     event.preventDefault();
     $('#landing-screen').hide();
@@ -185,7 +193,7 @@ $(document).on('click', '.js-signup', function(event) {
 });
 
 // Handle Log In link from Sign Up screen
-$('.js-login').on('click', function(event) {
+$(document).on('click', '.js-login', function(event) {
     event.preventDefault();
     $('#landing-screen').hide();
     $('#login-screen').show();
@@ -199,7 +207,7 @@ $('.js-login').on('click', function(event) {
 });
 
 // Handle Sign Up Information
-$('#js-signup-button').on('click', function(event) {
+$(document).on('click', '#js-signup-button', function(event) {
 		event.preventDefault();
 		const email = $('input[name="js-user-signup"]').val();
 		const password = $('input[name="js-create-pw"]').val();
@@ -233,7 +241,7 @@ $('#js-signup-button').on('click', function(event) {
 });
 
 // Handle log in information
-$('#js-login-button').on('click', function(event) {
+$(document).on('click', '#js-login-button', function(event) {
     event.preventDefault();
     const inputEmail = $('input[name="js-userName"]').val();
     const inputPw = $('input[name="js-userPw"]').val();
@@ -270,34 +278,34 @@ $('#js-login-button').on('click', function(event) {
 });
 
 // Sign out and refresh page
-$('.js-logout-link').on('click', function(event) {
+$(document).on('click', '.js-logout-link', function(event) {
     location.reload();
 });
 
 // Handle open Dashboard Screen
-$('.js-nav-title').on('click', function(event) {
+$(document).on('click', '.js-nav-title', function(event) {
     event.preventDefault();
 	showDashboardScreen();
 });
 
 // Handle open Add Session Screen
-$('.js-add-session').on('click', function(event) {
+$(document).on('click', '.js-add-session', function(event) {
     event.preventDefault();
 	showAddSessionScreen();
 });
 
 // Select App radio button if text field is focused 
-$('#app-type').on('click', function(event) {
+$(document).on('click', '#app-type', function(event) {
 	$('#app-used').prop("checked", true);
 });
 
-$('#timer, #unassisted').on('click', function(event) {
+$(document).on('click', '#timer, #unassisted', function(event) {
 	$('#app-type').val("");
 });
 
 
 // Add Session Form to Database
-$('#js-save-session').on('click', function(event) {
+$(document).on('click', '#js-save-session', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
 	const sessionTime = $('#session-time').val();
@@ -347,13 +355,13 @@ $('#js-save-session').on('click', function(event) {
 });
 
 // Handle open Journal Screen
-$('.js-journal').on('click', function(event) {
+$(document).on('click', '.js-journal', function(event) {
     event.preventDefault();
 	const loggedInUserId = $('.logged-in-user').val();
 	showJournalScreen(loggedInUserId);
 });
 
-$('.js-journal-link').on('click', function(event) {
+$(document).on('click', '.js-journal-link', function(event) {
     event.preventDefault();
 	const loggedInUserId = $('.logged-in-user').val();
 	showJournalScreen(loggedInUserId);
@@ -380,7 +388,7 @@ $(document).on('click', '.js-settings', function(event) {
 });
 
 // Handle Close Settings Drop-Down
-$('.js-settings-close').on('click', function(event) {
+$(document).on('click', '.js-settings-close', function(event) {
     event.stopPropagation();
     $('.js-settings-dropdown').hide();
 });
@@ -391,9 +399,10 @@ $(document).on('click', function() {
 })
 
 // Handle open Change Password Screen
-$('.js-change-pw').on('click', function(event) {
+$(document).on('click', '.js-change-pw', function(event) {
     event.preventDefault();
-	showChangePasswordScreen();
+	const loggedInUserId = $('.logged-in-user').val();
+	showChangePasswordScreen(loggedInUserId);
 });
 
 
