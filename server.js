@@ -142,7 +142,7 @@ app.post('/signin', function(req, res) {
 
 // POST
 // Add a session
-app.post('/session/create', (req, res) => {
+app.post('/sessions/create', (req, res) => {
     let sessionDate = req.body.sessionDate;
     let sessionDateUnix = req.body.sessionDate;
     let sessionTime = req.body.sessionTime;

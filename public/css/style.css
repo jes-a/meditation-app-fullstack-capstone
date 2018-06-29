@@ -687,6 +687,7 @@ select {
   position: absolute;
   top: 4px;
   right: 7px;
+  cursor: pointer;
 }
 
 .entry {

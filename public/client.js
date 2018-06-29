@@ -356,7 +356,6 @@ $('.journal-entries').on('click', '.js-delete-entry', function(event) {
             success: showJournalScreen()
         })
     }
-
 });
 
 // Handle Open Settings Drop-Down
