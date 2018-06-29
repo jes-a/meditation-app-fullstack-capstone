@@ -235,12 +235,12 @@
         <form role="form" id="add-session-form" class="session-form">
           <div>
             <label for="session-date">Date
-              <input type="date" id="session-date" name="session-date" />
+              <input type="date" id="session-date" name="session-date" value="2018-06-28" />
             </label>
           </div>
           <label for="session-min">
             I meditated for
-            <input type="number" id="session-time" name="session-min" class="session-time-input" /> minutes
+            <input type="number" id="session-time" name="session-min" class="session-time-input" value="20" /> minutes
           </label>
           <label for="session-type">
             I meditated using
@@ -248,9 +248,9 @@
               <ul id="session-type" class="checkboxes">
                 <li>
                   <label for="app-type">
-                    <input type="radio" name="session-type" id="app-used" value="" />App
+                    <input type="radio" name="session-type" id="app-used" checked />App
                   </label>
-                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Name" />
+                    <input type="text" name="app-name" id="app-type" class="checkbox" placeholder="Enter App Name" value="Insight" />
                 </li>
                 <li>
                   <input type="radio" name="session-type" id="timer" value="Timer" />
@@ -266,7 +266,7 @@
           <label for="add-entry">
             Insights from my session
           </label>
-            <textarea name="entry" id="add-entry" value="entry"></textarea>
+            <textarea name="entry" id="add-entry" value="entry">I meditated using a guided session</textarea>
           <button role="button" name="save" id="js-save-session" type="submit">
             <i class="far fa-plus-circle button-icon-left" aria-label="Add Session"></i>Add Session
           </button>
@@ -287,51 +287,6 @@
           <h1>Journal</h1>
         </div>
           <div class="col col-6 journal-entries">
-              <div class="entry-header">
-                  <h6 class="date">June 6, 2018</h6>
-                  <i class="far fa-trash-alt delete-entry js-delete"></i>
-              </div>
-              <div class="entry">
-                  <p>
-                      I meditated for 20 minutes using headspace.
-                  </p>
-                  <p>
-                      Ut commodo velit, sed ullamcorper orci. Aliquam ornare dolor ac erat bibendum, iaculis aliquet tortor lobortis. Mauris in volutpat sem.
-                  </p>
-              </div>
-              <div class="entry-header">
-                  <h6 class="date">June 5, 2018</h6>
-                  <i class="far fa-trash-alt delete-entry js-delete"></i>
-              </div>
-              <div class="entry">
-                  <p>
-                      I meditated for 10 minutes using headspace.
-                  </p>
-                  <p>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi ut commodo velit, sed ullamcorper orci. Aliquam ornare dolor ac erat bibendum, iaculis aliquet tortor lobortis.
-                  </p>
-              </div>
-              <div class="entry-header">
-                  <h6 class="date">June 4, 2018</h6>
-                  <i class="far fa-trash-alt delete-entry js-delete"></i>
-              </div>
-              <div class="entry">
-                  <p>
-                      I meditated for 15 minutes using headspace.
-                  </p>
-              </div>
-              <div class="entry-header">
-                  <h6 class="date">June 3, 2018</h6>
-                  <i class="far fa-trash-alt delete-entry js-delete"></i>
-              </div>
-              <div class="entry">
-                  <p>
-                      I meditated for 30 minutes using headspace.
-                  </p>
-                  <p>
-                      Nulla diam dolor, congue non urna sit amet, consectetur posuere dolor. Nullam a ante nec sapien posuere lobortis vitae sed enim. Quisque vitae sem posuere lorem fringilla volutpat.
-                  </p>
-              </div>
           </div>
           <div class="col col-6 large-image">
               <div class="img-div-journal">

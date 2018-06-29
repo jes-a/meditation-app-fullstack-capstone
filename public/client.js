@@ -14,10 +14,11 @@ function showLogInScreen() {
 }
 
 // Change date from YYYY-MM-DD format to readable format for Job List header
-function setReadableDate(serviceDate) {
+function setReadableDate(sessionDate) {
     let d = sessionDate.replace(/-/g, "/");
     let readableDate = new Date(d);
     return readableDate.toDateString();
+
 }
 
 function showDashboardScreen() {
@@ -44,6 +45,7 @@ function showAddSessionScreen() {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
+    $('#session-date').valueAsDate = new Date();
     $('#add-session-screen').show();
     $('.js-nav-title').removeClass('nav-title-selected');
     $('.js-add-session').addClass('nav-selected');
@@ -56,12 +58,13 @@ function showAddSessionScreen() {
 
 function populateJournalScreen(result) {
 	let htmlContent = "";
+	console.log(result);
 
 	$.each(result, function(i, item) {
 		let sessionDate = setReadableDate(item.sessionDate);
 		htmlContent += '<div class="entry-header">';
         htmlContent += `<h6 class="date">${sessionDate}</h6>`;
-        htmlContent += '<i class="far fa-trash-alt delete-entry js-delete"></i>';
+        htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry ${item._id}"></i>`;
         htmlContent += '</div>';
 		htmlContent += '<div class="entry">';
         htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
@@ -76,7 +79,7 @@ function populateJournalScreen(result) {
 
 function showJournalScreen() {
 
-	$.getJSON('/journal', function(res) {
+	$.getJSON('/sessions-journal', function(res) {
 		populateJournalScreen(res);
 	});
 
@@ -123,8 +126,8 @@ $(document).ready(function() {
     $('.js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('.js-nav-title').addClass('nav-title-selected');
-    $('#add-session-screen').hide();
-    $('#journal-screen').show();
+    $('#add-session-screen').show();
+    $('#journal-screen').hide();
     $('#change-password-screen').hide();
     $('#footer-section').show();    
 });
@@ -192,6 +195,7 @@ $('#js-signup-button').on('click', function(event) {
 		const email = $('input[name="js-user-signup"]').val();
 		const password = $('input[name="js-create-pw"]').val();
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
+		console.log(email);
 		if (password !== confirmPw) {
 			event.preventDefault();
 			alert('Passwords must match!');
@@ -272,43 +276,87 @@ $('.js-add-session').on('click', function(event) {
 	showAddSessionScreen();
 });
 
+// Select App radio button if text field is focused 
+$('#app-type').on('click', function(event) {
+	$('#app-used').prop("checked", true);
+});
+
+$('#timer, #unassisted').on('click', function(event) {
+	$('#app-type').val("");
+});
+
+
 // Add Session Form to Database
-$('.js-save-session').on('click', function(event) {
+$('#js-save-session').on('click', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
 	const sessionTime = $('#session-time').val();
-	const sessionType = $('input[name="session-type"]:checked').val();
+	let sessionType = ""
+	let appName = $('#app-type').val();
+	let appRadio = $('input[id="app-used"]:checked').val();
+	if (appRadio == "on") {
+		sessionType = appName
+	} else {
+		sessionType = $('input[name="session-type"]:checked').val();
+	}
 	const journalEntry = $('#add-entry').val();
-	const newSessionObject = {
-		sessionDate, 
-		sessionTime,
-		sessionType,
-		journalEntry
-	};
-	$.ajax({
-		type: 'POST',
-		url: '/journal/create',
-		dataType: 'json',
-		data: JSON.stringify(newSessionObject),
-		contentType: 'application/json'
-	})
-	.done(function(result) {
-		alert('You successfully added a session');
-		$('#add-session-form')[0].reset();
-		showDashboardScreen();
-	})
+	console.log(sessionDate, sessionTime, sessionType, journalEntry)
+    if (sessionDate == "") {
+        alert('Please select session date');
+    } else if (sessionTime == "") {
+        alert('Please select session time');
+    } else if (sessionType == "") {
+        alert('Please select session type');
+    } else {
+		const newSessionObject = {
+			sessionDate, 
+			sessionTime,
+			sessionType,
+			journalEntry
+		};
+		$.ajax({
+			type: 'POST',
+			url: '/sessions/create',
+			dataType: 'json',
+			data: JSON.stringify(newSessionObject),
+			contentType: 'application/json'
+		})
+		.done(function(result) {
+			alert('You successfully added a session');
+			$('#add-session-form')[0].reset();
+			showDashboardScreen();
+		})
+	    .fail(function(jqXHR, error, errorThrown) {
+	        console.log(jqXHR);
+	        console.log(error);
+	        console.log(errorThrown);
+	    });
+	}
 });
 
 // Handle open Journal Screen
 $('.js-journal').on('click', function(event) {
     event.preventDefault();
 	showJournalScreen();
-
 });
 
 $('.js-journal-link').on('click', function(event) {
     event.preventDefault();
 	showJournalScreen();
+});
+
+// Delete Journal Entry from Journal Screen
+$('.journal-entries').on('click', '.js-delete-entry', function(event) {
+    event.preventDefault();
+    let journalId = event.delegateTarget.id;
+    if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
+        $.ajax({
+            method: 'DELETE',
+            url: '/sessions/' + journalId,
+            success: showJournalScreen()
+        })
+    }
+
 });
 
 // Handle Open Settings Drop-Down

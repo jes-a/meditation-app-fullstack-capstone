@@ -1,6 +1,7 @@
 'use strict';
 
 const User = require('./models/users');
+const Session = require('./models/sessions');
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
@@ -139,6 +140,73 @@ app.post('/signin', function(req, res) {
 });
 
 
+// POST
+// Add a session
+app.post('/session/create', (req, res) => {
+    let sessionDate = req.body.sessionDate;
+    let sessionDateUnix = req.body.sessionDate;
+    let sessionTime = req.body.sessionTime;
+    let sessionType = req.body.sessionType;
+    let journalEntry = req.body.journalEntry;
+
+    Session.create({
+        sessionDate, 
+        sessionDateUnix,
+        sessionTime,
+        sessionType,
+        journalEntry
+    }, (err, item) => {
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error on session.add'
+            });
+        }
+        if (item) {
+            console.log(`Session added for ${sessionDate}`);
+            return res.json(item);
+        }
+    }); 
+}); 
+
+
+// GET
+// Get sessions to populate journal screen
+app.get('/sessions-journal', (req, res) => {
+    Session
+        .find()
+        .sort({sessionDate: -1})
+        .then((sessions) => {
+            let sessionOutput = [];
+            sessions.map(function(session) {
+                sessionOutput.push(session);
+            });
+            res.json(sessionOutput);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal Server Error getting session'
+            });
+        });
+});
+
+
+// DELETE 
+// Delete Journal entry from journal screen 
+app.delete('/sessions/:id', (req, res) => {
+    Session
+        .findByIdAndRemove(req.params.id)
+        .then(() => {
+            console.log(`Deleted entry with id \`${req.params.id}\``);
+            res.status(204).end();
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal Server Error deleting entry'
+            })
+        });
+});
 
 // ---------------MISC------------------------------
 // catch-all endpoint if client makes request to non-existent endpoint

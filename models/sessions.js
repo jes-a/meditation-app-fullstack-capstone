@@ -11,7 +11,7 @@ const sessionSchema = new mongoose.Schema({
     sessionDateUnix: {
         type: Date,
         required: false       
-    }
+    },
     sessionTime: {
         type: Number,
         required: false
