@@ -61,10 +61,11 @@ function populateJournalScreen(result) {
 	console.log(result);
 
 	$.each(result, function(i, item) {
+		console.log(item._id);
 		let sessionDate = setReadableDate(item.sessionDate);
 		htmlContent += '<div class="entry-header">';
         htmlContent += `<h6 class="date">${sessionDate}</h6>`;
-        htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry ${item._id}"></i>`;
+        htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry" onClick="deleteSession('${item._id}')"></i>`;
         htmlContent += '</div>';
 		htmlContent += '<div class="entry">';
         htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
@@ -126,8 +127,8 @@ function showChangePasswordScreen() {
 //     $('.js-settings-dropdown').hide();
 //     $('#dashboard-screen').hide();
 //     $('.js-nav-title').addClass('nav-title-selected');
-//     $('#add-session-screen').show();
-//     $('#journal-screen').hide();
+//     $('#add-session-screen').hide();
+//     $('#journal-screen').show();
 //     $('#change-password-screen').hide();
 //     $('#footer-section').show();    
 // });
@@ -191,16 +192,14 @@ $('.js-login').on('click', function(event) {
 
 // Handle Sign Up Information
 $('#js-signup-button').on('click', function(event) {
-
+		event.preventDefault();
 		const email = $('input[name="js-user-signup"]').val();
 		const password = $('input[name="js-create-pw"]').val();
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
 		console.log(email);
 		if (password !== confirmPw) {
-			event.preventDefault();
 			alert('Passwords must match!');
 		} else {
-			event.preventDefault();
 			const newUserObject = {
 				email: email,
 				password: password
@@ -213,7 +212,7 @@ $('#js-signup-button').on('click', function(event) {
 				contentType: 'application/json'
 			})
 			.done(function (result) {
-				event.preventDefault();
+				console.log(result);
 				alert('Thanks for signing up! Please sign in.');
 				showLogInScreen();
 			})
@@ -230,6 +229,7 @@ $('#js-login-button').on('click', function(event) {
     event.preventDefault();
     const inputEmail = $('input[name="js-userName"]').val();
     const inputPw = $('input[name="js-userPw"]').val();
+    console.log(inputEmail, inputPw);
     // check for spaces, undefined
     if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
         alert('Invalid Email')
@@ -346,17 +346,17 @@ $('.js-journal-link').on('click', function(event) {
 });
 
 // Delete Journal Entry from Journal Screen
-$('.journal-entries').on('click', '.js-delete-entry', function(event) {
+function deleteSession(sessionId) {
     event.preventDefault();
-    let journalId = event.delegateTarget.id;
+    console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
         $.ajax({
             method: 'DELETE',
-            url: '/sessions/' + journalId,
+            url: '/sessions/' + sessionId,
             success: showJournalScreen()
         })
     }
-});
+};
 
 // Handle Open Settings Drop-Down
 $('.js-settings').on('click', function(event) {

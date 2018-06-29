@@ -132,7 +132,7 @@ app.post('/signin', function(req, res) {
                         });
                     } else {
                         console.log("user logged in successfully");
-                        return res.json(items.serialize());
+                        return res.json(items);
                     }
                 });
             };
