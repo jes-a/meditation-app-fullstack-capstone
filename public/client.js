@@ -118,34 +118,34 @@ function showChangePasswordScreen() {
 
 
 // ******* FOR TESTING ********
-$(document).ready(function() {
-    $('#landing-screen').hide();
-    $('#login-screen').hide();
-    $('#signup-screen').hide();
-    $('#site-nav').show();
-    $('.js-settings-dropdown').hide();
-    $('#dashboard-screen').hide();
-    $('.js-nav-title').addClass('nav-title-selected');
-    $('#add-session-screen').show();
-    $('#journal-screen').hide();
-    $('#change-password-screen').hide();
-    $('#footer-section').show();    
-});
+// $(document).ready(function() {
+//     $('#landing-screen').hide();
+//     $('#login-screen').hide();
+//     $('#signup-screen').hide();
+//     $('#site-nav').show();
+//     $('.js-settings-dropdown').hide();
+//     $('#dashboard-screen').hide();
+//     $('.js-nav-title').addClass('nav-title-selected');
+//     $('#add-session-screen').show();
+//     $('#journal-screen').hide();
+//     $('#change-password-screen').hide();
+//     $('#footer-section').show();    
+// });
 
 // ----------- DOCUMENT READY FUNCTION -----------
 
-// $(document).ready(function() {
-//     $('#landing-screen').show();
-//     $('#login-screen').hide();
-//     $('#signup-screen').hide();
-//     $('#site-nav').hide();
-//     $('#js-settings-dropdown').hide();
-//     $('#dashboard-screen').hide();
-//     $('#add-session-screen').hide();
-//     $('#journal-screen').hide();
-//     $('#change-password-screen').hide();
-//     $('#footer-section').hide();    
-// });
+$(document).ready(function() {
+    $('#landing-screen').show();
+    $('#login-screen').hide();
+    $('#signup-screen').hide();
+    $('#site-nav').hide();
+    $('#js-settings-dropdown').hide();
+    $('#dashboard-screen').hide();
+    $('#add-session-screen').hide();
+    $('#journal-screen').hide();
+    $('#change-password-screen').hide();
+    $('#footer-section').hide();    
+});
 
 // Handle sign in link from Landing screen
 $('#js-landing-link').on('click', function(event) {

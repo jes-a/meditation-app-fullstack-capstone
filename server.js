@@ -67,7 +67,7 @@ function closeServer() {
 // POST
 // Create a new user
 
-app.post('users/create', (req, res) => {
+app.post('/users/create', (req, res) => {
     let email = req.body.email;
     let password = req.body.password;
     password = password.trim();
