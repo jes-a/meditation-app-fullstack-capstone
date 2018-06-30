@@ -172,6 +172,53 @@ app.post('/sessions/create', (req, res) => {
 
 
 // GET
+// Get sessions to populate data in Dashboard
+app.get('/sessions-total/:id', (req, res) => {
+    console.log(req.params.id);
+    Session
+        .find({loggedInUserId: req.params.id})
+        .sort({sessionDate: -1})
+        .then((sessions) => {
+            let sessionOutput = [];
+            sessions.map(function(session) {
+                sessionOutput.push(session);
+            });
+            res.json(sessionOutput);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal Server Error getting session'
+            });
+        });
+});
+
+
+// GET
+// Get sessions to populate journal sidebar on Home Page
+app.get('/sessions-journal-sb/:id', (req, res) => {
+    console.log(req.params.id);
+    Session
+        .find({loggedInUserId: req.params.id})
+        .sort({sessionDate: -1})
+        .limit(5)
+        .then((sessions) => {
+            let sessionOutput = [];
+            sessions.map(function(session) {
+                sessionOutput.push(session);
+            });
+            res.json(sessionOutput);
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal Server Error getting session'
+            });
+        });
+});
+
+
+// GET
 // Get sessions to populate journal screen
 app.get('/sessions-journal/:id', (req, res) => {
     console.log(req.params.id);

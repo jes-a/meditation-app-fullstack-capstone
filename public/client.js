@@ -14,22 +14,79 @@ function showLogInScreen() {
     $('#footer-section').hide(); 
 }
 
+// DASHBOARD ENTRIES: Total Number of sessions
+function showTotalNumberDashboard(loggedInUserId) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-total/' + loggedInUserId,
+    })
+    .done(function (res) {
+        console.log(res);
+        let htmlContent = `<span>${res.length}</span>`;
+        $('.js-total-number').html(htmlContent);
+    })
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    });  
+};
+
+// // DASHBOARD ENTRIES: Days in a row
+// function showStreakDashboard(loggedInUserId) {
+
+// };
+
+
+// DASHBOARD ENTRIES: Last 10 days
+function showLastTenDaysDashboard(loggedInUserId) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-total/' + loggedInUserId,
+    })
+    .done(function (res) {
+        console.log(res);
+        populateLastTenDashboard();
+    })
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    });  
+};
+
+function populateLastTenDashboard() {
+
+};
+
+// // DASHBOARD ENTRIES: Most used method
+// function showMethodUsedDashboard(loggedInUserId) {
+
+// };
+
+// // DASHBOARD ENTRIES: Average length of sessions
+// function showAvgLengthDashboard(loggedInUserId) {
+
+// };
+
+
+
+
+// JOURNAL ENTRIES
+
 // Change date from YYYY-MM-DD format to readable format for Date headers
 // on Journal Entries
 function setReadableDate(sessionDate) {
     let d = sessionDate.replace(/-/g, "/");
     let readableDate = new Date(d);
     return readableDate.toDateString();
-
 }
 
 // Populate Latest Journal Entries in Dashboard Screen
-
-
 function showJournalDashboard(loggedInUserId) {
 	$.ajax({
 		type: 'GET',
-		url: '/sessions-journal/' + loggedInUserId,
+		url: '/sessions-journal-sb/' + loggedInUserId,
 	})
 	.done(function (res) {
 		console.log(res);
@@ -46,25 +103,28 @@ function showJournalDashboard(loggedInUserId) {
 function populateJournalDashboard(result) {
 	let htmlContent = "";
 	console.log(result);
-
-	$.each(result, function(i, item) {
-		let sessionDate = setReadableDate(item.sessionDate);
-		htmlContent += '<div class="latest-entry">';
-        htmlContent += `<h6 class="date">${sessionDate}</h6>`;
-        htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
-        htmlContent += '</div>';
-	});
+    if (result.length === 0) {
+        htmlContent += '<p>You currently have no Journal Entries</p>';
+        $('.js-journal-link').hide();
+    } else {
+    	$.each(result, function(i, item) {
+    		let sessionDate = setReadableDate(item.sessionDate);
+    		htmlContent += '<div class="latest-entry">';
+            htmlContent += `<h6 class="date">${sessionDate}</h6>`;
+            htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
+            htmlContent += '</div>';
+    	});
+    }
 
 	//Use HTML output to show in index.html
 	$('.js-latest-entries').html(htmlContent);
-
 };
 
 
 function showDashboardScreen() {
 	const loggedInUserId = $('.logged-in-user').val();
 	showJournalDashboard(loggedInUserId);
-	// showTotalDaysDashboard(loggedInUserId);
+	showTotalNumberDashboard(loggedInUserId);
 	// showStreakDashboard(loggedInUserId);
 	// showLastTenDaysDashboard(loggedInUserId);
 	// showMethodUsedDashboard(loggedInUserId);
@@ -109,19 +169,21 @@ function showAddSessionScreen() {
 function populateJournalScreen(result) {
 	let htmlContent = "";
 	console.log(result);
-
-	$.each(result, function(i, item) {
-		console.log(item._id);
-		let sessionDate = setReadableDate(item.sessionDate);
-		htmlContent += '<div class="entry-header">';
-        htmlContent += `<h6 class="date">${sessionDate}</h6>`;
-        htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry" onClick="deleteSession('${item._id}')"></i>`;
-        htmlContent += '</div>';
-		htmlContent += '<div class="entry">';
-        htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
-        htmlContent += `<p>${item.journalEntry}</p>`;
-        htmlContent += '</div>';
-	});
+    if (result.length === 0) {
+        htmlContent += '<p>You currently have no Journal Entries</p>';
+    } else {
+    	$.each(result, function(i, item) {
+    		let sessionDate = setReadableDate(item.sessionDate);
+    		htmlContent += '<div class="entry-header">';
+            htmlContent += `<h6 class="date">${sessionDate}</h6>`;
+            htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry" onClick="deleteSession('${item._id}')"></i>`;
+            htmlContent += '</div>';
+    		htmlContent += '<div class="entry">';
+            htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
+            htmlContent += `<p>${item.journalEntry}</p>`;
+            htmlContent += '</div>';
+    	});
+    }
 
 	//Use HTML output to show in index.html
 	$('.journal-entries').html(htmlContent);
