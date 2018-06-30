@@ -488,7 +488,7 @@ nav {
   background: #FFFFFF;
   border: 1px solid #4B6182;
   border-radius: 5px;
-  padding: 10px 30px;
+  padding: 10px 20px;
   display: inline-block;
   text-align: center;
   overflow-wrap: break-word;
@@ -557,11 +557,12 @@ nav {
 
 .latest-entry p {
   color: #5F6566;
+  width: 100%;
+  max-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
   text-overflow: ellipsis;
-}
-
-.latest-entry span {
-  text-decoration: underline;
 }
 
 .journal-link {
@@ -837,15 +838,19 @@ footer a {
   .sb-col {
     padding-left: 0px;
     padding-right: 0px;
+  }
 
+  .sb-tall {
+    max-height: 690px;
+    overflow-wrap: ;
   }
 
   .stat-big {
-    font-size: 6.25rem;
+    font-size: 6rem;
   }
 
   .stat-small {
-    font-size: 3.25rem;
+    font-size: 3rem;
   }
 
 /* Add Session Form Section */
@@ -871,7 +876,7 @@ footer a {
   }
 
   .large-image img {
-    max-height: 630px;
+    max-height: 650px;
     display: inline-block;
     opacity: .8;
     margin-left: 50%;
@@ -893,6 +898,11 @@ footer a {
     padding-left: 0;
     padding-top: 0;
     opacity: 1;
+  }
+
+  .journal-entries {
+    height: 650px;
+    overflow: auto;
   }
 
 

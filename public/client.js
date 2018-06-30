@@ -211,18 +211,10 @@ $(document).ready(function() {
     $('#footer-section').hide();    
 });
 
-// Handle sign in link from Landing screen
+// Handle Log In link from Landing screen
 $('#js-landing-link').on('click', function(event) {
     event.preventDefault();
-    $('#landing-screen').hide();
-    $('#login-screen').show();
-    $('#signup-screen').hide();
-    $('#site-nav').hide();
-    $('#dashboard-screen').hide();
-    $('#add-session-screen').hide();
-    $('#journal-screen').hide();
-    $('#change-password-screen').hide();
-    $('#footer').hide();
+    showLogInScreen();
 });
 
 // Handle Sign Up link from Landing screen
@@ -242,15 +234,7 @@ $(document).on('click', '.js-signup', function(event) {
 // Handle Log In link from Sign Up screen
 $(document).on('click', '.js-login', function(event) {
     event.preventDefault();
-    $('#landing-screen').hide();
-    $('#login-screen').show();
-    $('#signup-screen').hide();
-    $('#site-nav').hide();
-    $('#dashboard-screen').hide();
-    $('#add-session-screen').hide();
-    $('#journal-screen').hide();
-    $('#change-password-screen').hide();
-    $('#footer').hide();
+    showLogInScreen()
 });
 
 // Handle Sign Up Information
