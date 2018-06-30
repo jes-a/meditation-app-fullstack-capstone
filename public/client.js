@@ -23,10 +23,47 @@ function setReadableDate(sessionDate) {
 
 }
 
-// Populate Dashboard Screen Sections
+// Populate Latest Journal Entries in Dashboard Screen
+
+
+function showJournalDashboard(loggedInUserId) {
+	$.ajax({
+		type: 'GET',
+		url: '/sessions-journal/' + loggedInUserId,
+	})
+	.done(function (res) {
+		console.log(res);
+		populateJournalDashboard(res);
+	})
+	.fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+	});
+}
+
+// Populate Entries in Journal Page
+function populateJournalDashboard(result) {
+	let htmlContent = "";
+	console.log(result);
+
+	$.each(result, function(i, item) {
+		let sessionDate = setReadableDate(item.sessionDate);
+		htmlContent += '<div class="latest-entry">';
+        htmlContent += `<h6 class="date">${sessionDate}</h6>`;
+        htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
+        htmlContent += '</div>';
+	});
+
+	//Use HTML output to show in index.html
+	$('.js-latest-entries').html(htmlContent);
+
+};
+
+
 function showDashboardScreen() {
 	const loggedInUserId = $('.logged-in-user').val();
-	// showJournalScreenDashboard(loggedInUserId);
+	showJournalDashboard(loggedInUserId);
 	// showTotalDaysDashboard(loggedInUserId);
 	// showStreakDashboard(loggedInUserId);
 	// showLastTenDaysDashboard(loggedInUserId);
@@ -45,7 +82,7 @@ function showDashboardScreen() {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer').show();	
+    $('#footer').show();	 
 };
 
 
@@ -94,8 +131,18 @@ function populateJournalScreen(result) {
 // Show Journal Page for Logged In User
 function showJournalScreen(loggedInUserId) {
 
-	$.getJSON('/sessions-journal/' + loggedInUserId, function(res) {
+	$.ajax({
+		type: 'GET',
+		url: '/sessions-journal/' + loggedInUserId,
+	})
+	.done(function (res) {
+		console.log(res);
 		populateJournalScreen(res);
+	})
+	.fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
 	});
 
     $('#landing-screen').hide();
