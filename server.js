@@ -213,7 +213,7 @@ app.get('/sessions-ten/:id', (req, res) => {
 app.get('/sessions-ten/:id', (req, res) => {
     console.log(req.params.id);
     Session
-        .find({loggedInUserId: req.params.id},  {sessionDateUnix: 1})
+        .find({loggedInUserId: req.params.id},{sessionDateUnix: 1})
         .sort({sessionDateUnix: -1})
         .limit(10)
         .then((sessions) => {

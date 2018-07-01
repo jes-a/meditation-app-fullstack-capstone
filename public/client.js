@@ -66,7 +66,9 @@ function showMethodUsedDashboard(loggedInUserId) {
     })
     .done(function (res) {
         console.log(res);
-        populateMethodDashboard(res);
+        let sessionTypes = res.map(a => a.sessionType);
+        console.log(sessionTypes);
+        populateMethodDashboard(sessionTypes);
     })
     .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
@@ -75,8 +77,8 @@ function showMethodUsedDashboard(loggedInUserId) {
     });      
 };
 
-function populateMethodDashboard(res) {
-    console.log(res);
+function populateMethodDashboard(sessionTypes) {
+    console.log(sessionTypes);
 };
 
 // DASHBOARD ENTRIES: Average length of sessions
@@ -438,12 +440,12 @@ $(document).on('click', '#js-save-session', function(event) {
 	const sessionTime = $('#session-time').val();
 	const loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";
-	let appName = $('#app-type').val();
+	let appName = $('#app-type').val().toLowerCase();
 	let appRadio = $('input[id="app-used"]:checked').val();
 	if (appRadio == "on") {
 		sessionType = appName
 	} else {
-		sessionType = $('input[name="session-type"]:checked').val();
+		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
 	}
 	const journalEntry = $('#add-entry').val();
 	// console.log(sessionDate, sessionTime, sessionType, journalEntry)
