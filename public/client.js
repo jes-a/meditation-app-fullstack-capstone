@@ -22,7 +22,7 @@ function showTotalNumberDashboard(loggedInUserId) {
     })
     .done(function (res) {
         console.log(res);
-        let htmlContent = `<span>${res.length}</span>`;
+        let htmlContent = `<span>${res}</span>`;
         $('.js-total-number').html(htmlContent);
     })
     .fail(function (jqXHR, error, errorThrown) {
@@ -42,11 +42,10 @@ function showTotalNumberDashboard(loggedInUserId) {
 function showLastTenDaysDashboard(loggedInUserId) {
     $.ajax({
         type: 'GET',
-        url: '/sessions-total/' + loggedInUserId,
+        url: '/sessions-ten/' + loggedInUserId,
     })
     .done(function (res) {
-        console.log(res);
-        populateLastTenDashboard();
+        populateLastTenDashboard(res);
     })
     .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
@@ -55,20 +54,55 @@ function showLastTenDaysDashboard(loggedInUserId) {
     });  
 };
 
-function populateLastTenDashboard() {
-
+function populateLastTenDashboard(res) {
+    console.log(res);
 };
 
-// // DASHBOARD ENTRIES: Most used method
-// function showMethodUsedDashboard(loggedInUserId) {
+// DASHBOARD ENTRIES: Most used method
+function showMethodUsedDashboard(loggedInUserId) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-method/' + loggedInUserId,
+    })
+    .done(function (res) {
+        console.log(res);
+        populateMethodDashboard(res);
+    })
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    });      
+};
 
-// };
+function populateMethodDashboard(res) {
+    console.log(res);
+};
 
-// // DASHBOARD ENTRIES: Average length of sessions
-// function showAvgLengthDashboard(loggedInUserId) {
+// DASHBOARD ENTRIES: Average length of sessions
+function showAvgLengthDashboard(loggedInUserId) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-avg/' + loggedInUserId,
+    })
+    .done(function (res) {
+        console.log(res);
+        let sessionTimes = res.map(a => a.sessionTime);
+        populateAvgTimeDashboard(sessionTimes);
+    })
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    }); 
+};
 
-// };
-
+function populateAvgTimeDashboard(sessionTimes) {
+    let avgTime = parseInt(sessionTimes.reduce((a,b) => a + b, 0) / sessionTimes.length);
+    let htmlContent = `<span class="stat-small">${avgTime} min</span>`;
+    $('.js-avg-time').html(htmlContent);
+    console.log(avgTime);
+};
 
 
 
@@ -89,7 +123,7 @@ function showJournalDashboard(loggedInUserId) {
 		url: '/sessions-journal-sb/' + loggedInUserId,
 	})
 	.done(function (res) {
-		console.log(res);
+		// console.log(res);
 		populateJournalDashboard(res);
 	})
 	.fail(function (jqXHR, error, errorThrown) {
@@ -102,7 +136,7 @@ function showJournalDashboard(loggedInUserId) {
 // Populate Entries in Journal Page
 function populateJournalDashboard(result) {
 	let htmlContent = "";
-	console.log(result);
+	// console.log(result);
     if (result.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
         $('.js-journal-link').hide();
@@ -126,9 +160,9 @@ function showDashboardScreen() {
 	showJournalDashboard(loggedInUserId);
 	showTotalNumberDashboard(loggedInUserId);
 	// showStreakDashboard(loggedInUserId);
-	// showLastTenDaysDashboard(loggedInUserId);
-	// showMethodUsedDashboard(loggedInUserId);
-	// showAvgLengthDashboard(loggedInUserId);
+	showLastTenDaysDashboard(loggedInUserId);
+	showMethodUsedDashboard(loggedInUserId);
+	showAvgLengthDashboard(loggedInUserId);
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -198,7 +232,7 @@ function showJournalScreen(loggedInUserId) {
 		url: '/sessions-journal/' + loggedInUserId,
 	})
 	.done(function (res) {
-		console.log(res);
+		// console.log(res);
 		populateJournalScreen(res);
 	})
 	.fail(function (jqXHR, error, errorThrown) {
@@ -305,7 +339,7 @@ $(document).on('click', '#js-signup-button', function(event) {
 		const email = $('input[name="js-user-signup"]').val();
 		const password = $('input[name="js-create-pw"]').val();
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
-		console.log(email);
+		// console.log(email);
 		if (password !== confirmPw) {
 			alert('Passwords must match!');
 		} else {
@@ -321,7 +355,7 @@ $(document).on('click', '#js-signup-button', function(event) {
 				contentType: 'application/json'
 			})
 			.done(function (result) {
-				console.log(result);
+				// console.log(result);
 				alert('Thanks for signing up! Please sign in.');
 				showLogInScreen();
 			})
@@ -338,7 +372,7 @@ $(document).on('click', '#js-login-button', function(event) {
     event.preventDefault();
     const inputEmail = $('input[name="js-userName"]').val();
     const inputPw = $('input[name="js-userPw"]').val();
-    console.log(inputEmail, inputPw);
+    // console.log(inputEmail, inputPw);
     // check for spaces, undefined
     if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
         alert('Invalid Email')
@@ -357,7 +391,7 @@ $(document).on('click', '#js-login-button', function(event) {
                 contentType: 'application/json'
             })
             .done(function(result) {
-            	console.log(result);
+            	// console.log(result);
             	$('.logged-in-user').val(result._id);
 				showDashboardScreen(); 
             })
@@ -412,7 +446,7 @@ $(document).on('click', '#js-save-session', function(event) {
 		sessionType = $('input[name="session-type"]:checked').val();
 	}
 	const journalEntry = $('#add-entry').val();
-	console.log(sessionDate, sessionTime, sessionType, journalEntry)
+	// console.log(sessionDate, sessionTime, sessionType, journalEntry)
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
@@ -464,7 +498,7 @@ $(document).on('click', '.js-journal-link', function(event) {
 function deleteSession(sessionId) {
     event.preventDefault();
 	const loggedInUserId = $('.logged-in-user').val();
-    console.log(sessionId);
+    // console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
         $.ajax({
             method: 'DELETE',
