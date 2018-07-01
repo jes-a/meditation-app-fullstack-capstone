@@ -529,8 +529,11 @@ nav {
   color: #4B6182;
   display: block;
   text-align: center;
-  text-transform: capitalize;
   margin: 0 auto;
+}
+
+.stat-cap {
+  text-transform: capitalize;
 }
 
 .stat-box .svg-inline--fa {
@@ -910,9 +913,13 @@ footer a {
 }
 
 /* Medium-mobile - Home Page Journal Entries Sidebar */
- @media only screen and (min-width: 900px) {
+ @media only screen and (min-width: 875px) {
   .sb-tall {
-      min-height: 615px;
+      min-height: 671px;
+  }
+
+  .stat-bottom {
+    min-height: 199px;
   }
 }
 

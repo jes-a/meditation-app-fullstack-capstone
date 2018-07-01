@@ -85,17 +85,22 @@ function populateMethodDashboard(sessionTypes) {
     let m = 0;
     let method;
      
-    for (let i = 0; i < sessionTypes.length; i++) {
-      for (let j = i; j < sessionTypes.length; j++) {
-        if (sessionTypes[i] == sessionTypes[j]) m++;
-        if (mostFreq < m) {
-          mostFreq = m;
-          method = sessionTypes[i];
+    if (sessionTypes.length === 1) {
+        method = sessionTypes[0] 
+    } else {
+        for (let i = 0; i < sessionTypes.length; i++) {
+          for (let j = i; j < sessionTypes.length; j++) {
+            if (sessionTypes[i] == sessionTypes[j]) m++;
+                if (mostFreq < m) {
+                  mostFreq = m;
+                  method = sessionTypes[i];
+                }
+            }
         }
-      }     
     }
+
     console.log(method)
-    let htmlContent = `<span class="stat-small">${method}</span>`
+    let htmlContent = `<span class="stat-small stat-cap">${method}</span>`
     $('.js-method').html(htmlContent);
 };
 
