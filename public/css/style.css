@@ -529,6 +529,7 @@ nav {
   color: #4B6182;
   display: block;
   text-align: center;
+  text-transform: capitalize;
   margin: 0 auto;
 }
 
@@ -848,10 +849,6 @@ footer a {
     font-size: 6rem;
   }
 
-  .stat-small {
-    font-size: 3rem;
-  }
-
 /* Add Session Form Section */
 
   .session-bkgnd {
@@ -913,6 +910,11 @@ footer a {
 }
 
 /* Medium-mobile - Home Page Journal Entries Sidebar */
+ @media only screen and (min-width: 900px) {
+  .sb-tall {
+      min-height: 615px;
+  }
+}
 
  @media only screen and (min-width: 1070px) {
   .sb-tall {

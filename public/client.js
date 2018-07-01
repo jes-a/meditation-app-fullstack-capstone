@@ -79,6 +79,24 @@ function showMethodUsedDashboard(loggedInUserId) {
 
 function populateMethodDashboard(sessionTypes) {
     console.log(sessionTypes);
+
+    // Find the most used method in array
+    let mostFreq = 1;
+    let m = 0;
+    let method;
+     
+    for (let i = 0; i < sessionTypes.length; i++) {
+      for (let j = i; j < sessionTypes.length; j++) {
+        if (sessionTypes[i] == sessionTypes[j]) m++;
+        if (mostFreq < m) {
+          mostFreq = m;
+          method = sessionTypes[i];
+        }
+      }     
+    }
+    console.log(method)
+    let htmlContent = `<span class="stat-small">${method}</span>`
+    $('.js-method').html(htmlContent);
 };
 
 // DASHBOARD ENTRIES: Average length of sessions
@@ -401,7 +419,7 @@ $(document).on('click', '#js-login-button', function(event) {
                 console.log(jqXHR);
                 console.log(error);
                 console.log(errorThrown);
-                alert('Invalid username and password combination. Pleae check your username and password and try again.');
+                alert('Invalid username and password combination. Please check your username and password and try again.');
             });
     }
 });
