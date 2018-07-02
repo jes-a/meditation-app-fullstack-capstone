@@ -85,8 +85,10 @@ function populateMethodDashboard(sessionTypes) {
     let m = 0;
     let method;
      
-    if (sessionTypes.length === 1) {
-        method = sessionTypes[0] 
+    if (sessionTypes.length === 0) {
+        method = '--'; 
+    } else if (sessionTypes.length === 1) {
+        method = sessionTypes[0];
     } else {
         for (let i = 0; i < sessionTypes.length; i++) {
           for (let j = i; j < sessionTypes.length; j++) {
@@ -123,10 +125,15 @@ function showAvgLengthDashboard(loggedInUserId) {
 };
 
 function populateAvgTimeDashboard(sessionTimes) {
+    let htmlContent = "";
+    if (sessionTimes.length === 0) {
+        htmlContent = '<span class="stat-small">--</span>';
+    } else {
     let avgTime = parseInt(sessionTimes.reduce((a,b) => a + b, 0) / sessionTimes.length);
-    let htmlContent = `<span class="stat-small">${avgTime} min</span>`;
+    htmlContent = `<span class="stat-small">${avgTime} min</span>`;
+    }
+
     $('.js-avg-time').html(htmlContent);
-    console.log(avgTime);
 };
 
 
