@@ -8,6 +8,7 @@ const config = require('./config');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
+const moment = require('moment');
 const app = express();
 
 
@@ -307,6 +308,44 @@ app.get('/sessions-journal/:id', (req, res) => {
         });
 });
 
+
+// UPDATE
+// Update user password
+app.put('/sessions-pw/:id', function(req, res) {
+    let password = req.body.password;
+    let toUpdate = {password};
+    password = password.trim();
+        bcrypt.genSalt(10, (err, salt) => {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal server error on genSalt'
+                });
+            }
+
+            bcrypt.hash(password, salt, (err, hash) => {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Internal server error on hash'
+                    });
+                }
+
+                User
+                    .findByIdAndUpdate(req.params.id, {
+                        $set: toUpdate,
+                        password: hash
+                    })
+                    .exec().then(function(user) {
+                        return res.json(user);
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        res.status(500).json({
+                            message: 'Internal Server Error'
+                        });
+                    });
+            });
+        });
+});
 
 // DELETE 
 // Delete Journal entry from journal screen 

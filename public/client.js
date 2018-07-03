@@ -21,7 +21,6 @@ function showTotalNumberDashboard(loggedInUserId) {
         url: '/sessions-total/' + loggedInUserId,
     })
     .done(function (res) {
-        console.log(res);
         let htmlContent = `<span>${res}</span>`;
         $('.js-total-number').html(htmlContent);
     })
@@ -65,9 +64,7 @@ function showMethodUsedDashboard(loggedInUserId) {
         url: '/sessions-method/' + loggedInUserId,
     })
     .done(function (res) {
-        console.log(res);
         let sessionTypes = res.map(a => a.sessionType);
-        console.log(sessionTypes);
         populateMethodDashboard(sessionTypes);
     })
     .fail(function (jqXHR, error, errorThrown) {
@@ -78,8 +75,6 @@ function showMethodUsedDashboard(loggedInUserId) {
 };
 
 function populateMethodDashboard(sessionTypes) {
-    console.log(sessionTypes);
-
     // Find the most used method in array
     let mostFreq = 1;
     let m = 0;
@@ -101,7 +96,6 @@ function populateMethodDashboard(sessionTypes) {
         }
     }
 
-    console.log(method)
     let htmlContent = `<span class="stat-small stat-cap">${method}</span>`
     $('.js-method').html(htmlContent);
 };
@@ -113,7 +107,6 @@ function showAvgLengthDashboard(loggedInUserId) {
         url: '/sessions-avg/' + loggedInUserId,
     })
     .done(function (res) {
-        console.log(res);
         let sessionTimes = res.map(a => a.sessionTime);
         populateAvgTimeDashboard(sessionTimes);
     })
@@ -166,14 +159,14 @@ function showJournalDashboard(loggedInUserId) {
 }
 
 // Populate Entries in Journal Page
-function populateJournalDashboard(result) {
+function populateJournalDashboard(res) {
 	let htmlContent = "";
-	// console.log(result);
-    if (result.length === 0) {
+	// console.log(res);
+    if (res.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
         $('.js-journal-link').hide();
     } else {
-    	$.each(result, function(i, item) {
+    	$.each(res, function(i, item) {
     		let sessionDate = setReadableDate(item.sessionDate);
     		htmlContent += '<div class="latest-entry">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
@@ -208,28 +201,9 @@ function showDashboardScreen() {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer').show();	 
+    $('#footer-section').show();	 
 };
 
-
-// Show Add Session Page
-function showAddSessionScreen() {
-    $('#landing-screen').hide();
-    $('#login-screen').hide();
-    $('#signup-screen').hide();
-    $('#site-nav').show();
-    $('#js-settings-dropdown').hide();
-    $('#dashboard-screen').hide();
-    $('#session-date').valueAsDate = new Date();
-    $('#add-session-screen').show();
-    $('.js-nav-title').removeClass('nav-title-selected');
-    $('.js-add-session').addClass('nav-selected');
-    $('#journal-screen').hide();
-    $('.js-journal').removeClass('nav-selected');
-    $('#change-password-screen').hide();
-    $('.js-settings').removeClass('nav-selected');
-    $('#footer').show();	
-};
 
 // Populate Entries in Journal Page
 function populateJournalScreen(result) {
@@ -272,7 +246,6 @@ function showJournalScreen(loggedInUserId) {
         console.log(error);
         console.log(errorThrown);
 	});
-
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -286,11 +259,11 @@ function showJournalScreen(loggedInUserId) {
     $('.js-journal').addClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer').show();	
+    $('#footer-section').show();	
 };
 
+// Show Change Password Screen
 
-// Show Change Password Page
 function showChangePasswordScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -305,33 +278,18 @@ function showChangePasswordScreen() {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').show();
     $('.js-settings').addClass('nav-selected');
-    $('#footer').show();	
-};
+    $('#footer-section').show();
+}
 
-
-// ******* FOR TESTING ********
-// $(document).ready(function() {
-//     $('#landing-screen').hide();
-//     $('#login-screen').hide();
-//     $('#signup-screen').hide();
-//     $('#site-nav').show();
-//     $('.js-settings-dropdown').hide();
-//     $('#dashboard-screen').hide();
-//     $('.js-nav-title').addClass('nav-title-selected');
-//     $('#add-session-screen').hide();
-//     $('#journal-screen').show();
-//     $('#change-password-screen').hide();
-//     $('#footer-section').show();    
-// });
 
 // ----------- DOCUMENT READY FUNCTION -----------
 
 $(document).ready(function() {
+    $('#js-settings-dropdown').hide();
     $('#landing-screen').show();
     $('#login-screen').hide();
     $('#signup-screen').hide();
     $('#site-nav').hide();
-    $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
@@ -356,7 +314,7 @@ $(document).on('click', '.js-signup', function(event) {
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
     $('#change-password-screen').hide();
-    $('#footer').hide();
+    $('#footer-section').hide();
 });
 
 // Handle Log In link from Sign Up screen
@@ -450,7 +408,21 @@ $(document).on('click', '.js-nav-title', function(event) {
 // Handle open Add Session Screen
 $(document).on('click', '.js-add-session', function(event) {
     event.preventDefault();
-	showAddSessionScreen();
+    $('#landing-screen').hide();
+    $('#login-screen').hide();
+    $('#signup-screen').hide();
+    $('#site-nav').show();
+    $('#js-settings-dropdown').hide();
+    $('#dashboard-screen').hide();
+    $('#session-date').valueAsDate = Date.now();
+    $('#add-session-screen').show();
+    $('.js-nav-title').removeClass('nav-title-selected');
+    $('.js-add-session').addClass('nav-selected');
+    $('#journal-screen').hide();
+    $('.js-journal').removeClass('nav-selected');
+    $('#change-password-screen').hide();
+    $('.js-settings').removeClass('nav-selected');
+    $('#footer-section').show();    
 });
 
 // Select App radio button if text field is focused 
@@ -478,7 +450,7 @@ $(document).on('click', '#js-save-session', function(event) {
 		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
 	}
 	const journalEntry = $('#add-entry').val();
-	// console.log(sessionDate, sessionTime, sessionType, journalEntry)
+	console.log(sessionDate);
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
@@ -500,7 +472,7 @@ $(document).on('click', '#js-save-session', function(event) {
 			data: JSON.stringify(newSessionObject),
 			contentType: 'application/json'
 		})
-		.done(function(result) {
+		.done(function(res) {
 			alert('You successfully added a session');
 			$('#add-session-form')[0].reset();
 			showDashboardScreen();
@@ -560,8 +532,40 @@ $(document).on('click', function() {
 // Handle open Change Password Screen
 $(document).on('click', '.js-change-pw', function(event) {
     event.preventDefault();
-	const loggedInUserId = $('.logged-in-user').val();
-	showChangePasswordScreen(loggedInUserId);
+    showChangePasswordScreen()
+});
+
+
+// Handle Sending Update Password Form
+$(document).on('submit', '.js-changePw-button', function(event) {
+    event.preventDefault();
+    const loggedInUserId = $('.logged-in-user').val();
+    const password = $('input[name="js-new-userPw"]').val();
+    const confirmPw = $('input[name="js-confirm-userPw"]').val();
+        if (password !== confirmPw) {
+            alert('Passwords do not match, please re-enter password');
+        } else {
+            const updateUserObject = { password };
+            $.ajax({
+                type: 'PUT',
+                url: '/sessions-pw/' + loggedInUserId,
+                data: JSON.stringify(updateUserObject),
+                contentType: 'application/json'
+            })
+        .done(function (res) {
+            console.log(res)
+            $('.logged-in-user').val(res._id);
+            $('#changePw-form')[0].reset();
+            $('js-change-pw-status').html('You successfully updated your password');
+            showChangePasswordScreen(); 
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+    }
 });
 
 

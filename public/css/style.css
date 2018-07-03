@@ -248,7 +248,6 @@ input[type="radio"] {
 
 
 /* Landing Screen - mobile */
-
 .bg {
   background-image: url('../img/rock-stack-sm.jpg');
   height: 100%;
@@ -700,6 +699,15 @@ select {
   padding-right: 20px;
 }
 
+/* Change Password Section Mobile */
+.change-pw-status {
+  font-family: 'aglet-slab', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: #373E40;
+}
+
 /* Footer Section Mobile */
 
 footer {
@@ -913,7 +921,7 @@ footer a {
 }
 
 /* Medium-mobile - Home Page Journal Entries Sidebar */
- @media only screen and (min-width: 875px) {
+ @media only screen and (min-width: 910px) {
   .sb-tall {
       min-height: 671px;
   }
