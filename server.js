@@ -146,7 +146,7 @@ app.post('/signin', function(req, res) {
 app.post('/sessions/create', (req, res) => {
     let loggedInUserId = req.body.loggedInUserId;
     let sessionDate = req.body.sessionDate;
-    let sessionDateUnix = req.body.sessionDate;
+    let sessionDateUnix = req.body.sessionDateUnix;
     let sessionTime = req.body.sessionTime;
     let sessionType = req.body.sessionType;
     let journalEntry = req.body.journalEntry;
@@ -312,8 +312,7 @@ app.get('/sessions-journal/:id', (req, res) => {
 // UPDATE
 // Update user password
 app.put('/sessions-pw/:id', function(req, res) {
-    let password = req.body.password;
-    let toUpdate = {password};
+    let password = req.body.pw;
     password = password.trim();
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
@@ -331,10 +330,10 @@ app.put('/sessions-pw/:id', function(req, res) {
 
                 User
                     .findByIdAndUpdate(req.params.id, {
-                        $set: toUpdate,
+                        $set: password,
                         password: hash
                     })
-                    .exec().then(function(user) {
+                    .then((user) => {
                         return res.json(user);
                     })
                     .catch(err => {

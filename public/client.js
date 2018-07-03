@@ -414,7 +414,8 @@ $(document).on('click', '.js-add-session', function(event) {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
-    $('#session-date').valueAsDate = Date.now();
+    let defaultDate = moment().format("YYYY-MM-DD");
+    $('input[name="session-date"]').val(defaultDate);
     $('#add-session-screen').show();
     $('.js-nav-title').removeClass('nav-title-selected');
     $('.js-add-session').addClass('nav-selected');
@@ -422,7 +423,8 @@ $(document).on('click', '.js-add-session', function(event) {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer-section').show();    
+    $('#footer-section').show();  
+    console.log(defaultDate);  
 });
 
 // Select App radio button if text field is focused 
@@ -439,6 +441,7 @@ $(document).on('click', '#timer, #unassisted', function(event) {
 $(document).on('click', '#js-save-session', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
+    const sessionDateUnix = moment(sessionDate);
 	const sessionTime = $('#session-time').val();
 	const loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";
@@ -450,7 +453,7 @@ $(document).on('click', '#js-save-session', function(event) {
 		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
 	}
 	const journalEntry = $('#add-entry').val();
-	console.log(sessionDate);
+	console.log(sessionDateUnix);
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
@@ -461,6 +464,7 @@ $(document).on('click', '#js-save-session', function(event) {
 		const newSessionObject = {
 			loggedInUserId,
 			sessionDate, 
+            sessionDateUnix,
 			sessionTime,
 			sessionType,
 			journalEntry
@@ -532,30 +536,35 @@ $(document).on('click', function() {
 // Handle open Change Password Screen
 $(document).on('click', '.js-change-pw', function(event) {
     event.preventDefault();
-    showChangePasswordScreen()
+    let loggedInUserId = $('.logged-in-user').val();
+    console.log(loggedInUserId);
+    showChangePasswordScreen();
 });
 
 
 // Handle Sending Update Password Form
-$(document).on('submit', '.js-changePw-button', function(event) {
+$(document).on('submit', '#js-changePw-button', function(event) {
     event.preventDefault();
-    const loggedInUserId = $('.logged-in-user').val();
-    const password = $('input[name="js-new-userPw"]').val();
-    const confirmPw = $('input[name="js-confirm-userPw"]').val();
-        if (password !== confirmPw) {
+    let loggedInUserId = $('.logged-in-user').val();
+    const pw = $('input[name="js-new-userPw"]').val();
+    const pw2 = $('input[name="js-confirm-userPw"]').val();
+        if (pw !== pw2) {
             alert('Passwords do not match, please re-enter password');
         } else {
-            const updateUserObject = { password };
+            const updateUserObject = {
+                pw 
+            };
             $.ajax({
                 type: 'PUT',
                 url: '/sessions-pw/' + loggedInUserId,
+                dataType: 'json',
                 data: JSON.stringify(updateUserObject),
                 contentType: 'application/json'
             })
         .done(function (res) {
-            console.log(res)
+            console.log(res);
             $('.logged-in-user').val(res._id);
-            $('#changePw-form')[0].reset();
+            // $('#changePw-form')[0].reset();
             $('js-change-pw-status').html('You successfully updated your password');
             showChangePasswordScreen(); 
 
