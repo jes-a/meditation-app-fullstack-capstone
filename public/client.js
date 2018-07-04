@@ -31,10 +31,49 @@ function showTotalNumberDashboard(loggedInUserId) {
     });  
 };
 
-// // DASHBOARD ENTRIES: Days in a row
-// function showStreakDashboard(loggedInUserId) {
+// DASHBOARD ENTRIES: Days in a row
+function showStreakDashboard(loggedInUserId) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-streak/' + loggedInUserId,
+    })
+    .done(function (res) {
+        populateStreakDashboard(res)
+    })
+    .fail(function (jqXHR, error, errorThrown) {
+        console.log(jqXHR);
+        console.log(error);
+        console.log(errorThrown);
+    });  
+};
 
-// };
+function populateStreakDashboard(res) {
+    let streak;
+    let currentTimeStamp = Math.floor(Date.now() / 1000);
+    let mostRecentSessionTimeStamp = res[0].sessionDateUnix;
+
+    let counter = 0;
+
+    console.log(res);
+    // if (res.length === 0 || currentTimeStamp - mostRecentSessionTimeStamp > 84,660) {
+    //     streak = 0; 
+    // } else {
+
+        for(let i = 0; i < res.length; i++) {
+            console.log(res.sessionDateUnix[i]);
+            // if ( i.sessionDateUnix <= 84,660) {
+            //     counter ++;
+            // } else {
+            //     counter = 0;
+            // }
+        };
+        console.log(counter);
+    // }
+    console.log(streak);
+
+    // let htmlContent = `<span>${streak}</span>`
+    // $('.js-streak-number').html(htmlContent);
+};
 
 
 // DASHBOARD ENTRIES: Last 10 days
@@ -54,7 +93,7 @@ function showLastTenDaysDashboard(loggedInUserId) {
 };
 
 function populateLastTenDashboard(res) {
-    console.log(res);
+    // console.log(res);
 };
 
 // DASHBOARD ENTRIES: Most used method
@@ -184,7 +223,7 @@ function showDashboardScreen() {
 	const loggedInUserId = $('.logged-in-user').val();
 	showJournalDashboard(loggedInUserId);
 	showTotalNumberDashboard(loggedInUserId);
-	// showStreakDashboard(loggedInUserId);
+	showStreakDashboard(loggedInUserId);
 	showLastTenDaysDashboard(loggedInUserId);
 	showMethodUsedDashboard(loggedInUserId);
 	showAvgLengthDashboard(loggedInUserId);
@@ -441,7 +480,7 @@ $(document).on('click', '#timer, #unassisted', function(event) {
 $(document).on('click', '#js-save-session', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
-    const sessionDateUnix = moment(sessionDate);
+    const sessionDateUnix = moment(sessionDate).unix();
 	const sessionTime = $('#session-time').val();
 	const loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";
@@ -543,7 +582,7 @@ $(document).on('click', '.js-change-pw', function(event) {
 
 
 // Handle Sending Update Password Form
-$(document).on('submit', '#js-changePw-button', function(event) {
+$(document).on('submit', '#changePw-form', function(event) {
     event.preventDefault();
     let loggedInUserId = $('.logged-in-user').val();
     const pw = $('input[name="js-new-userPw"]').val();
@@ -564,8 +603,8 @@ $(document).on('submit', '#js-changePw-button', function(event) {
         .done(function (res) {
             console.log(res);
             $('.logged-in-user').val(res._id);
-            // $('#changePw-form')[0].reset();
-            $('js-change-pw-status').html('You successfully updated your password');
+            $('#changePw-form')[0].reset();
+            $('.js-change-pw-status').html('You successfully updated your password');
             showChangePasswordScreen(); 
 
         })

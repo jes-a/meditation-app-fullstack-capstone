@@ -192,10 +192,10 @@ app.get('/sessions-total/:id', (req, res) => {
 
 // GET
 // Get sessions to populate days in a row in Dashboard
-app.get('/sessions-ten/:id', (req, res) => {
+app.get('/sessions-streak/:id', (req, res) => {
     console.log(req.params.id);
     Session
-        .find({loggedInUserId: req.params.id},  {sessionDateUnix: 1})
+        .find({loggedInUserId: req.params.id}, {sessionDateUnix: 1})
         .sort({sessionDateUnix: -1})
         .then((sessions) => {
             res.json(sessions);
@@ -312,7 +312,10 @@ app.get('/sessions-journal/:id', (req, res) => {
 // UPDATE
 // Update user password
 app.put('/sessions-pw/:id', function(req, res) {
+    // let toUpdate = {};
+    // let updateableFields = ['password']
     let password = req.body.pw;
+    console.log(password);
     password = password.trim();
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
@@ -330,8 +333,7 @@ app.put('/sessions-pw/:id', function(req, res) {
 
                 User
                     .findByIdAndUpdate(req.params.id, {
-                        $set: password,
-                        password: hash
+                        $set: {password: hash}                    
                     })
                     .then((user) => {
                         return res.json(user);
@@ -339,7 +341,7 @@ app.put('/sessions-pw/:id', function(req, res) {
                     .catch(err => {
                         console.error(err);
                         res.status(500).json({
-                            message: 'Internal Server Error'
+                            message: 'Password was not modified'
                         });
                     });
             });
