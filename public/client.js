@@ -38,7 +38,8 @@ function showStreakDashboard(loggedInUserId) {
         url: '/sessions-streak/' + loggedInUserId,
     })
     .done(function (res) {
-        populateStreakDashboard(res)
+        let sessionDays = res.map(a => a.sessionDateUnix);
+        populateStreakDashboard(sessionDays)
     })
     .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
@@ -47,32 +48,34 @@ function showStreakDashboard(loggedInUserId) {
     });  
 };
 
-function populateStreakDashboard(res) {
-    let streak;
-    let currentTimeStamp = Math.floor(Date.now() / 1000);
-    let mostRecentSessionTimeStamp = res[0].sessionDateUnix;
-
+function populateStreakDashboard(sessionDays) {
+    console.log(sessionDays);
+    let streak = 0;
     let counter = 0;
+    let timeIndex;
+    let currentTimeStamp = Math.floor(Date.now() / 1000);
+    let mostRecentSessionTimeStamp = sessionDays[0];
+    let sessionTimeDiff = sessionDays.slice(1).map((n, i) => {return sessionDays[i] - n; });
 
-    console.log(res);
-    // if (res.length === 0 || currentTimeStamp - mostRecentSessionTimeStamp > 84,660) {
-    //     streak = 0; 
-    // } else {
+    console.log(sessionTimeDiff);
+    console.log(currentTimeStamp - mostRecentSessionTimeStamp);
+    console.log(sessionTimeDiff[0]);
+    console.log(sessionDays.length);
 
-        for(let i = 0; i < res.length; i++) {
-            console.log(res.sessionDateUnix[i]);
-            // if ( i.sessionDateUnix <= 84,660) {
-            //     counter ++;
-            // } else {
-            //     counter = 0;
-            // }
-        };
-        console.log(counter);
-    // }
-    console.log(streak);
+    
+        if (sessionDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
+            counter = 0; 
+        } else if ((currentTimeStamp - mostRecentSessionTimeStamp) <= 86400) {
+            counter = 1;
+            timeIndex = sessionTimeDiff.findIndex(timeDiff => timeDiff > 86400);
+        } else {
+            counter = 0;
+        }
 
-    // let htmlContent = `<span>${streak}</span>`
-    // $('.js-streak-number').html(htmlContent);
+    streak = counter + timeIndex;
+
+    let htmlContent = `<span>${streak}</span>`
+    $('.js-streak-number').html(htmlContent);
 };
 
 
