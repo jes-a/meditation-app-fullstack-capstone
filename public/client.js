@@ -39,7 +39,7 @@ function showStreakDashboard(loggedInUserId) {
     })
     .done(function (res) {
         let sessionDays = res.map(a => a.sessionDateUnix);
-        populateStreakDashboard(sessionDays)
+        populateStreakDashboard(sessionDays);
     })
     .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
@@ -49,20 +49,14 @@ function showStreakDashboard(loggedInUserId) {
 };
 
 function populateStreakDashboard(sessionDays) {
-    console.log(sessionDays);
+    // console.log(sessionDays);
     let streak = 0;
     let counter = 0;
-    let timeIndex;
+    let timeIndex = 0;
     let currentTimeStamp = Math.floor(Date.now() / 1000);
     let mostRecentSessionTimeStamp = sessionDays[0];
     let sessionTimeDiff = sessionDays.slice(1).map((n, i) => {return sessionDays[i] - n; });
 
-    console.log(sessionTimeDiff);
-    console.log(currentTimeStamp - mostRecentSessionTimeStamp);
-    console.log(sessionTimeDiff[0]);
-    console.log(sessionDays.length);
-
-    
         if (sessionDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
             counter = 0; 
         } else if ((currentTimeStamp - mostRecentSessionTimeStamp) <= 86400) {
@@ -86,7 +80,8 @@ function showLastTenDaysDashboard(loggedInUserId) {
         url: '/sessions-ten/' + loggedInUserId,
     })
     .done(function (res) {
-        populateLastTenDashboard(res);
+        let sessionDays = res.map(a => a.sessionDateUnix);
+        populateLastTenDashboard(sessionDays);
     })
     .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
@@ -95,8 +90,47 @@ function showLastTenDaysDashboard(loggedInUserId) {
     });  
 };
 
-function populateLastTenDashboard(res) {
-    // console.log(res);
+function populateLastTenDashboard(sessionDays) {
+    let currentTimeStamp = Math.floor(Date.now() / 1000);
+    let dt = new Date();
+    let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
+    let currentDay = currentTimeStamp - secs;
+
+    // sessionDays.unshift(currentTimeStamp);
+    let lastTenDays = [currentDay];
+    // console.log(lastTenDays);
+
+    for (let i=1; i<10; i++) {
+        lastTenDays.push(currentDay - (86400*i));
+    }
+
+    let htmlContent = "";
+
+        $.each(lastTenDays, (i, item) => {
+            htmlContent += `<div class="stat-empty" id="${item}"></div>`;
+            // if () {
+            //     $(`.stat-0`).addClass('stat-empty');
+            // } else {
+            // $(`.stat-${i}`).addClass('stat-filled');
+            // }
+        });
+
+        $('.stat-circles').html(htmlContent);
+
+    let activeDays = sessionDays.filter( function(n)
+     { return !this.has(n)
+     }, new Set(lastTenDays) );
+
+    console.log(lastTenDays);
+    console.log(sessionDays);
+    console.log(activeDays);
+
+    $.each(activeDays, (i, item) => {
+        $('#' + item).addClass('stat-filled');
+    });
+
+
+
 };
 
 // DASHBOARD ENTRIES: Most used method
@@ -178,6 +212,7 @@ function populateAvgTimeDashboard(sessionTimes) {
 // Change date from YYYY-MM-DD format to readable format for Date headers
 // on Journal Entries
 function setReadableDate(sessionDate) {
+    console.log(sessionDate);
     let d = sessionDate.replace(/-/g, "/");
     let readableDate = new Date(d);
     return readableDate.toDateString();
@@ -208,8 +243,9 @@ function populateJournalDashboard(res) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
         $('.js-journal-link').hide();
     } else {
-    	$.each(res, function(i, item) {
+    	$.each(res, (i, item) => {
     		let sessionDate = setReadableDate(item.sessionDate);
+            console.log(sessionDate);
     		htmlContent += '<div class="latest-entry">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
             htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
@@ -254,7 +290,7 @@ function populateJournalScreen(result) {
     if (result.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
     } else {
-    	$.each(result, function(i, item) {
+    	$.each(result, (i, item) => {
     		let sessionDate = setReadableDate(item.sessionDate);
     		htmlContent += '<div class="entry-header">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
@@ -280,7 +316,6 @@ function showJournalScreen(loggedInUserId) {
 		url: '/sessions-journal/' + loggedInUserId,
 	})
 	.done(function (res) {
-		// console.log(res);
 		populateJournalScreen(res);
 	})
 	.fail(function (jqXHR, error, errorThrown) {
@@ -305,7 +340,6 @@ function showJournalScreen(loggedInUserId) {
 };
 
 // Show Change Password Screen
-
 function showChangePasswordScreen() {
     $('#landing-screen').hide();
     $('#login-screen').hide();
@@ -547,14 +581,24 @@ $(document).on('click', '.js-journal-link', function(event) {
 // Delete Journal Entry from Journal Screen
 function deleteSession(sessionId) {
     event.preventDefault();
-	const loggedInUserId = $('.logged-in-user').val();
-    // console.log(sessionId);
+    console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
+        const loggedInUserId = $('.logged-in-user').val();
+        console.log(loggedInUserId);
         $.ajax({
             method: 'DELETE',
             url: '/sessions/' + sessionId,
-            success: showJournalScreen(loggedInUserId)
         })
+        .done(function(res) {
+            alert('You successfully deleted a session');
+            showJournalScreen(loggedInUserId)
+        })
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+
     }
 };
 
