@@ -70,8 +70,8 @@ function populateStreakDashboard(sessionDays) {
 
     let htmlContent = `<span>${streak}</span>`
     $('.js-streak-number').html(htmlContent);
-};
 
+};
 
 // DASHBOARD ENTRIES: Last 10 days
 function showLastTenDaysDashboard(loggedInUserId) {
@@ -194,6 +194,17 @@ function populateAvgTimeDashboard(sessionTimes) {
     $('.js-avg-time').html(htmlContent);
 };
 
+// ADD SESSION FORM
+// Set default date to today in drop-down
+function populateCurrentDate() {
+
+    function twoDigit(n) { return (n < 10 ? '0' : '') + n; };
+
+    let today = new Date();
+    let todayFormatted = '' + today.getFullYear() + '-' + twoDigit(today.getMonth() + 1) + '-' + twoDigit(today.getDate());
+    return todayFormatted;
+}
+
 
 
 // JOURNAL ENTRIES
@@ -201,7 +212,6 @@ function populateAvgTimeDashboard(sessionTimes) {
 // Change date from YYYY-MM-DD format to readable format for Date headers
 // on Journal Entries
 function setReadableDate(sessionDate) {
-    console.log(sessionDate);
     let d = sessionDate.replace(/-/g, "/");
     let readableDate = new Date(d);
     return readableDate.toDateString();
@@ -234,7 +244,6 @@ function populateJournalDashboard(res) {
     } else {
     	$.each(res, (i, item) => {
     		let sessionDate = setReadableDate(item.sessionDate);
-            console.log(sessionDate);
     		htmlContent += '<div class="latest-entry">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
             htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
@@ -475,7 +484,7 @@ $(document).on('click', '.js-add-session', function(event) {
     $('#site-nav').show();
     $('#js-settings-dropdown').hide();
     $('#dashboard-screen').hide();
-    let defaultDate = moment().format("YYYY-MM-DD");
+    let defaultDate = populateCurrentDate();
     $('input[name="session-date"]').val(defaultDate);
     $('#add-session-screen').show();
     $('.js-nav-title').removeClass('nav-title-selected');
