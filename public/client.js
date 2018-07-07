@@ -97,7 +97,6 @@ function populateLastTenDashboard(sessionDays) {
     let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
     let currentDay = currentTimeStamp - secs;
 
-    console.log(currentDay);
 
     // Add array of Timestamps for the past 10 days
     let lastTenDays = [currentDay];
@@ -494,7 +493,6 @@ $(document).on('click', '.js-add-session', function(event) {
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
     $('#footer-section').show();  
-    console.log(defaultDate);  
 });
 
 // Select App radio button if text field is focused 
