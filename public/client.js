@@ -49,7 +49,6 @@ function showStreakDashboard(loggedInUserId) {
 };
 
 function populateStreakDashboard(sessionDays) {
-    // console.log(sessionDays);
     let streak = 0;
     let counter = 0;
     let timeIndex = 0;
@@ -61,6 +60,7 @@ function populateStreakDashboard(sessionDays) {
             counter = 0; 
         } else if ((currentTimeStamp - mostRecentSessionTimeStamp) <= 86400) {
             counter = 1;
+            // Find the first instance where time difference is greater than a day
             timeIndex = sessionTimeDiff.findIndex(timeDiff => timeDiff > 86400);
         } else {
             counter = 0;
@@ -91,45 +91,34 @@ function showLastTenDaysDashboard(loggedInUserId) {
 };
 
 function populateLastTenDashboard(sessionDays) {
+    // Set time to midnight GST
     let currentTimeStamp = Math.floor(Date.now() / 1000);
     let dt = new Date();
     let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
     let currentDay = currentTimeStamp - secs;
 
-    // sessionDays.unshift(currentTimeStamp);
-    let lastTenDays = [currentDay];
-    // console.log(lastTenDays);
+    console.log(currentDay);
 
+    // Add array of Timestamps for the past 10 days
+    let lastTenDays = [currentDay];
     for (let i=1; i<10; i++) {
         lastTenDays.push(currentDay - (86400*i));
     }
 
+    // Add id = last ten days to Dashboard
     let htmlContent = "";
 
         $.each(lastTenDays, (i, item) => {
             htmlContent += `<div class="stat-empty" id="${item}"></div>`;
-            // if () {
-            //     $(`.stat-0`).addClass('stat-empty');
-            // } else {
-            // $(`.stat-${i}`).addClass('stat-filled');
-            // }
+
         });
 
         $('.stat-circles').html(htmlContent);
 
-    let activeDays = sessionDays.filter( function(n)
-     { return !this.has(n)
-     }, new Set(lastTenDays) );
-
-    console.log(lastTenDays);
-    console.log(sessionDays);
-    console.log(activeDays);
-
-    $.each(activeDays, (i, item) => {
+    // Go through sessionDays and if day is within last 10 days, fill circle
+    $.each(sessionDays, (i, item) => {
         $('#' + item).addClass('stat-filled');
     });
-
-
 
 };
 
@@ -199,7 +188,7 @@ function populateAvgTimeDashboard(sessionTimes) {
         htmlContent = '<span class="stat-small">--</span>';
     } else {
     let avgTime = parseInt(sessionTimes.reduce((a,b) => a + b, 0) / sessionTimes.length);
-    htmlContent = `<span class="stat-small">${avgTime} min</span>`;
+    htmlContent = `<span class="stat-small">${avgTime}</span>`;
     }
 
     $('.js-avg-time').html(htmlContent);
@@ -405,7 +394,6 @@ $(document).on('click', '#js-signup-button', function(event) {
 		const email = $('input[name="js-user-signup"]').val();
 		const password = $('input[name="js-create-pw"]').val();
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
-		// console.log(email);
 		if (password !== confirmPw) {
 			alert('Passwords must match!');
 		} else {
@@ -421,7 +409,6 @@ $(document).on('click', '#js-signup-button', function(event) {
 				contentType: 'application/json'
 			})
 			.done(function (result) {
-				// console.log(result);
 				alert('Thanks for signing up! Please sign in.');
 				showLogInScreen();
 			})
@@ -438,7 +425,6 @@ $(document).on('click', '#js-login-button', function(event) {
     event.preventDefault();
     const inputEmail = $('input[name="js-userName"]').val();
     const inputPw = $('input[name="js-userPw"]').val();
-    // console.log(inputEmail, inputPw);
     // check for spaces, undefined
     if ((!inputEmail) || (inputEmail.length < 1) || (inputEmail.indexOf(' ') > 0)) {
         alert('Invalid Email')
@@ -457,7 +443,6 @@ $(document).on('click', '#js-login-button', function(event) {
                 contentType: 'application/json'
             })
             .done(function(result) {
-            	// console.log(result);
             	$('.logged-in-user').val(result._id);
 				showDashboardScreen(); 
             })

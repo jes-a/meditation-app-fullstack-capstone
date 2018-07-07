@@ -497,11 +497,18 @@ nav {
   font-family: 'aglet-slab', sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 5.33rem;
+  font-size: 5rem;
   color: #4B6182;
   display: block;
   text-align: center;
   margin: 0 auto;
+  padding-top: 5px
+}
+
+.stat-circles {
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .stat-empty {
@@ -524,7 +531,7 @@ nav {
   font-family: 'aglet-slab', sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 3rem;
+  font-size: 2.8rem;
   color: #4B6182;
   display: block;
   text-align: center;
@@ -570,7 +577,8 @@ nav {
 
 .journal-link {
   text-align: left;
-  margin-top: 20px;
+  margin-top: 15px;
+  margin-bottom: 12px;
 }
 
 .journal-link .svg-inline--fa {
@@ -649,6 +657,7 @@ select {
   padding-left: 20px;
   padding-top: 32px;
   opacity: .8;
+  margin-bottom: 20px;
 }
 
 .page-title h1 {
@@ -837,6 +846,14 @@ footer a {
     padding: 0;
   }
 
+  .stat-top {
+    min-height: 250px;
+  }
+
+  .stat-bottom {
+    min-height: 190px;
+  }
+
   .stat-row .col {
     padding-right: 0;
   }
@@ -847,17 +864,21 @@ footer a {
     margin-right: 5%;
   }
 
+  .sb-tall {
+    min-height: 701px;
+  }
+
   .sb-col {
     padding-left: 0px;
     padding-right: 0px;
   }
 
-  .sb-tall {
-    min-height: 670px;
-  }
-
   .stat-big {
     font-size: 6rem;
+  }
+
+  .stat-small {
+    padding-top: 0;
   }
 
 /* Add Session Form Section */
@@ -921,19 +942,9 @@ footer a {
 }
 
 /* Medium-mobile - Home Page Journal Entries Sidebar */
- @media only screen and (min-width: 910px) {
-  .sb-tall {
-      min-height: 671px;
-  }
-
-  .stat-bottom {
-    min-height: 199px;
-  }
-}
-
- @media only screen and (min-width: 1070px) {
-  .sb-tall {
-      min-height: 557px;
+ @media only screen and (min-width: 860px) {
+  .stat-small {
+    padding-top: 15px;
   }
 }
 

@@ -269,7 +269,7 @@ app.get('/sessions-journal-sb/:id', (req, res) => {
     Session
         .find({loggedInUserId: req.params.id})
         .sort({sessionDate: -1})
-        .limit(5)
+        .limit(6)
         .then((sessions) => {
             let sessionOutput = [];
             sessions.map(function(session) {
