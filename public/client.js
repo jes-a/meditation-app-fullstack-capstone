@@ -52,11 +52,26 @@ function populateStreakDashboard(sessionDays) {
     let streak = 0;
     let counter = 0;
     let timeIndex = 0;
+    let sessionDaysStart = [];
     let currentTimeStamp = Math.floor(Date.now() / 1000);
     let mostRecentSessionTimeStamp = sessionDays[0];
-    let sessionTimeDiff = sessionDays.slice(1).map((n, i) => {return sessionDays[i] - n; });
 
-        if (sessionDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
+
+    // Get start of day in unix time for each session in order to remove sessions in same day 
+    $.each(sessionDays, (i, item) => {
+        let dt = new Date();
+        let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
+        sessionDaysStart.push(sessionDays[i] - secs);
+    });
+
+    // Filter out multiple sessions in one day
+    let uniqueDays = Array.from(new Set(sessionDaysStart));
+
+    // Find time difference between sessions using 86400 as 1 day
+    let sessionTimeDiff = uniqueDays.slice(1).map((n, i) => {return uniqueDays[i] - n; });
+    console.log(sessionTimeDiff);
+
+        if (uniqueDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
             counter = 0; 
         } else if ((currentTimeStamp - mostRecentSessionTimeStamp) <= 86400) {
             counter = 1;
@@ -511,6 +526,7 @@ $(document).on('click', '#js-save-session', function(event) {
 	const sessionDate = $('#session-date').val();
     console.log(sessionDate);
     const sessionDateUnix = moment(sessionDate).unix();
+    console.log(sessionDateUnix);
 	const sessionTime = $('#session-time').val();
 	const loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";
@@ -522,7 +538,6 @@ $(document).on('click', '#js-save-session', function(event) {
 		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
 	}
 	const journalEntry = $('#add-entry').val();
-	console.log(sessionDateUnix);
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
