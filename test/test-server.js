@@ -100,7 +100,6 @@ describe('User API resource', function() {
 			.post('/users/create')
 			.send(newUser)
 			.then(function(res) {
-				console.log(res);
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.include.keys('email', 'password');
@@ -168,6 +167,7 @@ describe('Session API resource', function() {
 			.post('/sessions/create')
 			.send(newSession)
 			.then(function(res) {
+				console.log(res);
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.include.keys(
@@ -259,7 +259,6 @@ describe('Session API resource', function() {
 		return chai.request(app)
 			.get('/sessions-journal/' + userId)
 			.then(function(res) {
-				console.log(res);
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.be.a('array');
@@ -274,7 +273,6 @@ describe('Session API resource', function() {
 		return Session
 			.findOne()
 			.then(function(_session) {
-				console.log(_session);
 				session = _session;
 				return chai.request(app).delete(`/sessions/${session._id}`);
 			})
