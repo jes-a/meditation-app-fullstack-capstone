@@ -147,6 +147,7 @@ This app is built to be responsive to smaller screen sizes using a float-grid cs
 ## Development Road Map
 Features for future iterations include: 
 - Add ability to view one insight entry on a separate page
+- Add filter to Insights page to filter by time, app, date
 - Add links to meditation resources
 - Add an app timer to meditate with
 
