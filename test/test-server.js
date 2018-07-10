@@ -39,7 +39,7 @@ function generateType() {
 	return type[Math.floor(Math.random() * type.length)];
 }
 
-const userId;
+const userId = faker.random.word();
 
 function generateSessionData() {
 
@@ -158,7 +158,7 @@ describe('Session API resource', function() {
 	});
 
 	beforeEach(function() {
-		return generateSessionData(); 
+		return seedSessionData(); 
 	});
 
 	// Test create a new session
