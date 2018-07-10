@@ -68,6 +68,9 @@ As a user, I want to change my password so that I can keep my info safe
 **Landing Page** 
 
 ![Landing Page Design](/screenshots/designs/landing.png)
+
+**Landing Page Mobile** 
+
 ![Landing Page Mobile Design](/screenshots/designs/landing-mobile.png)
 
 **Sign Up Page** 
@@ -77,31 +80,49 @@ As a user, I want to change my password so that I can keep my info safe
 **Log In Page** 
 
 ![Log in Page Design](/screenshots/designs/log-in.png)
+
+**Log In Page Mobile** 
+
 ![Log in Page Mobile Design](/screenshots/designs/log-in-mobile.png)
 
 **Dashboard Page** 
 
 ![Dashboard Page Design](/screenshots/designs/dashboard.png)
+
+**Dashboard Page Mobile** 
+
 ![Dashboard Page Mobile Design](/screenshots/designs/dashboard-mobile.png)
 
 **Add Session Page** 
 
 ![Add Session Page Design](/screenshots/designs/add-session.png)
+
+**Add Session Page Mobile** 
+
 ![Add Session Page Mobile Design](/screenshots/designs/add-session-mobile.png)
 
 **Insights Page** 
 
 ![Insights Page Design](/screenshots/designs/insights.png)
+
+**Insights Page Mobile** 
+
 ![Insights Page Mobile Design](/screenshots/designs/insights-mobile.png)
 
 **Settings Page** 
 
 ![Settings Page Design](/screenshots/designs/settings.png)
+
+**Settings Page Mobile** 
+
 ![Settings Page Mobile Design](/screenshots/designs/settings-mobile.png)
 
 **Change Password Page** 
 
 ![Change Password Page Design](/screenshots/designs/change-pw.png)
+
+**Change Password Page Mobile** 
+
 ![Change Password Page Mobile Design](/screenshots/designs/change-pw-mobile.png)
 
 
@@ -110,10 +131,10 @@ As a user, I want to change my password so that I can keep my info safe
 ![Landing Page](/screenshots/landing-page.png)
 ![Sign Up Page](/screenshots/sign-up.png)
 ![Log In Page](/screenshots/log-in.png)
-![Dashboard Page](/screenshots/dashboard.png)
+![Dashboard Page](/screenshots/dashboard-page.png)
 ![Add Session Page](/screenshots/add-session.png)
 ![Insights Page](/screenshots/insights.png)
-![Settings Page](/screenshots/settings.png)
+![Settings Page](/screenshots/settings-dropdown.png)
 ![Change Password Page](/screenshots/change-pw.png)
   
 
