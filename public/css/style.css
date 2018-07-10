@@ -913,7 +913,7 @@ footer a {
   }
 
   .large-image img {
-    max-height: 650px;
+    max-height: 585px;
     display: inline-block;
     opacity: .8;
     margin-left: 50%;
@@ -921,7 +921,6 @@ footer a {
   }
 
   .img-div-session {
-    margin-top: 15px;
     margin-left: 20px;
     overflow: hidden;
   }
@@ -938,7 +937,7 @@ footer a {
   }
 
   .journal-entries {
-    height: 650px;
+    height: 585px;
     overflow: auto;
   }
 
