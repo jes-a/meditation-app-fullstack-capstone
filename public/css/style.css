@@ -283,19 +283,20 @@ input[type="radio"] {
   text-align: center;
   vertical-align: middle;
   margin: 20px auto 0;
-  padding-top: 7px;
   cursor: pointer;
 }
 
 .account-link {
   font-family: 'aglet-slab', sans-serif;
   font-style: normal;
+  font-weight: 400;
   font-size: 1rem;
   color: #000000;
   text-align: center;
   text-decoration: underline;
   margin-top: 30px;
   cursor: pointer;
+  display: inline-block;
 }
 
 .photo-credit {

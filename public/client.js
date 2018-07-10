@@ -270,7 +270,7 @@ function populateJournalDashboard(res) {
 
 
 function showDashboardScreen() {
-	const loggedInUserId = $('.logged-in-user').val();
+	let loggedInUserId = $('.logged-in-user').val();
 	showJournalDashboard(loggedInUserId);
 	showTotalNumberDashboard(loggedInUserId);
 	showStreakDashboard(loggedInUserId);
@@ -522,10 +522,10 @@ $(document).on('click', '#timer, #unassisted', function(event) {
 // Add Session Form to Database
 $(document).on('click', '#js-save-session', function(event) {
 	event.preventDefault();
-	const sessionDate = $('#session-date').val();
-    const sessionDateUnix = moment(sessionDate).unix();
-	const sessionTime = $('#session-time').val();
-	const loggedInUserId = $('.logged-in-user').val();
+	let sessionDate = $('#session-date').val();
+    let sessionDateUnix = moment(sessionDate).unix();
+	let sessionTime = $('#session-time').val();
+	let loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";
 	let appName = $('#app-type').val().toLowerCase();
 	let appRadio = $('input[id="app-used"]:checked').val();
@@ -534,7 +534,7 @@ $(document).on('click', '#js-save-session', function(event) {
 	} else {
 		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
 	}
-	const journalEntry = $('#add-entry').val();
+	let journalEntry = $('#add-entry').val();
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
@@ -573,13 +573,13 @@ $(document).on('click', '#js-save-session', function(event) {
 // Handle open Journal Screen
 $(document).on('click', '.js-journal', function(event) {
     event.preventDefault();
-	const loggedInUserId = $('.logged-in-user').val();
+	let loggedInUserId = $('.logged-in-user').val();
 	showJournalScreen(loggedInUserId);
 });
 
 $(document).on('click', '.js-journal-link', function(event) {
     event.preventDefault();
-	const loggedInUserId = $('.logged-in-user').val();
+	let loggedInUserId = $('.logged-in-user').val();
 	showJournalScreen(loggedInUserId);
 });
 
@@ -588,7 +588,7 @@ function deleteSession(sessionId) {
     event.preventDefault();
     console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
-        const loggedInUserId = $('.logged-in-user').val();
+        let loggedInUserId = $('.logged-in-user').val();
         console.log(loggedInUserId);
         $.ajax({
             method: 'DELETE',

@@ -39,7 +39,7 @@ function generateType() {
 	return type[Math.floor(Math.random() * type.length)];
 }
 
-const userId = faker.random.word();
+const userId;
 
 function generateSessionData() {
 
@@ -100,6 +100,7 @@ describe('User API resource', function() {
 			.post('/users/create')
 			.send(newUser)
 			.then(function(res) {
+				console.log(res);
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.include.keys('email', 'password');
@@ -107,6 +108,32 @@ describe('User API resource', function() {
 				res.body.password.should.not.equal(newUser.password);	
 				res.body._id.should.not.be.null;
 			});
+	});
+
+	// Change user password
+	it('should update user password', function() {
+		const updateUser = generateUser();
+		const updatePw = {
+			pw: faker.random.word()
+		}
+
+		return User 
+			.findOne()
+			.then(function(user) {
+				updateUser.id = user._id;
+
+				return chai.request(app)
+					.put(`/user-pw/${updateUser.id}`)
+					.send(updatePw);
+			})
+			.then(function(res) {
+				res.should.have.status(200);
+				return User.findById(updateUser.id);
+			})
+			.then(function(user) {
+				user.password.should.not.be.null;
+				user.password.should.not.equal(updatePw);
+			})	
 	});
 
 
@@ -228,32 +255,46 @@ describe('Session API resource', function() {
 
 
 	// Test add journal sessions to insight page
-	it('should add journal entries to dashboard', function() {
+	it('should add journal entries to insight page', function() {
 		return chai.request(app)
 			.get('/sessions-journal/' + userId)
 			.then(function(res) {
+				console.log(res);
 				res.should.have.status(200);
 				res.should.be.json;
 				res.body.should.be.a('array');
 			});	
 	});
 
+	// Test delete journal session on insight page
+	it('should delete a journal entry from journal page', function() {
 
-	// Change user password
-	it('should update user password', function() {
-		const updatePw = {
-			password: faker.internet.password()
-		}
-
-		
 		return chai.request(app)
-			.get('/user-pw/' + userId)
+			.get('/sessions-journal/' + userId)
 			.then(function(res) {
-				res.should.have.status(200);
-				res.should.be.json;
-				res.body.should.be.a('array');
-			});	
+				console.log(res)
+			});
+
+
+		// let session;
+
+		// return Session
+		// 	.findOne()
+		// 	.then(function(_session) {
+		// 		console.log(_session);
+		// 		session = _session;
+		// 		return chai.request(app).delete(`/sessions/${session._id}`);
+		// 	})
+		// 	.then(function(res) {
+		// 		res.should.have.status(204);
+		// 		return Session.findById(session._id)
+		// 	})
+		// 	.then(function(_session) {
+		// 		should.not.exist(_session);
+		// 	});
 	});
+
+
 
 	afterEach(function() {
 		return tearDownDb();
