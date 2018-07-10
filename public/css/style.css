@@ -714,7 +714,15 @@ select {
   font-style: normal;
   font-weight: 400;
   font-size: 1.25rem;
-  color: #373E40;
+  color: #ffffff;
+}
+
+.change-pw-status-success {
+  display: inline-block; 
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #4b6181;
 }
 
 /* Footer Section Mobile */

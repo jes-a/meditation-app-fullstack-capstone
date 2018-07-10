@@ -69,7 +69,6 @@ function populateStreakDashboard(sessionDays) {
 
     // Find time difference between sessions using 86400 as 1 day
     let sessionTimeDiff = uniqueDays.slice(1).map((n, i) => {return uniqueDays[i] - n; });
-    console.log(sessionTimeDiff);
 
         if (uniqueDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
             counter = 0; 
@@ -631,7 +630,6 @@ $(document).on('click', function() {
 $(document).on('click', '.js-change-pw', function(event) {
     event.preventDefault();
     let loggedInUserId = $('.logged-in-user').val();
-    console.log(loggedInUserId);
     showChangePasswordScreen();
 });
 
@@ -656,10 +654,10 @@ $(document).on('submit', '#changePw-form', function(event) {
                 contentType: 'application/json'
             })
         .done(function (res) {
-            console.log(res);
             $('.logged-in-user').val(res._id);
             $('#changePw-form')[0].reset();
-            $('.js-change-pw-status').html('You successfully updated your password');
+            $('.js-change-pw-status').html('<i class="fas fa-check-circle"></i> You successfully updated your password');
+            $('.js-change-pw-status').addClass('change-pw-status-success');
             showChangePasswordScreen(); 
 
         })
