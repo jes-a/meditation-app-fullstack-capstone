@@ -269,29 +269,22 @@ describe('Session API resource', function() {
 	// Test delete journal session on insight page
 	it('should delete a journal entry from journal page', function() {
 
-		return chai.request(app)
-			.get('/sessions-journal/' + userId)
+		let session;
+
+		return Session
+			.findOne()
+			.then(function(_session) {
+				console.log(_session);
+				session = _session;
+				return chai.request(app).delete(`/sessions/${session._id}`);
+			})
 			.then(function(res) {
-				console.log(res)
+				res.should.have.status(204);
+				return Session.findById(session._id)
+			})
+			.then(function(_session) {
+				should.not.exist(_session);
 			});
-
-
-		// let session;
-
-		// return Session
-		// 	.findOne()
-		// 	.then(function(_session) {
-		// 		console.log(_session);
-		// 		session = _session;
-		// 		return chai.request(app).delete(`/sessions/${session._id}`);
-		// 	})
-		// 	.then(function(res) {
-		// 		res.should.have.status(204);
-		// 		return Session.findById(session._id)
-		// 	})
-		// 	.then(function(_session) {
-		// 		should.not.exist(_session);
-		// 	});
 	});
 
 
