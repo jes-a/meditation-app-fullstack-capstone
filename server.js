@@ -311,9 +311,7 @@ app.get('/sessions-journal/:id', (req, res) => {
 
 // UPDATE
 // Update user password
-app.put('/sessions-pw/:id', function(req, res) {
-    // let toUpdate = {};
-    // let updateableFields = ['password']
+app.put('/user-pw/:id', function(req, res) {
     let password = req.body.pw;
     console.log(password);
     password = password.trim();

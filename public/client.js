@@ -646,7 +646,7 @@ $(document).on('submit', '#changePw-form', function(event) {
             };
             $.ajax({
                 type: 'PUT',
-                url: '/sessions-pw/' + loggedInUserId,
+                url: '/user-pw/' + loggedInUserId,
                 dataType: 'json',
                 data: JSON.stringify(updateUserObject),
                 contentType: 'application/json'

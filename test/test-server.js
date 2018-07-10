@@ -131,7 +131,7 @@ describe('Session API resource', function() {
 	});
 
 	beforeEach(function() {
-		return seedUserData(); 
+		return generateSessionData(); 
 	});
 
 	// Test create a new session
@@ -162,7 +162,6 @@ describe('Session API resource', function() {
 
 	// Test add total days to dashboard
 	it('should add total days to dashboard', function() {
-		const totalDays = generateSessionData();
 		return chai.request(app)
 			.get('/sessions-total/' + userId)
 			.then(function(res) {
@@ -170,22 +169,91 @@ describe('Session API resource', function() {
 				res.should.be.json;
 				res.body.should.be.a('number');
 			});	
-
 	});
 
 	// Test add streak days to dashboard
 	it('should add days in a row to dashboard', function() {
-		const totalDays = generateSessionData();
 		return chai.request(app)
 			.get('/sessions-streak/' + userId)
 			.then(function(res) {
 				res.should.have.status(200);
 				res.should.be.json;
-				res.body.should.be.a('number');
+				res.body.should.be.a('array');
 			});	
-
 	});
 
+	// Test add last ten days to dashboard
+	it('should add last ten days to dashboard', function() {
+		return chai.request(app)
+			.get('/sessions-ten/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
+
+	// Test add most used method to dashboard
+	it('should add most used method to dashboard', function() {
+		return chai.request(app)
+			.get('/sessions-method/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
+
+	// Test add average session time to dashboard
+	it('should add average session time to dashboard', function() {
+		return chai.request(app)
+			.get('/sessions-avg/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
+
+	// Test add journal sessions to dashboard
+	it('should add journal entries to dashboard', function() {
+		return chai.request(app)
+			.get('/sessions-journal-sb/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
+
+
+	// Test add journal sessions to insight page
+	it('should add journal entries to dashboard', function() {
+		return chai.request(app)
+			.get('/sessions-journal/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
+
+
+	// Change user password
+	it('should update user password', function() {
+		const updatePw = {
+			password: faker.internet.password()
+		}
+
+		
+		return chai.request(app)
+			.get('/user-pw/' + userId)
+			.then(function(res) {
+				res.should.have.status(200);
+				res.should.be.json;
+				res.body.should.be.a('array');
+			});	
+	});
 
 	afterEach(function() {
 		return tearDownDb();
