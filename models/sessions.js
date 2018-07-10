@@ -13,7 +13,7 @@ const sessionSchema = new mongoose.Schema({
         required: false
     },
     sessionDateUnix: {
-        type: String,
+        type: Number,
         required: false       
     },
     sessionTime: {

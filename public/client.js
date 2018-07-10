@@ -523,9 +523,7 @@ $(document).on('click', '#timer, #unassisted', function(event) {
 $(document).on('click', '#js-save-session', function(event) {
 	event.preventDefault();
 	const sessionDate = $('#session-date').val();
-    console.log(sessionDate);
     const sessionDateUnix = moment(sessionDate).unix();
-    console.log(sessionDateUnix);
 	const sessionTime = $('#session-time').val();
 	const loggedInUserId = $('.logged-in-user').val();
 	let sessionType = "";

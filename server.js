@@ -97,7 +97,7 @@ app.post('/users/create', (req, res) => {
                 }
                 if (item) {
                     console.log(`New user with email ${email} was created`);
-                    return res.json(item);
+                    return res.status(200).json(item);
                 }
             });
         });
