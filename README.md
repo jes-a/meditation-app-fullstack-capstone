@@ -6,21 +6,68 @@ The insight•full app allows you to track your meditation sessions and add insi
 
 View working prototype here: [insight•full](https://meditation-tracker.herokuapp.com/)  
 
-* To log in to demo view: username: demo / pw: demo123
+* To log in to demo view: email: test@email.com / pw: 12345
 
 
 ## Screenshots: MVP
-???
-![Demo Screenshots]()
+
+![Landing Page](/screenshots/landing-page.png)
+![Sign Up Page](/screenshots/sign-up.png)
+![Log In Page](/screenshots/log-in.png)
+![Dashboard Page](/screenshots/dashboard.png)
+![Add Session Page](/screenshots/add-session.png)
+![Insights Page](/screenshots/insights.png)
+![Settings Page](/screenshots/settings.png)
+![Change Password Page](/screenshots/change-pw.png)
   
 
-## User Flow: MVP 
-???
-![User Flow Image]()
+## Site Map: MVP 
 
-## UX & User Stories: MVP
-???
-![Wireframes Image]()
+![Site Map](/screenshots/designs/site-map.png)
+
+## Design & User Stories: MVP
+
+**Landing Page** 
+As a user, I want to understand what the app is so that I can decide if I want to sign up
+![Landing Page Design](/screenshots/designs/landing.png)
+![Landing Page Mobile Design](/screenshots/designs/landing-mobile.png)
+
+**Sign Up Page** 
+As a user, I want to sign up so that I can save my information 
+![Sign Up Page Design](/screenshots/designs/sign-up.png)
+
+**Log In Page** 
+As a user, I want to log in so I can have access to my tracker
+![Log in Page Design](/screenshots/designs/log-in.png)
+![Log in Page Mobile Design](/screenshots/designs/log-in-mobile.png)
+
+**Dashboard Page** 
+As a user, I want to see my meditation stats so that I can have a better idea of how my practice is going
+![Dashboard Page Design](/screenshots/designs/dashboard.png)
+![Dashboard Page Mobile Design](/screenshots/designs/dashboard-mobile.png)
+
+**Add Session Page** 
+As a user, I want to add my meditation day so that I can track my practice
+![Add Session Page Design](/screenshots/designs/add-session.png)
+![Add Session Page Mobile Design](/screenshots/designs/add-session-mobile.png)
+
+**Insights Page** 
+As a user, I want to read my journal entries so that I can reflect on my practice
+![Insights Page Design](/screenshots/designs/insights.png)
+![Insights Page Mobile Design](/screenshots/designs/insights-mobile.png)
+
+**Settings Page** 
+As a user, I want to log out so that I can keep my info safe
+![Settings Page Design](/screenshots/designs/settings.png)
+![Settings Page Mobile Design](/screenshots/designs/settings-mobile.png)
+
+**Change Password Page** 
+As a user, I want to log out so that I can keep my info safe
+![Change Password Page Design](/screenshots/designs/change-pw.png)
+![Change Password Page Mobile Design](/screenshots/designs/change-pw-mobile.png)
+
+
+
 
 ## Technical
 
@@ -34,6 +81,7 @@ Meditation Tracker was built with:
 * jQuery 
 
 #### Back End 
+
 * Node.js 
 * Express.js
 * MongoDB
@@ -43,14 +91,15 @@ Meditation Tracker was built with:
 
 
 ### Responsive
-???
-This app is built to be responsive to smaller screen sizes
+This app is built to be responsive to smaller screen sizes using a float-grid css and media screen width breakpoint of 700px for smaller screen sizes
 
 
 
 ## Development Road Map
-???
 Features for future iterations include: 
+- Add ability to view one insight entry on a separate page
+- Add links to meditation resources
+- Add an app timer to meditate with
 
 
 #  The typical command lines for capstone projects
