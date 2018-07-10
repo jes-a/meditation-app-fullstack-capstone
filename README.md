@@ -6,7 +6,103 @@ The insight•full app allows you to track your meditation sessions and add insi
 
 View working prototype here: [insight•full](https://meditation-tracker.herokuapp.com/)  
 
-* To log in to demo view: email: test@email.com / pw: 12345
+
+## Site Map: MVP 
+
+![Site Map](/screenshots/designs/site-map.png)
+
+
+## UX & User Stories: MVP
+
+**Landing Page** 
+
+As a user, I want to understand what the app is so that I can decide if I want to sign up
+
+![Landing Page Design](/screenshots/wireframes/landing.png)
+
+**Sign Up Page** 
+
+As a user, I want to sign up so that I can save my information 
+
+![Sign Up Page Design](/screenshots/wireframes/sign-up.png)
+
+**Log In Page** 
+
+As a user, I want to log in so I can have access to my tracker
+
+![Log in Page Design](/screenshots/wireframes/log-in.png)
+
+**Dashboard Page** 
+
+As a user, I want to see my meditation stats so that I can have a better idea of how my practice is going
+
+![Dashboard Page Design](/screenshots/wireframes/dashboard.png)
+
+**Add Session Page** 
+
+As a user, I want to add my meditation day so that I can track my practice
+
+![Add Session Page Design](/screenshots/wireframes/add-session.png)
+
+**Insights Page** 
+
+As a user, I want to read my journal entries so that I can reflect on my practice
+
+![Insights Page Design](/screenshots/wireframes/insights.png)
+
+**Settings Page** 
+
+As a user, I want to log out so that I can keep my info safe
+
+![Settings Page Design](/screenshots/wireframes/settings.png)
+
+**Change Password Page** 
+
+As a user, I want to change my password so that I can keep my info safe
+
+![Change Password Page Design](/screenshots/wireframes/change-pw.png)
+
+
+## Designs
+
+**Landing Page** 
+
+![Landing Page Design](/screenshots/designs/landing.png)
+![Landing Page Mobile Design](/screenshots/designs/landing-mobile.png)
+
+**Sign Up Page** 
+
+![Sign Up Page Design](/screenshots/designs/sign-up.png)
+
+**Log In Page** 
+
+![Log in Page Design](/screenshots/designs/log-in.png)
+![Log in Page Mobile Design](/screenshots/designs/log-in-mobile.png)
+
+**Dashboard Page** 
+
+![Dashboard Page Design](/screenshots/designs/dashboard.png)
+![Dashboard Page Mobile Design](/screenshots/designs/dashboard-mobile.png)
+
+**Add Session Page** 
+
+![Add Session Page Design](/screenshots/designs/add-session.png)
+![Add Session Page Mobile Design](/screenshots/designs/add-session-mobile.png)
+
+**Insights Page** 
+
+![Insights Page Design](/screenshots/designs/insights.png)
+![Insights Page Mobile Design](/screenshots/designs/insights-mobile.png)
+
+**Settings Page** 
+
+![Settings Page Design](/screenshots/designs/settings.png)
+![Settings Page Mobile Design](/screenshots/designs/settings-mobile.png)
+
+**Change Password Page** 
+
+![Change Password Page Design](/screenshots/designs/change-pw.png)
+![Change Password Page Mobile Design](/screenshots/designs/change-pw-mobile.png)
 
 
 ## Screenshots: MVP
@@ -20,69 +116,6 @@ View working prototype here: [insight•full](https://meditation-tracker.herokua
 ![Settings Page](/screenshots/settings.png)
 ![Change Password Page](/screenshots/change-pw.png)
   
-
-## Site Map: MVP 
-
-![Site Map](/screenshots/designs/site-map.png)
-
-## Design & User Stories: MVP
-
-**Landing Page** 
-
-As a user, I want to understand what the app is so that I can decide if I want to sign up
-
-![Landing Page Design](/screenshots/designs/landing.png)
-![Landing Page Mobile Design](/screenshots/designs/landing-mobile.png)
-
-**Sign Up Page** 
-
-As a user, I want to sign up so that I can save my information 
-
-![Sign Up Page Design](/screenshots/designs/sign-up.png)
-
-**Log In Page** 
-
-As a user, I want to log in so I can have access to my tracker
-
-![Log in Page Design](/screenshots/designs/log-in.png)
-![Log in Page Mobile Design](/screenshots/designs/log-in-mobile.png)
-
-**Dashboard Page** 
-
-As a user, I want to see my meditation stats so that I can have a better idea of how my practice is going
-
-![Dashboard Page Design](/screenshots/designs/dashboard.png)
-![Dashboard Page Mobile Design](/screenshots/designs/dashboard-mobile.png)
-
-**Add Session Page** 
-
-As a user, I want to add my meditation day so that I can track my practice
-
-![Add Session Page Design](/screenshots/designs/add-session.png)
-![Add Session Page Mobile Design](/screenshots/designs/add-session-mobile.png)
-
-**Insights Page** 
-
-As a user, I want to read my journal entries so that I can reflect on my practice
-
-![Insights Page Design](/screenshots/designs/insights.png)
-![Insights Page Mobile Design](/screenshots/designs/insights-mobile.png)
-
-**Settings Page** 
-
-As a user, I want to log out so that I can keep my info safe
-
-![Settings Page Design](/screenshots/designs/settings.png)
-![Settings Page Mobile Design](/screenshots/designs/settings-mobile.png)
-
-**Change Password Page** 
-
-As a user, I want to change my password so that I can keep my info safe
-
-![Change Password Page Design](/screenshots/designs/change-pw.png)
-![Change Password Page Mobile Design](/screenshots/designs/change-pw-mobile.png)
-
-
 
 
 ## Technical
