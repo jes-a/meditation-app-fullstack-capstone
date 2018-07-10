@@ -65,6 +65,30 @@ function closeServer() {
 }
 
 // ---------------USER ENDPOINTS------------------------------
+
+// GET
+// Check for duplicate email in database for user sign up
+app.get('/check-duplicate-email/:inputEmail', (req, res)=>{
+    let inputEmail = req.params.inputEmail;
+    console.log(inputEmail);
+    User
+        .find({
+            "email": inputEmail
+        })
+        .then(function (entries) {
+            res.json({
+                entries
+            });
+        })
+        .catch(function (err) {
+            console.error(err);
+            res.status(500).json({
+                message: 'Internal server error'
+            });
+    });
+})
+
+
 // POST
 // Create a new user
 

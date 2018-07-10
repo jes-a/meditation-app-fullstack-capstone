@@ -411,6 +411,35 @@ $(document).on('click', '.js-login', function(event) {
 });
 
 // Handle Sign Up Information
+
+// Check to see if email is already in database
+function checkDuplicateEmail(inputEmail) {
+    $.ajax({
+        type: 'GET',
+        url: `/check-duplicate-email/${inputEmail}`,
+        dataType: 'json',
+        contentType: 'application/json'
+    })
+        .done(function (result) {
+            if (result.entries.length !== 0){
+                alert("Sorry, that email is already in use")            
+            }
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+    });
+}
+
+$(document).on('blur', '#user-signup', function(event) {
+    event.preventDefault();
+    let email = $('input[name="js-user-signup"]').val();
+    checkDuplicateEmail(email);
+})
+
+
+// Send Sign Up Information
 $(document).on('click', '#js-signup-button', function(event) {
 		event.preventDefault();
 		const email = $('input[name="js-user-signup"]').val();
