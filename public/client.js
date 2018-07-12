@@ -49,7 +49,6 @@ function showStreakDashboard(loggedInUserId) {
 };
 
 function populateStreakDashboard(sessionDays) {
-    console.log(sessionDays);
     let streak = 0;
     let counter = 0;
 
@@ -57,43 +56,43 @@ function populateStreakDashboard(sessionDays) {
     let dt = new Date();
     let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
     let currentDay = currentTimeStamp - secs;
-    console.log(currentDay);
 
     let mostRecentSessionTimeStamp = sessionDays[0];
-    console.log(mostRecentSessionTimeStamp);
 
-    console.log(currentDay - mostRecentSessionTimeStamp);
-
+    let timeFromToday = (currentDay - mostRecentSessionTimeStamp);
 
     // Filter out multiple sessions in one day
     let uniqueDays = Array.from(new Set(sessionDays));
-    console.log(uniqueDays);
 
     // Find time difference between sessions using 86400 as 1 day
     let sessionTimeDiff = uniqueDays.slice(1).map((n, i) => {return uniqueDays[i] - n; });
-    console.log(sessionTimeDiff);
 
     // Find the first instance where time difference is greater than a day
     let timeIndex = sessionTimeDiff.findIndex(timeDiff => timeDiff > 86400) + 1;
 
-
-        if (uniqueDays.length == 0 || (currentDay - mostRecentSessionTimeStamp) > 0) {
+        // If the last session was more than 1 day ago, set counter to 0
+        if (timeFromToday > 0) {
             counter = 0; 
-        } else if ((currentDay - mostRecentSessionTimeStamp) == 0 || sessionTimeDiff.length == 0) {
+        // Else if the last session was less than 1 day ago and there are multiple sessions in a day, set counter = 1
+        } else if (timeFromToday === 0 && sessionTimeDiff.length === 0) {
             counter = 1; 
-        } else if ((currentDay - mostRecentSessionTimeStamp) == 0 && timeIndex == 0) {
+        // Else if the last session was less than 1 day ago and there are no sessions past 1 day since last session, 
+        // set counter = 1 plus the number of unique sessions
+        } else if (timeFromToday === 0 && timeIndex === 0) {
             counter = 1 + sessionTimeDiff.length; 
+        // Else if the last session was less than 1 day ago and there are sessions after streak, 
+        //set counter = index of the last session before time diff is more than a day
+        } else if (timeFromToday === 0 && timeIndex > 0) {
+            counter = timeIndex; 
+        // Else if there are no sessions, set counter to 0
         } else {
             counter = 0;
         }
 
     streak = counter;
-    console.log(streak);
-    console.log(timeIndex);
 
     let htmlContent = `<span>${streak}</span>`
     $('.js-streak-number').html(htmlContent);
-
 };
 
 // DASHBOARD ENTRIES: Last 10 days
@@ -141,7 +140,6 @@ function populateLastTenDashboard(sessionDays) {
     $.each(uniqueDays, (i, item) => {
         $('#' + item).addClass('stat-filled');
     });
-
 };
 
 // DASHBOARD ENTRIES: Most used method
