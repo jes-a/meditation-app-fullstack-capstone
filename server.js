@@ -2,6 +2,7 @@
 
 const User = require('./models/users');
 const Session = require('./models/sessions');
+const cors = require('cors');
 const express = require('express');
 const morgan = require('morgan');
 const config = require('./config');
@@ -12,6 +13,7 @@ const moment = require('moment');
 const app = express();
 
 
+app.use(cors());
 app.use(morgan('common'));
 app.use(bodyParser.json());
 app.use(express.static('public'));

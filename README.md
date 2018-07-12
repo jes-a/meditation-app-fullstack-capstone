@@ -4,7 +4,8 @@ The insight•full app allows you to track your meditation sessions and add insi
 
 ### Working Prototype
 
-View working prototype here: [insight•full](https://meditation-tracker.herokuapp.com/)  
+View Node working prototype here: [insight•full](https://meditation-tracker.herokuapp.com/) 
+View React working prototype here: [insight•full](https://jes-a.github.io/meditation-app-fullstack-capstone-react/build)  
 
 
 ## Site Map: MVP 
