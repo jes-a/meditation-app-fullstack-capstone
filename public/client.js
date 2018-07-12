@@ -49,38 +49,47 @@ function showStreakDashboard(loggedInUserId) {
 };
 
 function populateStreakDashboard(sessionDays) {
+    console.log(sessionDays);
     let streak = 0;
     let counter = 0;
-    let timeIndex = 0;
-    let sessionDaysStart = [];
+
     let currentTimeStamp = Math.floor(Date.now() / 1000);
+    let dt = new Date();
+    let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
+    let currentDay = currentTimeStamp - secs;
+    console.log(currentDay);
+
     let mostRecentSessionTimeStamp = sessionDays[0];
+    console.log(mostRecentSessionTimeStamp);
 
+    console.log(currentDay - mostRecentSessionTimeStamp);
 
-    // Get start of day in unix time for each session in order to remove sessions in same day 
-    $.each(sessionDays, (i, item) => {
-        let dt = new Date();
-        let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
-        sessionDaysStart.push(sessionDays[i] - secs);
-    });
 
     // Filter out multiple sessions in one day
-    let uniqueDays = Array.from(new Set(sessionDaysStart));
+    let uniqueDays = Array.from(new Set(sessionDays));
+    console.log(uniqueDays);
 
     // Find time difference between sessions using 86400 as 1 day
     let sessionTimeDiff = uniqueDays.slice(1).map((n, i) => {return uniqueDays[i] - n; });
+    console.log(sessionTimeDiff);
 
-        if (uniqueDays.length == 0 || currentTimeStamp - mostRecentSessionTimeStamp > 86400) {
+    // Find the first instance where time difference is greater than a day
+    let timeIndex = sessionTimeDiff.findIndex(timeDiff => timeDiff > 86400) + 1;
+
+
+        if (uniqueDays.length == 0 || (currentDay - mostRecentSessionTimeStamp) > 0) {
             counter = 0; 
-        } else if ((currentTimeStamp - mostRecentSessionTimeStamp) <= 86400) {
-            counter = 1;
-            // Find the first instance where time difference is greater than a day
-            timeIndex = sessionTimeDiff.findIndex(timeDiff => timeDiff > 86400);
+        } else if ((currentDay - mostRecentSessionTimeStamp) == 0 || sessionTimeDiff.length == 0) {
+            counter = 1; 
+        } else if ((currentDay - mostRecentSessionTimeStamp) == 0 && timeIndex == 0) {
+            counter = 1 + sessionTimeDiff.length; 
         } else {
             counter = 0;
         }
 
-    streak = counter + timeIndex;
+    streak = counter;
+    console.log(streak);
+    console.log(timeIndex);
 
     let htmlContent = `<span>${streak}</span>`
     $('.js-streak-number').html(htmlContent);
@@ -105,12 +114,11 @@ function showLastTenDaysDashboard(loggedInUserId) {
 };
 
 function populateLastTenDashboard(sessionDays) {
-    // Set time to midnight GST
+    // Set current day time to midnight GST
     let currentTimeStamp = Math.floor(Date.now() / 1000);
     let dt = new Date();
     let secs = dt.getSeconds() + (60  * (dt.getMinutes() + (60 * dt.getHours())));
     let currentDay = currentTimeStamp - secs;
-
 
     // Add array of Timestamps for the past 10 days
     let lastTenDays = [currentDay];
@@ -121,15 +129,16 @@ function populateLastTenDashboard(sessionDays) {
     // Add id = last ten days to Dashboard
     let htmlContent = "";
 
-        $.each(lastTenDays, (i, item) => {
-            htmlContent += `<div class="stat-empty" id="${item}"></div>`;
+    $.each(lastTenDays, (i, item) => {
+        htmlContent += `<div class="stat-empty" id="${item}"></div>`;
+    });
 
-        });
+    $('.stat-circles').html(htmlContent);
 
-        $('.stat-circles').html(htmlContent);
+    let uniqueDays = Array.from(new Set(sessionDays));
 
-    // Go through sessionDays and if day is within last 10 days, fill circle
-    $.each(sessionDays, (i, item) => {
+    // Go through uniqueDays and if day is within last 10 days, fill circle
+    $.each(uniqueDays, (i, item) => {
         $('#' + item).addClass('stat-filled');
     });
 
@@ -297,7 +306,6 @@ function showDashboardScreen() {
 // Populate Entries in Journal Page
 function populateJournalScreen(result) {
 	let htmlContent = "";
-	console.log(result);
     if (result.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
     } else {
@@ -569,7 +577,7 @@ $(document).on('click', '#js-save-session', function(event) {
     } else if (sessionTime == "") {
         alert('Please select session time');
     } else if (sessionType == "") {
-        alert('Please select session type');
+        alert('Please select session type or add App name');
     } else {
 		const newSessionObject = {
 			loggedInUserId,
@@ -615,10 +623,8 @@ $(document).on('click', '.js-journal-link', function(event) {
 // Delete Journal Entry from Journal Screen
 function deleteSession(sessionId) {
     event.preventDefault();
-    console.log(sessionId);
     if (confirm('Are you SURE you want to delete this entry? Your entry will be PERMANENTLY erased.') === true) {
         let loggedInUserId = $('.logged-in-user').val();
-        console.log(loggedInUserId);
         $.ajax({
             method: 'DELETE',
             url: '/sessions/' + sessionId,

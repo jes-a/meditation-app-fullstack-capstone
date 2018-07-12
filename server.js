@@ -242,7 +242,6 @@ app.get('/sessions-ten/:id', (req, res) => {
     Session
         .find({loggedInUserId: req.params.id},{sessionDateUnix: 1})
         .sort({sessionDateUnix: -1})
-        .limit(10)
         .then((sessions) => {
             res.json(sessions);
         })
