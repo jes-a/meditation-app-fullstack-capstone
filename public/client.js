@@ -391,7 +391,7 @@ $(document).ready(function() {
 });
 
 // Handle Log In link from Landing screen
-$('#js-landing-link').on('click', function(event) {
+$(document).on('click', '#js-landing-link', function(event) {
     event.preventDefault();
     showLogInScreen();
 });
