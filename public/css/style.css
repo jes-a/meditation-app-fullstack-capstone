@@ -770,6 +770,7 @@ footer a {
 /* Landing Screen */
   .bg {
     background-image: url('../img/rock-stack.jpg');
+    background-size: cover;
     height: 100%;
     width: unset;
     background-position: center;

@@ -453,7 +453,11 @@ $(document).on('click', '#js-signup-button', function(event) {
 		const confirmPw = $('input[name="js-reenter-pw"]').val();
 		if (password !== confirmPw) {
 			alert('Passwords must match!');
-		} else {
+        } else if (email == "") {
+            alert('Please enter an email');
+        } else if (password == "") {
+            alert('Please enter a password');
+        } else {
 			const newUserObject = {
 				email: email,
 				password: password
