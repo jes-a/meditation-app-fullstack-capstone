@@ -11,7 +11,7 @@ function showLogInScreen() {
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
     $('#change-password-screen').hide();
-    $('#footer-section').hide(); 
+    $('#footer-section').hide();
 }
 
 // DASHBOARD ENTRIES: Total Number of sessions
@@ -28,7 +28,7 @@ function showTotalNumberDashboard(loggedInUserId) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-    });  
+    });
 };
 
 // DASHBOARD ENTRIES: Days in a row
@@ -45,7 +45,7 @@ function showStreakDashboard(loggedInUserId) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-    });  
+    });
 };
 
 function populateStreakDashboard(sessionDays) {
@@ -72,18 +72,18 @@ function populateStreakDashboard(sessionDays) {
 
         // If the last session was more than 1 day ago, set counter to 0
         if (timeFromToday > 0) {
-            counter = 0; 
+            counter = 0;
         // Else if the last session was less than 1 day ago and there are multiple sessions in a day, set counter = 1
         } else if (timeFromToday === 0 && sessionTimeDiff.length === 0) {
-            counter = 1; 
-        // Else if the last session was less than 1 day ago and there are no sessions past 1 day since last session, 
+            counter = 1;
+        // Else if the last session was less than 1 day ago and there are no sessions past 1 day since last session,
         // set counter = 1 plus the number of unique sessions
         } else if (timeFromToday === 0 && timeIndex === 0) {
-            counter = 1 + sessionTimeDiff.length; 
-        // Else if the last session was less than 1 day ago and there are sessions after streak, 
+            counter = 1 + sessionTimeDiff.length;
+        // Else if the last session was less than 1 day ago and there are sessions after streak,
         //set counter = index of the last session before time diff is more than a day
         } else if (timeFromToday === 0 && timeIndex > 0) {
-            counter = timeIndex; 
+            counter = timeIndex;
         // Else if there are no sessions, set counter to 0
         } else {
             counter = 0;
@@ -109,7 +109,7 @@ function showLastTenDaysDashboard(loggedInUserId) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-    });  
+    });
 };
 
 function populateLastTenDashboard(sessionDays) {
@@ -156,7 +156,7 @@ function showMethodUsedDashboard(loggedInUserId) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-    });      
+    });
 };
 
 function populateMethodDashboard(sessionTypes) {
@@ -164,9 +164,9 @@ function populateMethodDashboard(sessionTypes) {
     let mostFreq = 1;
     let m = 0;
     let method;
-     
+
     if (sessionTypes.length === 0) {
-        method = '--'; 
+        method = '--';
     } else if (sessionTypes.length === 1) {
         method = sessionTypes[0];
     } else {
@@ -199,7 +199,7 @@ function showAvgLengthDashboard(loggedInUserId) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-    }); 
+    });
 };
 
 function populateAvgTimeDashboard(sessionTimes) {
@@ -239,51 +239,49 @@ function setReadableDate(sessionDate) {
 
 // Populate Latest Journal Entries in Dashboard Screen
 function showJournalDashboard(loggedInUserId) {
-	$.ajax({
-		type: 'GET',
-		url: '/sessions-journal-sb/' + loggedInUserId,
-	})
-	.done(function (res) {
-		// console.log(res);
-		populateJournalDashboard(res);
-	})
-	.fail(function (jqXHR, error, errorThrown) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-journal-sb/' + loggedInUserId,
+    })
+    .done(function (res) {
+        populateJournalDashboard(res);
+    })
+    .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-	});
+    });
 }
 
 // Populate Entries in Journal Page
 function populateJournalDashboard(res) {
-	let htmlContent = "";
-	// console.log(res);
+    let htmlContent = "";
     if (res.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
         $('.js-journal-link').hide();
     } else {
-    	$.each(res, (i, item) => {
-    		let sessionDate = setReadableDate(item.sessionDate);
-    		htmlContent += '<div class="latest-entry">';
+        $.each(res, (i, item) => {
+            let sessionDate = setReadableDate(item.sessionDate);
+            htmlContent += '<div class="latest-entry">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
             htmlContent += `<p class="latest-text">${item.journalEntry}</p>`;
             htmlContent += '</div>';
-    	});
+        });
     }
 
-	//Use HTML output to show in index.html
-	$('.js-latest-entries').html(htmlContent);
+    //Use HTML output to show in index.html
+    $('.js-latest-entries').html(htmlContent);
 };
 
 
 function showDashboardScreen() {
-	let loggedInUserId = $('.logged-in-user').val();
-	showJournalDashboard(loggedInUserId);
-	showTotalNumberDashboard(loggedInUserId);
-	showStreakDashboard(loggedInUserId);
-	showLastTenDaysDashboard(loggedInUserId);
-	showMethodUsedDashboard(loggedInUserId);
-	showAvgLengthDashboard(loggedInUserId);
+    let loggedInUserId = $('.logged-in-user').val();
+    showJournalDashboard(loggedInUserId);
+    showTotalNumberDashboard(loggedInUserId);
+    showStreakDashboard(loggedInUserId);
+    showLastTenDaysDashboard(loggedInUserId);
+    showMethodUsedDashboard(loggedInUserId);
+    showAvgLengthDashboard(loggedInUserId);
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -297,49 +295,49 @@ function showDashboardScreen() {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer-section').show();	 
+    $('#footer-section').show();
 };
 
 
 // Populate Entries in Journal Page
 function populateJournalScreen(result) {
-	let htmlContent = "";
+    let htmlContent = "";
     if (result.length === 0) {
         htmlContent += '<p>You currently have no Journal Entries</p>';
     } else {
-    	$.each(result, (i, item) => {
-    		let sessionDate = setReadableDate(item.sessionDate);
-    		htmlContent += '<div class="entry-header">';
+        $.each(result, (i, item) => {
+            let sessionDate = setReadableDate(item.sessionDate);
+            htmlContent += '<div class="entry-header">';
             htmlContent += `<h6 class="date">${sessionDate}</h6>`;
             htmlContent += `<i class="far fa-trash-alt delete-entry js-delete-entry" onClick="deleteSession('${item._id}')"></i>`;
             htmlContent += '</div>';
-    		htmlContent += '<div class="entry">';
+            htmlContent += '<div class="entry">';
             htmlContent += `<p>I meditated for ${item.sessionTime} minutes using ${item.sessionType}</p>`;
             htmlContent += `<p>${item.journalEntry}</p>`;
             htmlContent += '</div>';
-    	});
+        });
     }
 
-	//Use HTML output to show in index.html
-	$('.journal-entries').html(htmlContent);
+    //Use HTML output to show in index.html
+    $('.journal-entries').html(htmlContent);
 
 };
 
 // Show Journal Page for Logged In User
 function showJournalScreen(loggedInUserId) {
 
-	$.ajax({
-		type: 'GET',
-		url: '/sessions-journal/' + loggedInUserId,
-	})
-	.done(function (res) {
-		populateJournalScreen(res);
-	})
-	.fail(function (jqXHR, error, errorThrown) {
+    $.ajax({
+        type: 'GET',
+        url: '/sessions-journal/' + loggedInUserId,
+    })
+    .done(function (res) {
+        populateJournalScreen(res);
+    })
+    .fail(function (jqXHR, error, errorThrown) {
         console.log(jqXHR);
         console.log(error);
         console.log(errorThrown);
-	});
+    });
     $('#landing-screen').hide();
     $('#login-screen').hide();
     $('#signup-screen').hide();
@@ -353,7 +351,7 @@ function showJournalScreen(loggedInUserId) {
     $('.js-journal').addClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer-section').show();	
+    $('#footer-section').show();
 };
 
 // Show Change Password Screen
@@ -387,7 +385,7 @@ $(document).ready(function() {
     $('#add-session-screen').hide();
     $('#journal-screen').hide();
     $('#change-password-screen').hide();
-    $('#footer-section').hide();    
+    $('#footer-section').hide();
 });
 
 // Handle Log In link from Landing screen
@@ -428,7 +426,7 @@ function checkDuplicateEmail(inputEmail) {
     })
         .done(function (result) {
             if (result.entries.length !== 0){
-                alert("Sorry, that email is already in use")            
+                alert("Sorry, that email is already in use")
             }
         })
         .fail(function (jqXHR, error, errorThrown) {
@@ -447,38 +445,39 @@ $(document).on('blur', '#user-signup', function(event) {
 
 // Send Sign Up Information
 $(document).on('click', '#js-signup-button', function(event) {
-		event.preventDefault();
-		const email = $('input[name="js-user-signup"]').val();
-		const password = $('input[name="js-create-pw"]').val();
-		const confirmPw = $('input[name="js-reenter-pw"]').val();
-		if (password !== confirmPw) {
-			alert('Passwords must match!');
+        event.preventDefault();
+        const email = $('input[name="js-user-signup"]').val();
+        const password = $('input[name="js-create-pw"]').val();
+        const confirmPw = $('input[name="js-reenter-pw"]').val();
+        if (password !== confirmPw) {
+            alert('Passwords must match!');
         } else if (email == "") {
             alert('Please enter an email');
         } else if (password == "") {
             alert('Please enter a password');
         } else {
-			const newUserObject = {
-				email: email,
-				password: password
-			};
-			$.ajax({
-				type: 'POST',
-				url: '/users/create',
-				dataType: 'json',
-				data: JSON.stringify(newUserObject),
-				contentType: 'application/json'
-			})
-			.done(function (result) {
-				alert('Thanks for signing up! Please sign in.');
-				showLogInScreen();
-			})
-			.fail(function (jqXHR, error, errorThrown) {
-	            console.log(jqXHR);
-	            console.log(error);
-	            console.log(errorThrown);
-			});
-		};
+            const newUserObject = {
+                email: email,
+                password: password
+            };
+            $.ajax({
+                type: 'POST',
+                url: '/users/create',
+                dataType: 'json',
+                data: JSON.stringify(newUserObject),
+                contentType: 'application/json'
+            })
+            .done(function (result) {
+                $('.js-signin-success').html('Thanks for signing up! Please sign in.');
+                $('.js-signin-success').addClass('change-status-success');
+                showLogInScreen();
+            })
+            .fail(function (jqXHR, error, errorThrown) {
+                console.log(jqXHR);
+                console.log(error);
+                console.log(errorThrown);
+            });
+        };
 });
 
 // Handle log in information
@@ -504,8 +503,8 @@ $(document).on('click', '#js-login-button', function(event) {
                 contentType: 'application/json'
             })
             .done(function(result) {
-            	$('.logged-in-user').val(result._id);
-				showDashboardScreen(); 
+                $('.logged-in-user').val(result._id);
+                showDashboardScreen();
             })
             .fail(function(jqXHR, error, errorThrown) {
                 console.log(jqXHR);
@@ -524,7 +523,7 @@ $(document).on('click', '.js-logout-link', function(event) {
 // Handle open Dashboard Screen
 $(document).on('click', '.js-nav-title', function(event) {
     event.preventDefault();
-	showDashboardScreen();
+    showDashboardScreen();
 });
 
 // Handle open Add Session Screen
@@ -545,35 +544,35 @@ $(document).on('click', '.js-add-session', function(event) {
     $('.js-journal').removeClass('nav-selected');
     $('#change-password-screen').hide();
     $('.js-settings').removeClass('nav-selected');
-    $('#footer-section').show();  
+    $('#footer-section').show();
 });
 
-// Select App radio button if text field is focused 
+// Select App radio button if text field is focused
 $(document).on('click', '#app-type', function(event) {
-	$('#app-used').prop("checked", true);
+    $('#app-used').prop("checked", true);
 });
 
 $(document).on('click', '#timer, #unassisted', function(event) {
-	$('#app-type').val("");
+    $('#app-type').val("");
 });
 
 
 // Add Session Form to Database
 $(document).on('click', '#js-save-session', function(event) {
-	event.preventDefault();
-	let sessionDate = $('#session-date').val();
+    event.preventDefault();
+    let sessionDate = $('#session-date').val();
     let sessionDateUnix = moment(sessionDate).unix();
-	let sessionTime = $('#session-time').val();
-	let loggedInUserId = $('.logged-in-user').val();
-	let sessionType = "";
-	let appName = $('#app-type').val().toLowerCase();
-	let appRadio = $('input[id="app-used"]:checked').val();
-	if (appRadio == "on") {
-		sessionType = appName
-	} else {
-		sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
-	}
-	let journalEntry = $('#add-entry').val();
+    let sessionTime = $('#session-time').val();
+    let loggedInUserId = $('.logged-in-user').val();
+    let sessionType = "";
+    let appName = $('#app-type').val().toLowerCase();
+    let appRadio = $('input[id="app-used"]:checked').val();
+    if (appRadio == "on") {
+        sessionType = appName
+    } else {
+        sessionType = $('input[name="session-type"]:checked').val().toLowerCase();
+    }
+    let journalEntry = $('#add-entry').val();
     if (sessionDate == "") {
         alert('Please select session date');
     } else if (sessionTime == "") {
@@ -581,45 +580,44 @@ $(document).on('click', '#js-save-session', function(event) {
     } else if (sessionType == "") {
         alert('Please select session type or add App name');
     } else {
-		const newSessionObject = {
-			loggedInUserId,
-			sessionDate, 
+        const newSessionObject = {
+            loggedInUserId,
+            sessionDate,
             sessionDateUnix,
-			sessionTime,
-			sessionType,
-			journalEntry
-		};
-		$.ajax({
-			type: 'POST',
-			url: '/sessions/create',
-			dataType: 'json',
-			data: JSON.stringify(newSessionObject),
-			contentType: 'application/json'
-		})
-		.done(function(res) {
-			alert('You successfully added a session');
-			$('#add-session-form')[0].reset();
-			showDashboardScreen();
-		})
-	    .fail(function(jqXHR, error, errorThrown) {
-	        console.log(jqXHR);
-	        console.log(error);
-	        console.log(errorThrown);
-	    });
-	}
+            sessionTime,
+            sessionType,
+            journalEntry
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/sessions/create',
+            dataType: 'json',
+            data: JSON.stringify(newSessionObject),
+            contentType: 'application/json'
+        })
+        .done(function(res) {
+            $('#add-session-form')[0].reset();
+            showDashboardScreen();
+        })
+        .fail(function(jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+    }
 });
 
 // Handle open Journal Screen
 $(document).on('click', '.js-journal', function(event) {
     event.preventDefault();
-	let loggedInUserId = $('.logged-in-user').val();
-	showJournalScreen(loggedInUserId);
+    let loggedInUserId = $('.logged-in-user').val();
+    showJournalScreen(loggedInUserId);
 });
 
 $(document).on('click', '.js-journal-link', function(event) {
     event.preventDefault();
-	let loggedInUserId = $('.logged-in-user').val();
-	showJournalScreen(loggedInUserId);
+    let loggedInUserId = $('.logged-in-user').val();
+    showJournalScreen(loggedInUserId);
 });
 
 // Delete Journal Entry from Journal Screen
@@ -632,7 +630,9 @@ function deleteSession(sessionId) {
             url: '/sessions/' + sessionId,
         })
         .done(function(res) {
-            alert('You successfully deleted a session');
+            $('.js-delete-success').html('<i class="fas fa-check-circle"></i> You successfully deleted a session');
+            $('.js-delete-success').addClass('change-status-success');
+            $('.js-delete-success').delay(2000).fadeOut();
             showJournalScreen(loggedInUserId)
         })
         .fail(function(jqXHR, error, errorThrown) {
@@ -681,7 +681,7 @@ $(document).on('submit', '#changePw-form', function(event) {
             alert('Please enter a password');
         } else {
             const updateUserObject = {
-                pw 
+                pw
             };
             $.ajax({
                 type: 'PUT',
@@ -694,9 +694,9 @@ $(document).on('submit', '#changePw-form', function(event) {
             $('.logged-in-user').val(res._id);
             $('#changePw-form')[0].reset();
             $('.js-change-pw-status').html('<i class="fas fa-check-circle"></i> You successfully updated your password');
-            $('.js-change-pw-status').addClass('change-pw-status-success');
-            showChangePasswordScreen(); 
-
+            $('.js-change-pw-status').addClass('change-status-success');
+            $('.js-change-pw-status').delay(2000).fadeOut();
+            showChangePasswordScreen();
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
