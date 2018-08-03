@@ -451,7 +451,7 @@ $(document).on('click', '#js-signup-button', function(event) {
         const confirmPw = $('input[name="js-reenter-pw"]').val();
         if (password !== confirmPw) {
             alert('Passwords must match!');
-        } else if (email == "") {
+        } else if (email == "" ) {
             alert('Please enter an email');
         } else if (password == "") {
             alert('Please enter a password');
@@ -597,6 +597,9 @@ $(document).on('click', '#js-save-session', function(event) {
         })
         .done(function(res) {
             $('#add-session-form')[0].reset();
+            $('.js-add-success').html('<i class="fal fa-thumbs-up"></i> You successfully added a session');
+            $('.js-add-success').addClass('change-status-success');
+            $('.js-add-success').delay(2000).fadeOut();
             showDashboardScreen();
         })
         .fail(function(jqXHR, error, errorThrown) {

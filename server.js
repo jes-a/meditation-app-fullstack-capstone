@@ -72,7 +72,6 @@ function closeServer() {
 // Check for duplicate email in database for user sign up
 app.get('/check-duplicate-email/:inputEmail', (req, res)=>{
     let inputEmail = req.params.inputEmail;
-    console.log(inputEmail);
     User
         .find({
             "email": inputEmail
@@ -114,7 +113,7 @@ app.post('/users/create', (req, res) => {
 
             User.create({
                 email,
-                password: hash, 
+                password: hash,
             }, (err, item) => {
                 if (err) {
                     return res.status(500).json({
@@ -132,7 +131,7 @@ app.post('/users/create', (req, res) => {
 });
 
 
-// User log in 
+// User log in
 app.post('/signin', function(req, res) {
     User
         .findOne({
@@ -179,7 +178,7 @@ app.post('/sessions/create', (req, res) => {
 
     Session.create({
         loggedInUserId,
-        sessionDate, 
+        sessionDate,
         sessionDateUnix,
         sessionTime,
         sessionType,
@@ -194,14 +193,13 @@ app.post('/sessions/create', (req, res) => {
             console.log(`Session added for ${sessionDate}`);
             return res.json(item);
         }
-    }); 
-}); 
+    });
+});
 
 
 // GET
 // Get sessions to populate total days in Dashboard
 app.get('/sessions-total/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id})
         .count()
@@ -219,7 +217,6 @@ app.get('/sessions-total/:id', (req, res) => {
 // GET
 // Get sessions to populate days in a row in Dashboard
 app.get('/sessions-streak/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id}, {sessionDateUnix: 1})
         .sort({sessionDateUnix: -1})
@@ -238,7 +235,6 @@ app.get('/sessions-streak/:id', (req, res) => {
 // GET
 // Get sessions to populate last 10 days in Dashboard
 app.get('/sessions-ten/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id},{sessionDateUnix: 1})
         .sort({sessionDateUnix: -1})
@@ -256,7 +252,6 @@ app.get('/sessions-ten/:id', (req, res) => {
 // GET
 // Get sessions to most used method in Dashboard
 app.get('/sessions-method/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id},{sessionType: 1})
         .then((sessions) => {
@@ -273,7 +268,6 @@ app.get('/sessions-method/:id', (req, res) => {
 // GET
 // Get sessions to populate avg session length in Dashboard
 app.get('/sessions-avg/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id},{sessionTime: 1})
         .then((sessions) => {
@@ -290,7 +284,6 @@ app.get('/sessions-avg/:id', (req, res) => {
 // GET
 // Get sessions to populate journal sidebar on Home Page
 app.get('/sessions-journal-sb/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id})
         .sort({sessionDate: -1})
@@ -314,7 +307,6 @@ app.get('/sessions-journal-sb/:id', (req, res) => {
 // GET
 // Get sessions to populate journal screen
 app.get('/sessions-journal/:id', (req, res) => {
-    console.log(req.params.id);
     Session
         .find({loggedInUserId: req.params.id})
         .sort({sessionDate: -1})
@@ -338,7 +330,6 @@ app.get('/sessions-journal/:id', (req, res) => {
 // Update user password
 app.put('/user-pw/:id', function(req, res) {
     let password = req.body.pw;
-    console.log(password);
     password = password.trim();
         bcrypt.genSalt(10, (err, salt) => {
             if (err) {
@@ -356,7 +347,7 @@ app.put('/user-pw/:id', function(req, res) {
 
                 User
                     .findByIdAndUpdate(req.params.id, {
-                        $set: {password: hash}                    
+                        $set: {password: hash}
                     })
                     .then((user) => {
                         return res.json(user);
@@ -371,8 +362,8 @@ app.put('/user-pw/:id', function(req, res) {
         });
 });
 
-// DELETE 
-// Delete Journal entry from journal screen 
+// DELETE
+// Delete Journal entry from journal screen
 app.delete('/sessions/:id', (req, res) => {
     Session
         .findByIdAndRemove(req.params.id)
